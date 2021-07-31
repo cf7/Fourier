@@ -10,4 +10,9 @@ Fourier is a code-summary application that uses natural language processing tech
 3) Summaries will have multiple layers to give users access to multiple "zoom depths" of the code's logic details.
 
 ## Long Term Goals
-1) Generate web-publishable technical documentation for code
+1) Generate web-publishable code summaries
+
+
+## What Fourier is not
+
+Fourier is not an technical documentation auto-generator. Its purpose is not to take in commented code and generate formatted documentation from the comments and code snippets (although, this may become a feature eventually). Fourier is designed simply to read programming languages and translate them into spoken language, with or without comments or parameter definitions from the developer.
