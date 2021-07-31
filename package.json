@@ -1,5 +1,5 @@
 {
-  "name": "protocell",
+  "name": "Fourier",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cf7/protocell.git"
+    "url": "git+https://github.com/cf7/Fourier.git"
   },
   "author": "cf7",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cf7/protocell/issues"
+    "url": "https://github.com/cf7/Fourier/issues"
   },
-  "homepage": "https://github.com/cf7/protocell#readme",
+  "homepage": "https://github.com/cf7/Fourier#readme",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.11.1",
@@ -29,13 +29,13 @@
     "connect-timeout": "^1.9.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.3.0",
-    "mongoose": "^5.10.0",
-    "nodemon": "^2.0.4",
+    "mongoose": "^5.13.5",
+    "nodemon": "^2.0.12",
     "path": "^0.12.7",
-    "react": "^16.13.1",
+    "react": "^17.0.2",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "webpack": "^4.44.1",
+    "react-scripts": "^4.0.3",
+    "webpack": "^5.47.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
