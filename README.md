@@ -22,9 +22,9 @@ Fourier is not an technical documentation auto-generator. Its purpose is not to 
 
 ## Setup
 
-  npm install
+-npm install
 
-  npm run build
+-npm run build
   
-  npm run dev-start
+-npm run dev-start
 
