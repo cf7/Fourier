@@ -18,3 +18,13 @@ Fourier is not meant to replace the human reader, but to augment them. This tool
 ## What Fourier is not
 
 Fourier is not an technical documentation auto-generator. Its purpose is not to take in commented code and generate formatted documentation from the comments and code snippets (although, this may become a feature eventually). Fourier is designed simply to read programming languages and translate them into spoken language, with or without comments or parameter definitions from the developer.
+
+
+## Setup
+
+  npm install
+
+  npm run build
+  
+  npm run dev-start
+
