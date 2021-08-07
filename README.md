@@ -2,14 +2,14 @@
 
 Fourier is a code-summary application that uses natural language processing techniques to summarize code into human readable phrases. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
-Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes decoding programming languages and convoluted code bases a lot easier and a lot less time-intensive.
+Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages a lot easier and a lot less time-intensive.
 
 
 ## Features
 
 1) Fourier reads code snippets and translates them into spoken language that is summarized and contextualized.
-2) Users can click on summaries to highlights which pieces of code the generated text is referring to.
-3) Summaries will have multiple layers to give users access to multiple "zoom depths" of the code's logic details.
+2) Users can click on summaries to highlight which pieces of code the generated text is referring to.
+3) Summaries will have multiple layers to give users access to multiple "zoom depths" of the code's logic.
 
 ## Long Term Goals
 1) Generate web-publishable code summaries
