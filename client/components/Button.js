@@ -6,9 +6,13 @@ class Button extends React.Component {
     super(props);
   }
 
+  handleClick = (event) => {
+    console.log("Clicked!");
+  }
+
   render() {
     return (
-      <button>
+      <button onClick={this.handleClick}>
         Search
       </button>
     );
