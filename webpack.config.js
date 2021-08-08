@@ -13,7 +13,11 @@ module.exports = {
       {
         test: /\.js$/, // check files to transform with this rule
         exclude: /node_modules/, // don't transform node_modules files
-        use: 'babel-loader' // use the jsx parsing that comes with babel
+        use: 'babel-loader' // loader to apply, use the jsx parsing that comes with babel
+      },
+      {
+        test: /\.css$/,
+        use: [ "style-loader", "css-loader" ]
       }
     ]
   },
