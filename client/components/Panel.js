@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button } from './button.js';
+import { Button } from './Button.js';
+import { TextArea } from './TextArea.js';
 
 class Panel extends React.Component {
 
@@ -14,6 +15,7 @@ class Panel extends React.Component {
         <Button />
         <Button />
         <Button />
+        <TextArea className="user-input"/>
       </div>
     );
   }

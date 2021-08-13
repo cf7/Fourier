@@ -1,9 +1,20 @@
 .panel {
   display: grid;
   grid-template-columns: 200px 200px 200px;
+  grid-template-areas:
+    "header header header"
+    "body body body"
+    "footer footer footer";
   grid-column-gap: 10px;
   border: 1px solid #000000;
   border-radius: 1em;
   justify-content: space-evenly;
+}
+
+textarea {
+  grid-area: body;
+  font-family: Helvetica;
+  font-size: large;
+  margin: 1em;
 }
 

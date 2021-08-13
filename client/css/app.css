@@ -5,6 +5,16 @@
 .app-view {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "header header"
+    "body body"
+    "footer footer";
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+h1 {
+  grid-area: header;
+  align-content: center;
+  text-align: center;
 }
