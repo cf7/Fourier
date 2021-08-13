@@ -1,0 +1,10 @@
+
+@import url('./panel.css');
+@import url('./button.css');
+
+.app-view {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

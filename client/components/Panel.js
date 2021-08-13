@@ -10,7 +10,9 @@ class Panel extends React.Component {
 
   render() {
     return (
-      <div className="panel1">
+      <div className="panel">
+        <Button />
+        <Button />
         <Button />
       </div>
     );

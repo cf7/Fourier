@@ -3,8 +3,8 @@ import { Panel } from './panel.js';
 
 export default function App() {
   return (
-    <div>
-      Hello World!
+    <div className='app-view'>
+      <Panel />
       <Panel />
     </div>
   );
