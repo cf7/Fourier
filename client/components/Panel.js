@@ -6,18 +6,26 @@ class Panel extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
+  // React recommends onChange over onInput
   render() {
-    return (
-      <div className="panel">
-        <Button />
-        <Button />
-        <Button />
-        <TextArea className="user-input"/>
-      </div>
-    );
+    if (this.props.type == 'input') {
+      return (
+        <div className="panel">
+          <Button />
+          <Button />
+          <Button />
+          <TextArea className="user-input" handleContent={this.props.handleContent} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="panel">
+          { this.props.userContent }
+        </div>
+      );
+    }
   }
 }
 

@@ -9,8 +9,8 @@
     "header header"
     "body body"
     "footer footer";
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 h1 {

@@ -7,7 +7,7 @@ class TextArea extends React.Component {
 
   render() {
     return (
-      <textarea columns="50" rows="50">
+      <textarea columns="50" rows="50" onChange={this.props.handleContent}>
       </textarea>
     );
   }
