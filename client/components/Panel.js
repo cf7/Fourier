@@ -13,16 +13,16 @@ class Panel extends React.Component {
     if (this.props.type == 'input') {
       return (
         <div className="panel">
-          <Button />
-          <Button />
-          <Button />
+          <Button type='drop-down'/>
           <TextArea className="user-input" handleContent={this.props.handleContent} />
         </div>
       );
     } else {
       return (
         <div className="panel">
-          { this.props.userContent }
+          <p>
+            { this.props.userContent }
+          </p>
         </div>
       );
     }
