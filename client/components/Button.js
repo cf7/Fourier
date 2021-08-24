@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Button extends React.Component {
+class DropDown extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,29 +13,17 @@ class Button extends React.Component {
     console.log("Clicked!");
   }
 
-  handleMouseOver = (event) => {
-    console.log("hovering!");
-    this.setState({listHidden: false });
-  }
-
-  handleMouseOut = (event) => {
-    this.setState({listHidden: true });
-  }
-
   render() {
     if (this.props.type) {
       if (this.props.type == 'drop-down') {
         return (
-          <button onClick={this.handleClick} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}>
-            Language
-            <div className={ 'drop-down-options' + (this.state.listHidden ? ' hidden' : '') }>
-              <ul>
-                <li>Javascript</li>
-                <li>Python</li>
-                <li>C++</li>
-              </ul>
-            </div>
-          </button>
+            <label for="languages" className='language-options' onClick={this.handleClick}>
+              <select name="languages" id="language-options">
+                <option value="Javascript">Javascript</option>
+                <option value="Python">Python</option>
+                <option value="C++">C++</option>
+              </select>
+            </label>
         );
       }
     } else {
@@ -48,4 +36,4 @@ class Button extends React.Component {
   }
 }
 
-export { Button };
+export { DropDown };

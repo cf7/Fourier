@@ -1,10 +1,14 @@
-button {
+label {
   grid-area: header;
-  background-color: cyan;
+  background-color: white;
   margin: 1em;
   max-width: 250px;
 }
 
-button > div.hidden {
+/*label.hidden {
   display: none;
+}*/
+
+label.language-options {
+  background-color: white;
 }

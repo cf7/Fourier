@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './Button.js';
+import { DropDown } from './Button.js';
 import { TextArea } from './TextArea.js';
 
 class Panel extends React.Component {
@@ -13,7 +13,7 @@ class Panel extends React.Component {
     if (this.props.type == 'input') {
       return (
         <div className="panel">
-          <Button type='drop-down'/>
+          <DropDown type='drop-down'/>
           <TextArea className="user-input" handleContent={this.props.handleContent} />
         </div>
       );
