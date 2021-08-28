@@ -2,19 +2,24 @@
 @import url('./panel.scss');
 // @import url('./button.scss');
 
+
+$font-family: Helvetica;
+
 .app-view {
+  /*
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas:
     "header header"
     "body body"
     "footer footer";
+  */
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
 h1 {
-  grid-area: header;
+  /* grid-area: header; */
   align-content: center;
   text-align: center;
 }

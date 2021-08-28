@@ -1,12 +1,11 @@
 import React from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
-class DropDown extends React.Component {
+class Button extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      listHidden: true
-    }
   }
 
   handleClick = (event) => {
@@ -14,18 +13,14 @@ class DropDown extends React.Component {
   }
 
   render() {
-    if (this.props.type) {
-      if (this.props.type == 'drop-down') {
-        return (
-            <label for="languages" className='language-options' onClick={this.handleClick}>
-              <select name="languages" id="language-options">
-                <option value="Javascript">Javascript</option>
-                <option value="Python">Python</option>
-                <option value="C++">C++</option>
-              </select>
-            </label>
-        );
-      }
+    if (this.props.type && (this.props.type == 'drop-down')) {
+      return (
+        <DropdownButton id="dropdown-basic-button" title="Language">
+          <Dropdown.Item href="#/action-1">Javascript</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Python</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">C++</Dropdown.Item>
+        </DropdownButton>
+      );
     } else {
       return (
         <button onClick={this.handleClick}>
@@ -36,4 +31,4 @@ class DropDown extends React.Component {
   }
 }
 
-export { DropDown };
+export { Button };

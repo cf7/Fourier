@@ -1,6 +1,10 @@
 import React from 'react';
 import { Panel } from './Panel.js';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 function Title() {
   return <h1>Fourier</h1>
 }
@@ -20,11 +24,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='app-view'>
-        <Title />
-        <Panel type='input' handleContent={this.handleContent.bind(this)} />
-        <Panel type='display' userContent={this.state.userContent} />
-      </div>
+        <Container className='app-view'>
+          <Row>
+            <Title />
+          </Row>
+          <Row>
+            <Col>
+              <Panel type='input' handleContent={this.handleContent.bind(this)} />
+            </Col>
+            <Col>
+              <Panel type='display' userContent={this.state.userContent} />
+            </Col>
+          </Row>
+        </Container>
     );
   }
 }
