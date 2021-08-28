@@ -18,9 +18,10 @@ textarea {
   margin: 1em;
 }
 
-div > p {
-  font-family: Helvetica;
-  font-size: large;
-  margin: 1em;
+div {
+  p {
+    font-family: Helvetica;
+    font-size: large;
+    margin: 1em;
+  }
 }
-

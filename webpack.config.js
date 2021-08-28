@@ -11,14 +11,15 @@ module.exports = {
   module: {
     rules: [ // what transformations should webpack perform? (called "loaders")
       {
-        test: /\.js$/, // check files to transform with this rule
+        test: /\.js$/, // check which files to transform with this rule
         exclude: /node_modules/, // don't transform node_modules files
         use: 'babel-loader' // loader to apply, use the jsx parsing that comes with babel
       },
       {
-        test: /\.css$/,
-        use: [ "style-loader", "css-loader" ]
-      }
+        test: /\.(scss|css)$/,
+        exclude: /node_modules/,
+        use: [ "style-loader", "css-loader", "sass-loader" ] // * order matters! (right-to-left!)
+      } // compiles SASS -> to CSS -> compiles CSS -> style-loader inlines CSS into html
     ]
   },
   output: {
