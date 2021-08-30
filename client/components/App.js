@@ -5,6 +5,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import AceEditor from 'react-ace';
+import 'ace-builds/src-min-noconflict/mode-javascript';
+import 'ace-builds/src-min-noconflict/mode-python';
+import 'ace-builds/src-min-noconflict/mode-c_cpp';
+
+
+
 function Title() {
   return <h1>Fourier</h1>
 }
@@ -14,17 +21,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       hasContent: false,
-      userContent: "placeholder value",
-      language: "Language"
+      userContent: "Translation appears here . . .",
+      language: "Language",
+      code: `function example(x) { console.log("x"); }`
     };
   }
 
   handleContent(event) {
-    this.setState({ userContent: event.target.value });
-  }
 
-  handleLanguage(lang) {
-    this.setState({ language: lang });
+    // translation engine goes here
+
+    this.setState({ userContent: event.target.value });
   }
 
   render() {
@@ -35,11 +42,25 @@ class App extends React.Component {
           </Row>
           <Row>
             <Col>
-              <Panel 
-                type='input' 
-                handleContent={this.handleContent.bind(this)} 
-                handleLanguage={this.handleLanguage.bind(this)}
-                language={this.state.language}
+              <AceEditor
+                placeholder="Paste your code here . . ."
+                mode="javascript"
+                theme="monokai"
+                name="blah2"
+                onLoad={this.onLoad}
+                onChange={this.onChange}
+                fontSize={14}
+                showPrintMargin={true}
+                showGutter={true}
+                highlightActiveLine={true}
+                value={this.state.code}
+                setOptions={{
+                  enableBasicAutocompletion: false,
+                  enableLiveAutocompletion: false,
+                  enableSnippets: false,
+                  showLineNumbers: true,
+                  tabSize: 2,
+                }}
               />
             </Col>
             <Col>
