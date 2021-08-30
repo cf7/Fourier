@@ -23,8 +23,10 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'main.js', // output new build file
-    path: __dirname + '/build' // build files are just bundles transformed by webpack loaders
+    filename: 'bundle.js', // output new build file
+    path: __dirname + '/build', // build files are just bundles transformed by webpack loaders
+    publicPath: '/'
   },
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [HTMLWebpackPluginConfig],
+  devtool: 'inline-source-map' // error-tracking so error not erased by bundle.js
 };

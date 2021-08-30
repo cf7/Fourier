@@ -34,6 +34,14 @@ class App extends React.Component {
     this.setState({ userContent: event.target.value });
   }
 
+  onLoad(event) {
+    console.log("loaded");
+  }
+
+  onChange(event) {
+    console.log("edit");
+  }
+
   render() {
     return (
         <Container className='app-view'>
