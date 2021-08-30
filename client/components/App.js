@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel } from './Panel.js';
+import { Button } from './Button.js';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,8 +10,6 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/mode-python';
 import 'ace-builds/src-min-noconflict/mode-c_cpp';
-
-
 
 function Title() {
   return <h1>Fourier</h1>
@@ -27,19 +26,21 @@ class App extends React.Component {
     };
   }
 
-  handleContent(event) {
+  handleContent = (event) => {
 
     // translation engine goes here
 
     this.setState({ userContent: event.target.value });
   }
 
-  onLoad(event) {
-    console.log("loaded");
-  }
-
-  onChange(event) {
-    console.log("edit");
+  handleSubmit = (event) => {
+    console.log("Submitting!");
+    const request = new XMLHttpRequest();
+    request.open('POST', '/translate', true);
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.send(JSON.stringify({
+      "test": "test"
+    }));
   }
 
   render() {
@@ -53,7 +54,7 @@ class App extends React.Component {
               <AceEditor
                 placeholder="Paste your code here . . ."
                 mode="javascript"
-                theme="monokai"
+                // theme="monokai"
                 name="blah2"
                 onLoad={this.onLoad}
                 onChange={this.onChange}
@@ -68,8 +69,10 @@ class App extends React.Component {
                   enableSnippets: false,
                   showLineNumbers: true,
                   tabSize: 2,
+                  useWorker: false
                 }}
               />
+              <Button submit={this.handleSubmit} />
             </Col>
             <Col>
               <Panel type='display' userContent={this.state.userContent} />

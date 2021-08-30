@@ -7,6 +7,11 @@ class Button extends React.Component {
     super(props);
   }
 
+  handleClick = (event) => {
+    console.log("Clicked!");
+    this.props.submit();
+  }
+
   handleSelect = (eventKey, event) => {
     event.persist();
     console.log("Clicked!");
@@ -30,7 +35,7 @@ class Button extends React.Component {
     } else {
       return (
         <button onClick={this.handleClick}>
-          Search
+          Submit
         </button>
       );
     }
