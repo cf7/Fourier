@@ -16,9 +16,13 @@ class Panel extends React.Component {
     if (this.props.type && (this.props.type == 'input')) {
       return (
         <Container className="panel">
-          <Row>
-            <Input className="user-input" type="user-input" handleContent={this.props.handleContent} />
-          </Row>
+            <Input 
+              className="user-input" 
+              type="user-input" 
+              handleContent={this.props.handleContent} 
+              handleLanguage={this.props.handleLanguage}
+              language={this.props.language}
+            />
         </Container>
       );
     } else {

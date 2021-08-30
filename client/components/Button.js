@@ -1,6 +1,5 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class Button extends React.Component {
 
@@ -8,18 +7,25 @@ class Button extends React.Component {
     super(props);
   }
 
-  handleClick = (event) => {
+  handleSelect = (eventKey, event) => {
+    event.persist();
     console.log("Clicked!");
+    this.props.handleLanguage(eventKey);
   }
 
   render() {
     if (this.props.type && (this.props.type == 'drop-down')) {
       return (
-        <DropdownButton id="dropdown-basic-button" title="Language">
-          <Dropdown.Item href="#/action-1">Javascript</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Python</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">C++</Dropdown.Item>
-        </DropdownButton>
+        <Dropdown onSelect={this.handleSelect}>
+          <Dropdown.Toggle id="dropdown-basic">
+            { this.props.language }
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey="Javascript">Javascript</Dropdown.Item>
+            <Dropdown.Item eventKey="Python">Python</Dropdown.Item>
+            <Dropdown.Item eventKey="C++">C++</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       );
     } else {
       return (

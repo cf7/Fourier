@@ -14,12 +14,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       hasContent: false,
-      userContent: "placeholder value"
+      userContent: "placeholder value",
+      language: "Language"
     };
   }
 
   handleContent(event) {
     this.setState({ userContent: event.target.value });
+  }
+
+  handleLanguage(lang) {
+    this.setState({ language: lang });
   }
 
   render() {
@@ -30,7 +35,12 @@ class App extends React.Component {
           </Row>
           <Row>
             <Col>
-              <Panel type='input' handleContent={this.handleContent.bind(this)} />
+              <Panel 
+                type='input' 
+                handleContent={this.handleContent.bind(this)} 
+                handleLanguage={this.handleLanguage.bind(this)}
+                language={this.state.language}
+              />
             </Col>
             <Col>
               <Panel type='display' userContent={this.state.userContent} />

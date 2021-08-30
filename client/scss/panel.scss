@@ -12,6 +12,8 @@
   border-radius: 1em;
   justify-content: space-evenly;
   min-height: 20em;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 form {
@@ -23,6 +25,13 @@ form {
   font-family: $font-family;
   align-content: center;
   text-align: center;
+}
+
+.indicator-bar {
+  display: inline-flex;
+  font-family: $font-family;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 textarea {

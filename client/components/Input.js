@@ -11,9 +11,17 @@ class Input extends React.Component {
     if (this.props.type && (this.props.type == 'user-input')) {
       return (
         <Form>
+
           <Form.Label>
-            <Button type='drop-down' />
+            <Button 
+              type='drop-down'
+              handleLanguage={this.props.handleLanguage}
+              language={this.props.language}
+            />
           </Form.Label>
+          <Form.Text className="indicator-bar">
+              indicatators here . . .
+          </Form.Text>
           <Form.Control as='textarea' rows={6} onChange={this.props.handleContent} />
         </Form>
       );
