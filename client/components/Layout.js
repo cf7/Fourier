@@ -1,6 +1,8 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
 class Layout extends React.Component {
   constructor(props) {
     super(props);
@@ -12,9 +14,10 @@ class Layout extends React.Component {
         <header>
           <Container>
             <Navbar expand="lg" variant="light" bg="light">
-              <Container>
-                <Navbar.Brand href="#">Navbar</Navbar.Brand>
-              </Container>
+              <Navbar.Brand href="/">Fourier</Navbar.Brand>
+              <Nav className="nav-options">
+                <Nav.Link href="/about">About</Nav.Link>
+              </Nav>
             </Navbar>
           </Container>
         </header>
