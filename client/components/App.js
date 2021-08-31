@@ -1,4 +1,5 @@
 import React from 'react';
+import { Layout } from './Layout.js';
 import { Panel } from './Panel.js';
 import { Button } from './Button.js';
 
@@ -45,6 +46,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <Layout>
         <Container className='app-view'>
           <Row>
             <Title />
@@ -79,6 +81,7 @@ class App extends React.Component {
             </Col>
           </Row>
         </Container>
+      </Layout>
     );
   }
 }
