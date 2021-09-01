@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "build": "webpack",
-    "dev-start": "webpack-dev-server",
-    "test": "test"
+    "dev-start": "webpack-dev-server --content-base client/",
+    "test": "test",
+    "nodemon": "nodemon -e js,html,scss server.js"
   },
   "repository": {
     "type": "git",

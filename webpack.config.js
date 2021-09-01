@@ -4,8 +4,8 @@ const path = require('path');
 module.exports = {
   mode: 'development',
   entry: {
-    index: path.resolve(__dirname, '/client/index.js'),
-    about: path.resolve(__dirname, '/client/about.js')
+    index: path.join(__dirname, '/client/index.js'),
+    about: path.join(__dirname, '/client/about.js')
   }, // what files should webpack transform?
   module: {
     rules: [ // what transformations should webpack perform? (called "loaders")
@@ -21,22 +21,16 @@ module.exports = {
       } // compiles SASS -> to CSS -> compiles CSS -> style-loader inlines CSS into html
     ]
   },
-  output: {
-    filename: '[name].bundle.js', // output new build file, [name] uses chunk names
-    path: path.resolve(__dirname, '/build'), // build files are just bundles transformed by webpack loaders
-    publicPath: '/', // renames [path] property in this object to shorter '/'
-    clean: true
-  },
   plugins: [ // need a new plugin instance for each entry point
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, '/client/template.html'), // uses original html as template
+      template: path.join(__dirname, '/client/template.html'), // uses original html as template
       filename: 'index.html', // new index.html build
       chunks: ['index'], // which entries to inject?
       inject: 'body', // where to insert <script src="index.html"></script> tag
       title: 'Fourier'
     }),
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, '/client/template.html'),
+      template: path.join(__dirname, '/client/template.html'),
       filename: 'about.html',
       chunks: ['about'],
       inject: 'body',
@@ -45,6 +39,12 @@ module.exports = {
   ],
   optimization: {
     runtimeChunk: 'single' // must use this option when sharing modules in codesplitting
+  },
+  output: {
+    filename: '[name].bundle.js', // output new build file, [name] uses chunk names
+    path: path.join(__dirname, '/build'), // build files are just bundles transformed by webpack loaders
+    publicPath: '/', // renames [path] property in this object to shorter '/' that browser will use
+    clean: true
   },
   devtool: 'inline-source-map', // error-tracking so error not erased by bundle.js
   watch: true
