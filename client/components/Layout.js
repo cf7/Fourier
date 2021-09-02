@@ -13,10 +13,10 @@ class Layout extends React.Component {
       <Container id="layout">
         <header>
           <Container>
-            <Navbar expand="lg" variant="light" bg="light">
+            <Navbar id="navbar" expand="lg" variant="light" bg="light">
               <Navbar.Brand id="brand" href="/">Fourier</Navbar.Brand>
               <Nav className="nav-options">
-                <Nav.Link href="/about.html">About</Nav.Link>
+                <Nav.Link data-text="About" href="/about.html">About</Nav.Link>
               </Nav>
             </Navbar>
           </Container>
