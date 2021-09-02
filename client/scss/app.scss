@@ -1,10 +1,8 @@
-@import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
-@import url('./panel.scss');
-@import url('./layout.scss');
+// @import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
+// @import './panel.scss';
+// @import './layout.scss';
 // @import url('./button.scss');
 
-
-$font-family: Helvetica;
 
 .app-view {
   /*
@@ -16,7 +14,7 @@ $font-family: Helvetica;
     "footer footer";
   */
   margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 h1 {

@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "build": "webpack",
-    "dev-start": "webpack-dev-server --content-base client/",
-    "test": "test",
-    "nodemon": "nodemon -e js,html,scss server.js"
+    "dev-start": "webpack",
+    "dev-start2": "webpack serve",
+    "test": "test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "dependencies": {
     "ace-builds": "^1.4.12",
     "bootstrap": "^5.1.0",
+    "mini-css-extract-plugin": "^2.2.1",
     "morgan": "^1.10.0",
     "react-ace": "^9.4.3",
     "react-bootstrap": "^1.6.1"
@@ -30,9 +31,12 @@
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-react": "^7.10.4",
+    "@webpack-cli/serve": "^1.5.2",
     "babel-loader": "^8.1.0",
     "babel-node": "0.0.1-security",
+    "clean-webpack-plugin": "^4.0.0",
     "connect-timeout": "^1.9.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.3.0",
@@ -40,14 +44,17 @@
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.12",
     "path": "^0.12.7",
+    "postcss-loader": "^6.1.1",
     "react": "^17.0.2",
     "react-dom": "^16.13.1",
     "react-scripts": "^4.0.3",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "webpack": "^5.47.1",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.8.0",
     "webpack-dev-middleware": "^5.0.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.1.0",
+    "webpack-nano": "^1.1.1",
+    "webpack-plugin-serve": "^1.5.0"
   }
 }
