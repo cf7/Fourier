@@ -118,7 +118,7 @@ module.exports = {
     filename: '[name].bundle.js', // output new build file, [name] uses chunk names
     path: path.join(__dirname, 'build/'), // build files are just bundles transformed by webpack loaders
     publicPath: '/', // redirects requests to this virtual directory in browser memory
-    clean: true // -------- !!!!!!! ***** PROBLEM HERE ***** !!!!!!!!!!! -----------
+    // clean: true // -------- !!!!!!! ***** PROBLEM HERE ***** !!!!!!!!!!! -----------
   },
   optimization: {
     runtimeChunk: 'single' // must use this option when sharing modules in codesplitting

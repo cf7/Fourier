@@ -10,7 +10,7 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container id="layout">
         <header>
           <Container>
             <Navbar expand="lg" variant="light" bg="light">
@@ -25,7 +25,7 @@ class Layout extends React.Component {
           { this.props.children }
 
         <footer>
-          ©2021
+          © 2021
         </footer>
       </Container>
     );

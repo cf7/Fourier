@@ -1,8 +1,7 @@
-// @import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
-// @import './panel.scss';
-// @import './layout.scss';
+@import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
+@import './panel.scss';
+@import './layout.scss';
 // @import url('./button.scss');
-
 
 .app-view {
   /*
@@ -14,7 +13,7 @@
     "footer footer";
   */
   margin-top: 1em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 h1 {
