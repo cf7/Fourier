@@ -1,5 +1,5 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
+// const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -108,7 +108,7 @@ module.exports = {
     //   ]
     // }),
     // new Serve({
-    //   static: path.join(__dirname, 'client/'), // this particular static looks for build index files
+    //   static: path.join(__dirname, 'client/'),
     //   // liveReload: true,
     //   // hmr: true
     // })
@@ -125,7 +125,6 @@ module.exports = {
   },
   devtool: 'inline-source-map', // error-tracking so error not erased by bundle.js
   devServer: {
-    // static: path.join(__dirname, 'client/'), // dir passed to express.static() in dev server, not same as contentBase
     static: {
       directory: path.join(__dirname, 'client/'),
       publicPath: '/'
@@ -134,13 +133,7 @@ module.exports = {
       logging: 'verbose',
       overlay: true
     },
-    hot: false,
-    // liveReload: true
-    // watchFiles: [ path.join(__dirname, 'client/') ]
-    // watchOptions: {
-    //   ignored: /node_modules/
-    // }
-    // staticWatch: true
+    hot: false
   },
   watch: true
 };

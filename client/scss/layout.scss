@@ -3,10 +3,9 @@ $primary: #205fab;
 #brand {
   color: $primary !important;
   padding-left: 3px;
-}
-
-#brand:hover {
-  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 #navbar {
@@ -20,21 +19,10 @@ $primary: #205fab;
 a.nav-link {
   color: $primary !important;
   &:hover {
-    font-weight: bold;
+    text-decoration: underline;
   }
 }
 
-a.nav-link::after {
-  content: attr(data-text);
-  content: attr(data-text) / "";
-  height: 0;
-  font-weight: bold;
-  visibility: hidden;
-  overflow: hidden;
-  user-select: none;
-  pointer-events: none;
-  font-weight: bold;  
-}
 
 footer {
   justify-content: center;

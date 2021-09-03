@@ -1,7 +1,8 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
 
-class Button extends React.Component {
+class Button1 extends React.Component {
 
   constructor(props) {
     super(props);
@@ -15,15 +16,15 @@ class Button extends React.Component {
   handleSelect = (eventKey, event) => {
     event.persist();
     console.log("Clicked!");
-    this.props.handleLanguage(eventKey);
+    this.props.handleMode(eventKey);
   }
 
   render() {
-    if (this.props.type && (this.props.type == 'drop-down')) {
+    if (this.props.type && (this.props.type == 'dropdown')) {
       return (
         <Dropdown onSelect={this.handleSelect}>
           <Dropdown.Toggle id="dropdown-basic">
-            { this.props.language }
+            { this.props.mode }
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item eventKey="Javascript">Javascript</Dropdown.Item>
@@ -34,12 +35,15 @@ class Button extends React.Component {
       );
     } else {
       return (
-        <button onClick={this.handleClick}>
-          Submit
-        </button>
+        <Button 
+          onClick={this.handleClick}
+          as="input"
+          type="submit"
+          value="Submit"
+        />
       );
     }
   }
 }
 
-export { Button };
+export { Button1 };

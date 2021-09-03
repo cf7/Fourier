@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "webpack",
-    "dev-start": "webpack",
-    "dev-start2": "webpack serve",
+    "dev-start": "webpack serve",
     "test": "test"
   },
   "repository": {

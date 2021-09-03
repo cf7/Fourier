@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from './Layout.js';
 import { Panel } from './Panel.js';
-import { Button } from './Button.js';
+import { Button1 } from './Button.js';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -22,7 +22,7 @@ class App extends React.Component {
     this.state = {
       hasContent: false,
       userContent: "Translation appears here . . .",
-      language: "Language",
+      mode: "Language",
       code: `function example(x) { console.log("x"); }`
     };
   }
@@ -44,6 +44,11 @@ class App extends React.Component {
     }));
   }
 
+  handleMode = (mode) => {
+    console.log("mode select");
+    this.setState({ mode: mode });
+  }
+
   render() {
     return (
       <Layout>
@@ -53,9 +58,13 @@ class App extends React.Component {
           </Row>
           <Row>
             <Col>
+              <Panel className="controls">
+                controls1 . . .
+                <Button1 type="dropdown" mode={this.state.mode} handleMode={this.handleMode} />
+              </Panel>
               <AceEditor
                 placeholder="Paste your code here . . ."
-                mode="javascript"
+                mode={this.state.mode}
                 // theme="monokai"
                 name="blah2"
                 onLoad={this.onLoad}
@@ -74,10 +83,15 @@ class App extends React.Component {
                   useWorker: false
                 }}
               />
-              <Button submit={this.handleSubmit} />
+              <Button1 submit={this.handleSubmit} />
             </Col>
             <Col>
-              <Panel type='display' userContent={this.state.userContent} />
+              <Panel className='options'>
+                options1 . . .
+              </Panel>
+              <Panel className='display' userContent={this.state.userContent}>
+                display . . .
+              </Panel>
             </Col>
           </Row>
         </Container>
