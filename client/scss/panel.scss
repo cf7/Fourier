@@ -44,6 +44,12 @@ form {
   margin-right: 2em;
 }
 
+col {
+  label.form-label {
+    justify-content: safe left;
+  }
+}
+
 textarea {
   /* grid-area: body; */
   font-family: inherit;

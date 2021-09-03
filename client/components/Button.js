@@ -16,20 +16,26 @@ class Button1 extends React.Component {
   handleSelect = (eventKey, event) => {
     event.persist();
     console.log("Clicked!");
-    this.props.handleMode(eventKey);
+    this.props.handleSelect(eventKey);
   }
 
   render() {
     if (this.props.type && (this.props.type == 'dropdown')) {
+      const elements = [];
+      this.props.options.forEach((option) => {
+        if (option == 'c_cpp') {
+          elements.push(<Dropdown.Item eventKey={option}>{"C++"}</Dropdown.Item>);
+        } else {
+          elements.push(<Dropdown.Item eventKey={option}>{option}</Dropdown.Item>);
+        }
+      });
       return (
         <Dropdown onSelect={this.handleSelect}>
-          <Dropdown.Toggle id="dropdown-basic">
-            { this.props.mode }
+          <Dropdown.Toggle>
+            { this.props.option }
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item eventKey="Javascript">Javascript</Dropdown.Item>
-            <Dropdown.Item eventKey="Python">Python</Dropdown.Item>
-            <Dropdown.Item eventKey="C++">C++</Dropdown.Item>
+            { elements }
           </Dropdown.Menu>
         </Dropdown>
       );

@@ -39,8 +39,8 @@ module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, 'Fourier/'), // always designate context to make it absolute
   entry: {
-    index: [path.join(__dirname, 'client/index.js'), 'webpack-plugin-serve/client'], // wps has its own client entry in node_modules
-    about: [path.join(__dirname, 'client/about.js'), 'webpack-plugin-serve/client']
+    index: [path.join(__dirname, 'client/index.js')], // wps has its own client entry in node_modules
+    about: [path.join(__dirname, 'client/about.js')]
   }, // what files should webpack transform?
   module: {
     rules: [ // what transformations should webpack perform? (called "loaders")
