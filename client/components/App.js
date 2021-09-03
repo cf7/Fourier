@@ -111,18 +111,22 @@ class App extends React.Component {
               <Panel className="controls">
                 <Form>
                   <Row>
-                    <Form.Label>
-                      <p>Language</p>
-                      <Button1 type="dropdown" datatype="mode" option={this.state.mode} options={this.modes} handleSelect={this.handleSelect} />
-                    </Form.Label>
-                    <Form.Label>
-                      <p>Theme</p>
-                      <Button1 type="dropdown" datatype="theme" option={this.state.theme} options={this.themes} handleSelect={this.handleSelect} />
-                    </Form.Label>
-                    <Form.Label>
-                      <p>Font Size</p>
-                      <Button1 type="dropdown" datatype="fontSize" option={this.state.fontSize} options={this.codeFontSizes} handleSelect={this.handleSelect} />
-                    </Form.Label>
+                    <Col>
+                      <Form.Label>
+                        <p>Language</p>
+                        <Button1 type="dropdown" datatype="mode" option={this.state.mode} options={this.modes} handleSelect={this.handleSelect} />
+                      </Form.Label>
+                      <Form.Label>
+                        <p>Theme</p>
+                        <Button1 type="dropdown" datatype="theme" option={this.state.theme} options={this.themes} handleSelect={this.handleSelect} />
+                      </Form.Label>
+                      <Form.Label>
+                        <p>Font</p>
+                        <Button1 type="dropdown" datatype="fontSize" option={this.state.fontSize} options={this.codeFontSizes} handleSelect={this.handleSelect} />
+                      </Form.Label>
+                    </Col>
+                    <Col>
+                    </Col>
                   </Row>
                 </Form>
               </Panel>

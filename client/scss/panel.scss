@@ -17,9 +17,36 @@
   padding-bottom: 2em;
 }
 
-.controls {
+div.controls {
   border: 0px;
-  min-height: 10em;
+  padding: 0px;
+  justify-content: left;
+  
+}
+
+form {
+  display: inline-flex;
+  margin: 0px;
+  .row {
+    display: inline-flex;
+    margin: 0px;
+    .col {
+      display: inline-flex;
+      padding: 0px;
+    }
+  }
+}
+
+.form-label {
+  display: inline;
+  padding: 0px;
+  p {
+    display: inline-flex;
+    padding: 7px 0px 7px 0px;
+    vertical-align: top;
+    margin: 0px;
+    font-family: inherit;
+  }
 }
 
 .options {
@@ -27,19 +54,6 @@
   min-height: 10em;
 }
 
-form {
-  display: inline-flex;
-  margin: 1em;
-}
-
-.form-label {
-  display: inline-flex;
-  font-family: inherit;
-  p {
-    display: inline-flex;
-    vertical-align: bottom;
-  }
-}
 
 .indicator-bar {
   display: inline-flex;
