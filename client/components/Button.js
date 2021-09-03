@@ -16,7 +16,7 @@ class Button1 extends React.Component {
   handleSelect = (eventKey, event) => {
     event.persist();
     console.log("Clicked!");
-    this.props.handleSelect(eventKey);
+    this.props.handleSelect(eventKey, this.props.datatype);
   }
 
   render() {
@@ -24,9 +24,9 @@ class Button1 extends React.Component {
       const elements = [];
       this.props.options.forEach((option) => {
         if (option == 'c_cpp') {
-          elements.push(<Dropdown.Item eventKey={option}>{"C++"}</Dropdown.Item>);
+          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={option.toString()}>{"C++"}</Dropdown.Item>);
         } else {
-          elements.push(<Dropdown.Item eventKey={option}>{option}</Dropdown.Item>);
+          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={option.toString()}>{option}</Dropdown.Item>);
         }
       });
       return (

@@ -39,11 +39,11 @@ app.post('/translate', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/about.html'));
+  res.sendFile(path.join(__dirname, '/about.html'));
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 // Serve the files on port 3000.

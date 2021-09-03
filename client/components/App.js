@@ -36,9 +36,9 @@ class App extends React.Component {
       fontSize: 14,
       code: `function example(x) { console.log("x"); }`
     };
-    this.languages = ['javascript', 'python', 'c_cpp'];
+    this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
-    this.fontSizes = ['11','12','13','14','15','16','17','18','19','20']
+    this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20']
   }
 
   handleContent = (event) => {
@@ -58,27 +58,38 @@ class App extends React.Component {
     }));
   }
 
-  handleSelect = (option) => {
-    console.log("selected: " + option);
-    // this.setState({ str(option): option });
+  handleSelect = (option, dataType) => {
+    switch (dataType) {
+      case 'mode':
+        this.setState({ mode: option });
+        break;
+      case 'theme':
+        this.setState({ theme: option });
+        break;
+      case 'codeFontSize':
+        this.setState({ codeFontSize: option });
+        break;
+      default:
+        console.log("no dataType");
+    }
   };
 
-  handleMode = (mode) => {
-    console.log("mode select");
-    this.setState({ mode: mode });
-  }
+  // handleMode = (mode) => {
+  //   console.log("mode select");
+  //   this.setState({ mode: mode });
+  // }
 
-  handleTheme = (theme) => {
-    console.log("theme select");
-    this.setState({ theme: theme });
-  }
+  // handleTheme = (theme) => {
+  //   console.log("theme select");
+  //   this.setState({ theme: theme });
+  // }
 
-  handleFontSize = (event) => {
-    console.log(event);
-    console.log(event.target);
-    console.log(event.target.value);
-    this.setState({ fontSize: event.target.value });
-  }
+  // handleFontSize = (event) => {
+  //   console.log(event);
+  //   console.log(event.target);
+  //   console.log(event.target.value);
+  //   this.setState({ fontSize: event.target.value });
+  // }
 
   onLoad = (event) => {
     console.log("loaded");
@@ -102,28 +113,17 @@ class App extends React.Component {
                   <Row>
                     <Form.Label>
                       Language:
-                      <Button1 type="dropdown" option={this.state.mode} options={this.languages} handleSelect={this.handleSelect} />
+                      <Button1 type="dropdown" datatype="mode" option={this.state.mode} options={this.modes} handleSelect={this.handleSelect} />
                     </Form.Label>
                     <Form.Label>
                       Theme:
-                      <Button1 type="dropdown" option={this.state.theme} options={this.themes} handleSelect={this.handleSelect} />
+                      <Button1 type="dropdown" datatype="theme" option={this.state.theme} options={this.themes} handleSelect={this.handleSelect} />
                     </Form.Label>
                     <Form.Label>
                       Font Size:
-                      <Button1 type="dropdown" option={this.state.fontSize} options={this.fontSizes} handleSelect={this.handleSelect} />
+                      <Button1 type="dropdown" datatype="fontSize" option={this.state.fontSize} options={this.codeFontSizes} handleSelect={this.handleSelect} />
                     </Form.Label>
                   </Row>
-                  {/*<Row>
-                    <Col>
-                      <Form.Label>
-                        Font Size:
-                      </Form.Label>
-                    </Col>
-                    <Col>
-                       TODO: add validation styles, see component api 
-                      {/*<Form.Control type='text' defaultValue={this.state.fontSize} onChange={this.handleFontSize} />
-                    </Col>
-                  </Row>*/}
                 </Form>
               </Panel>
               <AceEditor
