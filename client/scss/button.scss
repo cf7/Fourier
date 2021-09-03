@@ -1,14 +1,16 @@
-// label {
-//   grid-area: header;
-//   background-color: white;
-//   margin: 1em;
-//   max-width: 250px;
-// }
+.dropdown {
+  display: inline-flex;
+}
 
-// label.hidden {
-//   display: none;
-// }
+button.dropdown-toggle {
+  background-color: white;
+  color: #205fab;
+  border: 1px solid cyan;
+  padding: 0.3rem;
+  &:hover {
+    background-color: rgba(#205fab, 0.5);
+  }
+  &:active {
 
-// label.language-options {
-//   background-color: white;
-// }
+  }
+}

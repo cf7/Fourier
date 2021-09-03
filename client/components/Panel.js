@@ -12,9 +12,11 @@ class Panel extends React.Component {
   }
 
   // React recommends onChange over onInput
+  // classNames are only applied to terminal valid DOM elements (divs,spans,etc.)
+  // must be passed in as props otherwise
   render() {
     return (
-      <Container className="panel">
+      <Container className={this.props.className + " panel"}> 
         { this.props.children }
       </Container>
     );

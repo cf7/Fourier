@@ -112,15 +112,15 @@ class App extends React.Component {
                 <Form>
                   <Row>
                     <Form.Label>
-                      Language:
+                      <p>Language</p>
                       <Button1 type="dropdown" datatype="mode" option={this.state.mode} options={this.modes} handleSelect={this.handleSelect} />
                     </Form.Label>
                     <Form.Label>
-                      Theme:
+                      <p>Theme</p>
                       <Button1 type="dropdown" datatype="theme" option={this.state.theme} options={this.themes} handleSelect={this.handleSelect} />
                     </Form.Label>
                     <Form.Label>
-                      Font Size:
+                      <p>Font Size</p>
                       <Button1 type="dropdown" datatype="fontSize" option={this.state.fontSize} options={this.codeFontSizes} handleSelect={this.handleSelect} />
                     </Form.Label>
                   </Row>

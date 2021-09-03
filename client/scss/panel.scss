@@ -8,10 +8,11 @@
     "footer footer footer";
   grid-column-gap: 10px;
   */
+  display: inline-flex;
   border: 1px solid #000000;
   border-radius: 1em;
   justify-content: space-evenly;
-  min-height: 20em;
+  min-height: 0.5rem;
   padding-top: 2em;
   padding-bottom: 2em;
 }
@@ -27,14 +28,17 @@
 }
 
 form {
+  display: inline-flex;
   margin: 1em;
 }
 
 .form-label {
   display: inline-flex;
   font-family: inherit;
-  align-content: center;
-  text-align: center;
+  p {
+    display: inline-flex;
+    vertical-align: bottom;
+  }
 }
 
 .indicator-bar {
@@ -52,12 +56,6 @@ col {
 
 textarea {
   /* grid-area: body; */
-  font-family: inherit;
-  font-size: large;
-  margin: 1em;
-}
-
-p {
   font-family: inherit;
   font-size: large;
   margin: 1em;
