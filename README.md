@@ -22,7 +22,7 @@ function example(x) { console.log(x); }
 
 ## What Fourier is not
 
-Fourier is not an text block correspondence documentation auto-generator. Its purpose is not to take in commented code and generate formatted documentation from the comments and code snippets, often for the purpose of generating API documentation (although, this may become a feature eventually). Instead, Fourier is designed simply to read programming languages, translate them into spoken language, and make those translations navigable, with or without comments or parameter definitions from the developer.
+Fourier is not a documentation generator. Its purpose is not to take in commented code and generate formatted documentation from the comments and code snippets [Doxygen](https://en.wikipedia.org/wiki/Doxygen), often for the purpose of generating API documentation (although, this may become a feature eventually). Instead, Fourier is designed simply to read programming languages, translate them into spoken language, and make those translations navigable, with or without comments or parameter definitions from the developer.
 
 
 ## Setup
