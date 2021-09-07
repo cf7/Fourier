@@ -32,9 +32,9 @@ Fourier is not a documentation generator. Its purpose is not to take in commente
 ## Setup
 ~~~
 $ npm install
-\
+
 $ npm run build
-\
+
 $ npm run dev-start
 ~~~
 
