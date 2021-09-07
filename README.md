@@ -1,9 +1,13 @@
 # Fourier
 
-Fourier is a code-summary application that uses natural language processing techniques to summarize code into human readable phrases. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
+Fourier is a documentation synthesizer application that uses natural language processing techniques to summarize code into human readable phrases and make those phrases navigable. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
-Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages a lot easier and a lot less time-intensive.
+Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages much easier and much less time-intensive.
 
+## Example
+~~~
+  // code
+~~~
 
 ## Features
 
@@ -17,7 +21,7 @@ Fourier is not meant to replace the human reader, but to augment them. This tool
 
 ## What Fourier is not
 
-Fourier is not an technical documentation auto-generator. Its purpose is not to take in commented code and generate formatted documentation from the comments and code snippets (although, this may become a feature eventually). Fourier is designed simply to read programming languages and translate them into spoken language, with or without comments or parameter definitions from the developer.
+Fourier is not an text block correspondence documentation auto-generator. Its purpose is not to take in commented code and generate formatted documentation from the comments and code snippets (although, this may become a feature eventually). Fourier is designed simply to read programming languages, translate them into spoken language, and make those translations navigable, with or without comments or parameter definitions from the developer.
 
 
 ## Setup
