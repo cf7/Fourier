@@ -1,6 +1,6 @@
 # Fourier
 
-Fourier is a documentation synthesizer that uses natural language processing techniques to summarize code into human readable phrases and make those phrases navigable. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
+Fourier is a source code summarizer that uses natural language processing techniques to summarize code into human readable phrases and make those phrases navigable. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
 Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages much easier and much less time-intensive.
 
