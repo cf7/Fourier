@@ -31,9 +31,9 @@ Fourier is not a documentation generator. Its purpose is not to take in commente
 
 ## Setup
 ~~~
-$ npm install
+$ git clone https://github.com/cf7/Fourier.git
 
-$ npm run build
+$ npm install
 
 $ npm run dev-start
 ~~~
