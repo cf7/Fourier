@@ -39,6 +39,6 @@ Fourier is not a documentation generator. Its purpose is not to take in commente
 
 
 ### Current Phase
-Building out a proof of concept interface
+Building out a proof of concept interface\
 Haven't started core nlp engine
 
