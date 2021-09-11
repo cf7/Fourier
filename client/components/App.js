@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
 import AceEditor from 'react-ace';
 
@@ -197,6 +199,14 @@ class App extends React.Component {
                       options={this.outputFontSizes}
                       handleSelect={this.handleSelect} 
                     />
+                    <ToggleButtonGroup name='text-display-options' type='radio'>
+                      <ToggleButton id='translation-toggle' value="translation">
+                        Translation
+                      </ToggleButton>
+                      <ToggleButton id='json-toggle' value="JSON">
+                        JSON
+                      </ToggleButton>
+                    </ToggleButtonGroup>
                   </Form.Label>
                 </Row>
               </Panel>
