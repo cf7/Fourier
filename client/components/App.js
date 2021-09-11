@@ -37,8 +37,8 @@ class App extends React.Component {
       userContent: "Translation appears here . . .",
       mode: "javascript",
       theme: "textmate",
-      codeFontSize: 14,
-      outputFontSize: 14,
+      codeFontSize: '14',
+      outputFontSize: '14',
       displayToggle: 'translation',
       code: `function example(x) { console.log("x"); }`,
       translation: 'translation'
@@ -87,6 +87,8 @@ class App extends React.Component {
       case 'json':
         this.setState({ displayToggle: value });
         break;
+      default:
+        this.setState({ displayToggle: 'translation' });
     }
   }
   // handleMode = (mode) => {
@@ -117,6 +119,7 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+    console.log(this.state.codeFontSize);
     // let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
     // console.log(syntaxTree);
     // this.setState({ translation: JSON.stringify(syntaxTree)  });
@@ -182,7 +185,7 @@ class App extends React.Component {
                 name="blah2"
                 onLoad={this.onLoad}
                 onChange={this.onChange}
-                fontSize={this.state.codeFontSize}
+                fontSize={Number(this.state.codeFontSize)}
                 showPrintMargin={true}
                 showGutter={true}
                 highlightActiveLine={true}
@@ -213,7 +216,7 @@ class App extends React.Component {
                         />
                       </Form.Label>
                       <ToggleButtonGroup name='display-toggle' type='radio' defaultValue='translation' onChange={this.handleToggle}>
-                        <div class="toggle-group-header">display</div>
+                        <div className="toggle-group-header">display</div>
                         <ToggleButton id='translation-toggle' value="translation">
                           Translation
                         </ToggleButton>
