@@ -20,7 +20,7 @@ import 'ace-builds/src-min-noconflict/mode-c_cpp';
 import 'ace-builds/src-min-noconflict/theme-textmate';
 import 'ace-builds/src-min-noconflict/theme-monokai';
 
-import jsTokens from 'js-tokens';
+import { Parser } from 'acorn';
 
 function Title() {
   return <h1>Fourier</h1>
@@ -37,7 +37,7 @@ class App extends React.Component {
       codeFontSize: 14,
       code: `function example(x) { console.log("x"); }`,
       outputFontSize: 14,
-      test: []
+      translation: ''
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -99,33 +99,10 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
-    for (const token of jsTokens(this.state.code)) {
-      this.setState({ test: this.state.test.push(token) });
-    }
-
-    // engine logic
-    const window = [];
-    const windowSize = 3;
-    this.state.test.forEach((token) => {
-      if (token.type != 'WhiteSpace') {
-        if (window.length >= windowSize) {
-          window[0] = window[1];
-          window[1] = window[2];
-          window[2] = token;
-          if (window[0].value == '(' && window[1].type == 'IdentifierName' && window[2].value == ')') {
-            console.log("parameter");
-            console.log(window[0].value + window[1].value + window[2].value);
-          }
-          if (window[0].type == 'IdentifierName' && window[1].value == ')' && window[2].value == '{') {
-            console.log("function declaration");
-            console.log(window[0].value + window[1].value + window[2].value);
-          }
-        } else if (window.length < windowSize) {
-          window.push(token);
-        }
-      }
-    });
-
+    let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
+    console.log(syntaxTree);
+    this.setState({ translation: JSON.parse(JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 })))  });
+    console.log(this.state.translation);
     // console.log("Submitting!");
     // const request = new XMLHttpRequest();
     // request.open('POST', '/translate', true);
@@ -219,8 +196,7 @@ class App extends React.Component {
                 </Row>
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
-                <p>Function 'example' takes in parameter 'x' as input and prints its value to console via 'console.log'</p>
-                { this.state.test }
+                { this.state.translation }
               </Panel>
             </Col>
           </Row>
