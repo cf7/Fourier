@@ -48,14 +48,19 @@ form {
   }
 }
 
-div.options {
+div.display-options {
   display: inline;
   border: 0px;
   padding: 0px;
-  min-height: 10em;
+  min-height: 2rem;
   justify-content: left;
   .row {
     display: inline-flex;
+    margin: 0px;
+    .col {
+      display: inline-flex;
+      padding: 0px;
+    }
   }
 }
 

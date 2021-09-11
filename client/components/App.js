@@ -23,8 +23,6 @@ import 'ace-builds/src-min-noconflict/theme-textmate';
 import 'ace-builds/src-min-noconflict/theme-monokai';
 
 import { Parser } from 'acorn';
-
-import { prettyPrintJson } from 'pretty-print-json';
 import JSONPretty from 'react-json-pretty';
 
 function Title() {
@@ -40,9 +38,10 @@ class App extends React.Component {
       mode: "javascript",
       theme: "textmate",
       codeFontSize: 14,
-      code: `function example(x) { console.log("x"); }`,
       outputFontSize: 14,
-      translation: ''
+      displayToggle: 'translation',
+      code: `function example(x) { console.log("x"); }`,
+      translation: 'translation'
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -75,8 +74,21 @@ class App extends React.Component {
       default:
         console.log("no datatype");
     }
-  };
+  }
 
+  handleToggle = (value, event) => {
+    switch (value) {
+      case 'translation':
+        this.setState({ displayToggle: value });
+        break;
+      case 'tree':
+        this.setState({ displayToggle: value });
+        break;
+      case 'json':
+        this.setState({ displayToggle: value });
+        break;
+    }
+  }
   // handleMode = (mode) => {
   //   console.log("mode select");
   //   this.setState({ mode: mode });
@@ -160,8 +172,6 @@ class App extends React.Component {
                         />
                       </Form.Label>
                     </Col>
-                    <Col>
-                    </Col>
                   </Row>
                 </Form>
               </Panel>
@@ -189,29 +199,46 @@ class App extends React.Component {
               <Button1 submit={this.handleSubmit} />
             </Col>
             <Col>
-              <Panel className='options'>
-                <Row>
-                  <Form.Label>
-                    <Button1
-                      type="dropdown"
-                      datatype="outputFontSize"
-                      option={this.state.outputFontSize}
-                      options={this.outputFontSizes}
-                      handleSelect={this.handleSelect} 
-                    />
-                    <ToggleButtonGroup name='text-display-options' type='radio'>
-                      <ToggleButton id='translation-toggle' value="translation">
-                        Translation
-                      </ToggleButton>
-                      <ToggleButton id='json-toggle' value="JSON">
-                        JSON
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-                  </Form.Label>
-                </Row>
+              <Panel className='display-options'>
+                <Form>
+                  <Row>
+                    <Col>
+                      <Form.Label>
+                        <Button1
+                          type="dropdown"
+                          datatype="outputFontSize"
+                          option={this.state.outputFontSize}
+                          options={this.outputFontSizes}
+                          handleSelect={this.handleSelect} 
+                        />
+                      </Form.Label>
+                      <ToggleButtonGroup name='display-toggle' type='radio' defaultValue='translation' onChange={this.handleToggle}>
+                        <div class="toggle-group-header">display</div>
+                        <ToggleButton id='translation-toggle' value="translation">
+                          Translation
+                        </ToggleButton>
+                        <ToggleButton id='tree-toggle' value="tree">
+                          Tree
+                        </ToggleButton>
+                        <ToggleButton id='json-toggle' value="json">
+                          JSON
+                        </ToggleButton>
+                      </ToggleButtonGroup>
+                    </Col>
+                  </Row>
+                </Form>
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
-                <JSONPretty id='json-pretty' data={JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 }))}></JSONPretty>
+                { (this.state.displayToggle == 'translation') && this.state.translation }
+                { (this.state.displayToggle == 'tree') && "ast" }
+                { (this.state.displayToggle == 'json') && 
+                    <JSONPretty 
+                      id='json-pretty' 
+                      data={JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 }))}
+                      onJSONPrettyErro={e => console.error(e)}
+                    >
+                    </JSONPretty>
+                }
               </Panel>
             </Col>
           </Row>
