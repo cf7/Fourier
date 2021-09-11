@@ -21,7 +21,6 @@ div.controls {
   border: 0px;
   padding: 0px;
   justify-content: left;
-  
 }
 
 form {
@@ -49,28 +48,21 @@ form {
   }
 }
 
-.options {
+div.options {
+  display: inline;
   border: 0px;
+  padding: 0px;
   min-height: 10em;
-}
-
-
-.indicator-bar {
-  display: inline-flex;
-  font-family: inherit;
-  margin-left: 2em;
-  margin-right: 2em;
-}
-
-col {
-  label.form-label {
-    justify-content: safe left;
+  justify-content: left;
+  .row {
+    display: inline-flex;
   }
 }
 
-textarea {
-  /* grid-area: body; */
-  font-family: inherit;
-  font-size: large;
-  margin: 1em;
+div.display {
+  display: inline-flex;
+  background-color: rgba(lightblue, 20%);
+  border: 0px;
+  min-height: 50%;
 }
+

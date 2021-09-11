@@ -10,12 +10,15 @@ class Button1 extends React.Component {
 
   handleClick = (event) => {
     console.log("Clicked!");
-    this.props.submit();
+    if (this.props.submit) {
+      this.props.submit();
+    }
   }
 
   handleSelect = (eventKey, event) => {
     event.persist();
     console.log("Clicked!");
+    console.log(this);
     this.props.handleSelect(eventKey, this.props.datatype);
   }
 
@@ -31,6 +34,7 @@ class Button1 extends React.Component {
       });
       return (
         <Dropdown onSelect={this.handleSelect}>
+          <Dropdown.Header>{ this.props.datatype }</Dropdown.Header>
           <Dropdown.Toggle>
             { this.props.option }
           </Dropdown.Toggle>
@@ -41,11 +45,12 @@ class Button1 extends React.Component {
       );
     } else {
       return (
-        <Button 
+        <Button
           onClick={this.handleClick}
           as="input"
           type="submit"
           value="Submit"
+          variant="outline-primary"
         />
       );
     }

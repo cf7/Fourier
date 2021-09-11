@@ -1,3 +1,5 @@
+/* Server currently not stateless */
+
 // webpack-dev-server already runs express server!
 // this is for production only
 
@@ -15,6 +17,8 @@ const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
 
+const jsTokens = require('js-tokens');
+
 // ** using webpack middleware in express only allows app to bundle in-memory server-side
 // webpack changes __dirname value
 
@@ -26,16 +30,27 @@ app.use(
   })
 );
 
+
 // middleware order matters
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname, '/build'))); // serve these files
 
-app.get('/translation', (req, res) => { res.send("translated"); });
 
+// plugin engine to these routes
+// app.get('/translation', (req, res) => { 
+//   res.send("translated"); 
+// });
 app.post('/translate', (req, res) => {
-  res.sendStatus(200);
+  console.log(req.body);
+  for (const token of jsTokens(req.body.code)) {
+    console.log(token);
+  }
+  res.send({
+    status: 200,
+    translation: "Function 'example' prints the string 'x' to the console."
+  });
 });
 
 app.get('/about', (req, res) => {
@@ -50,3 +65,8 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('Listening on port 3000!\n');
 });
+
+/*
+  Notes:
+    -keras seq2seq for nlp code to text translation, maybe use RNN
+*/

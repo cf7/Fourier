@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "nodemon": "nodemon server.js",
     "build": "webpack",
     "dev-start": "webpack serve",
     "test": "test"
@@ -22,6 +23,7 @@
   "dependencies": {
     "ace-builds": "^1.4.12",
     "bootstrap": "^5.1.0",
+    "js-tokens": "^7.0.0",
     "mini-css-extract-plugin": "^2.2.1",
     "morgan": "^1.10.0",
     "react-ace": "^9.4.3",
