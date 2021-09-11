@@ -22,6 +22,9 @@ import 'ace-builds/src-min-noconflict/theme-monokai';
 
 import { Parser } from 'acorn';
 
+import { prettyPrintJson } from 'pretty-print-json';
+import JSONPretty from 'react-json-pretty';
+
 function Title() {
   return <h1>Fourier</h1>
 }
@@ -43,6 +46,7 @@ class App extends React.Component {
     this.themes = ['textmate', 'monokai'];
     this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20']
     this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20']
+    this.temp = [];
   }
 
   handleContent = (event) => {
@@ -99,10 +103,11 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
-    let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
-    console.log(syntaxTree);
-    this.setState({ translation: JSON.parse(JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 })))  });
-    console.log(this.state.translation);
+    // let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
+    // console.log(syntaxTree);
+    // this.setState({ translation: JSON.stringify(syntaxTree)  });
+    // console.log(this.state.translation);
+
     // console.log("Submitting!");
     // const request = new XMLHttpRequest();
     // request.open('POST', '/translate', true);
@@ -196,7 +201,7 @@ class App extends React.Component {
                 </Row>
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
-                { this.state.translation }
+                <JSONPretty id='json-pretty' data={JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 }))}></JSONPretty>
               </Panel>
             </Col>
           </Row>
