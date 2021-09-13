@@ -238,7 +238,7 @@ class App extends React.Component {
                     <JSONPretty 
                       id='json-pretty' 
                       data={JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 }))}
-                      onJSONPrettyErro={e => console.error(e)}
+                      onJSONPrettyError={e => console.error(e)}
                     >
                     </JSONPretty>
                 }

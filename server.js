@@ -5,7 +5,7 @@
 
 const express = require('express');
 const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
+// const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // express uses middleware to process req and res objects
 const logger = require('morgan');
@@ -24,11 +24,11 @@ const jsTokens = require('js-tokens');
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
-app.use(
-  webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
-  })
-);
+// app.use(
+//   webpackDevMiddleware(compiler, {
+//     publicPath: config.output.publicPath
+//   })
+// );
 
 
 // middleware order matters
