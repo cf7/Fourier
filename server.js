@@ -4,7 +4,7 @@
 // this is for production only
 
 const express = require('express');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 // const webpackDevMiddleware = require('webpack-dev-middleware');
 
 // express uses middleware to process req and res objects
@@ -14,10 +14,10 @@ const path = require('path'); // for cross-platform compatibility
 const routes = require('./client/api/routes.js');
 
 const app = express();
-const config = require('./webpack.config.js');
-const compiler = webpack(config);
+// const config = require('./webpack.config.js');
+// const compiler = webpack(config);
 
-const jsTokens = require('js-tokens');
+// const jsTokens = require('js-tokens');
 
 // ** using webpack middleware in express only allows app to bundle in-memory server-side
 // webpack changes __dirname value
@@ -43,10 +43,6 @@ app.use('/', express.static(path.join(__dirname, '/build'))); // serve these fil
 //   res.send("translated"); 
 // });
 app.post('/translate', (req, res) => {
-  console.log(req.body);
-  for (const token of jsTokens(req.body.code)) {
-    console.log(token);
-  }
   res.send({
     status: 200,
     translation: "Function 'example' prints the string 'x' to the console."
