@@ -4,6 +4,9 @@ Fourier is a source code summarizer that uses natural language processing techni
 
 Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages much easier and much less time-intensive.
 
+Check out the prototype app!\
+[https://fourier-app.herokuapp.com/](https://fourier-app.herokuapp.com/)
+
 #### Simple Example
 ~~~
 // javascript
