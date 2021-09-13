@@ -134,6 +134,5 @@ module.exports = {
       overlay: true
     },
     hot: false
-  },
-  watch: true
+  }
 };
