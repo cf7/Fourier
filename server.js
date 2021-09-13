@@ -54,15 +54,15 @@ app.post('/translate', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, '/about.html'));
+  res.sendFile('/about.html');
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile('/index.html');
 });
 
-// Serve the files on port 3000.
-app.listen(3000, () => {
+// Heroku requires $PORT env variable
+app.listen(process.env.PORT || 3000, () => {
   console.log('Listening on port 3000!\n');
 });
 
