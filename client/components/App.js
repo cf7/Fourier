@@ -24,10 +24,59 @@ import 'ace-builds/src-min-noconflict/theme-monokai';
 
 import { Parser } from 'acorn';
 import JSONPretty from 'react-json-pretty';
+import ReactJsonPrint from 'react-json-print';
+// import json2html from 'node-json2html';
+// import { JsonTable } from 'react-json-to-html';
 
 function Title() {
   return <h1>Fourier</h1>
 }
+
+function AST2(props) {
+  return (
+    <ReactJsonPrint expanded dataObject={Parser.parse(props.code, { ecmaVersion: 2020 })} />
+  );
+}
+
+// function AST() {
+//   // Note: 'html' attr is vulnerable to XSS attacks!
+//   let data = {
+//     "type": "Program"
+//   };
+//   let template = {
+//     '<>':'ul', 'html': [
+//       {'<>':'li', 'class':'list-container', 'html': [
+//           {'<>':'span', 'class':'value', 'html': {'<>':'span', 'class':'item-name', 'html':'Program'}},
+//           {'<>':'span', 'class':'prefix', 'text': "&nbsp;{" },
+//           {'<>':'ul', 'class':'value-body', 'html': function (entry,idx) {
+//               return {'<>':'li', 'class':'entry', 'html':[
+//                   {'<>':'span', 'class':'key', 'html': [
+//                       {'<>':'span', 'class':'key-name', 'text':"type"},
+//                       {'<>':'span', 'text':':&nbsp;'}
+//                     ]
+//                   },
+//                   {'<>':'span', 'class':'value', 'html': {
+//                     '<>':'span', 'class':'value-name', 'html': {
+//                       '<>':'span', 'text':"${type}"
+//                       }
+//                     }
+//                   } 
+//                 ]
+//               } // end return
+//             } // end function
+//           }, // end ul
+//           {'<>':'span', 'class':'suffix', 'text':"}" }
+//         ]
+//       }
+//     ]
+//   };
+
+//   return (
+//     <Container className="tree-display-container">
+//       { json2html.render(data, template) }
+//     </Container>
+//   );
+// }
 
 class App extends React.Component {
   constructor(props) {
@@ -41,7 +90,7 @@ class App extends React.Component {
       outputFontSize: '14',
       displayToggle: 'translation',
       code: `function example(x) { console.log("x"); }`,
-      translation: 'translation'
+      translation: 'Example translation will appear here after submitting.'
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -233,7 +282,7 @@ class App extends React.Component {
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
                 { (this.state.displayToggle == 'translation') && this.state.translation }
-                { (this.state.displayToggle == 'tree') && "ast" }
+                { (this.state.displayToggle == 'tree') && <AST2 code={this.state.code} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 
                       id='json-pretty' 

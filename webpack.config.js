@@ -4,6 +4,8 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 /*
   *** Webpack does NOT rebundle when working with react!
@@ -46,7 +48,7 @@ module.exports = {
     rules: [ // what transformations should webpack perform? (called "loaders")
       {
         test: /\.js$/, // check which files to transform with this rule
-        exclude: /node_modules/, // don't transform node_modules files
+        exclude: /(node_modules|server.js)/, // don't transform node_modules files
         use: 'babel-loader' // apply this loader, use the jsx parsing that comes with babel
       },
       {
@@ -102,6 +104,12 @@ module.exports = {
       title: 'Fourier'
     }),
     new MiniCSSExtractPlugin(),
+    // new NodePolyfillPlugin({
+    //   // excludeAliases: ["util"]
+    // }),
+    // new webpack.ProvidePlugin({ // dev-server requires 'process' injection to simulate node env
+    //   process: 'process/browser',
+    // }),
     // new CopyWebpackPlugin({
     //   patterns: [
     //     { from: 'scss', context: path.join(__dirname, 'client/') } // default 'output' dest
@@ -134,5 +142,22 @@ module.exports = {
       overlay: true
     },
     hot: false
-  }
+  },
+  resolve: {
+    // aliasFields: ["browser"],
+    // alias: { // alias takes precedence over other resolve properties
+    //   fs: 'fs-extra'
+    // },
+    fallback: {
+      // fs: false, // fs causing problems with node-json2html dependencies
+      // vm: false,
+      // process: require.resolve('process/browser'),
+      // util: require.resolve('util'),
+      // polyfills and graceful-fs errors are actually fs errors
+      // fs was scrapped for security breaches, replaced by fs-extra and graceful-fs
+    }
+  },
+  // stats: {
+  //   errorDetails: true
+  // }
 };
