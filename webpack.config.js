@@ -142,22 +142,5 @@ module.exports = {
       overlay: true
     },
     hot: false
-  },
-  resolve: {
-    // aliasFields: ["browser"],
-    // alias: { // alias takes precedence over other resolve properties
-    //   fs: 'fs-extra'
-    // },
-    fallback: {
-      // fs: false, // fs causing problems with node-json2html dependencies
-      // vm: false,
-      // process: require.resolve('process/browser'),
-      // util: require.resolve('util'),
-      // polyfills and graceful-fs errors are actually fs errors
-      // fs was scrapped for security breaches, replaced by fs-extra and graceful-fs
-    }
-  },
-  // stats: {
-  //   errorDetails: true
-  // }
+  }
 };

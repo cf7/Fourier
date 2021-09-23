@@ -68,6 +68,44 @@ div.display {
   display: inline-flex;
   background-color: rgba(lightblue, 20%);
   border: 0px;
-  min-height: 50%;
+  min-height: 30%;
+  max-height: 50%;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
+div.translation {
+  span {
+    a {
+      &:hover {
+        color: #205fab !important;
+      }
+    }
+  }
+}
+
+// .test {
+//   div.ace_content {
+//     div.ace_text-layer {
+//       div.ace_line {
+//         span.ace_entity.ace_name.ace_function {
+//           color: #205fab;
+//           // &:hover {
+//           //   color: #205fab !important;
+//           // }
+//         }
+//       }
+//     }
+//   }
+// }
+
+span.marked {
+  background-color: #205fab4a;
+  color: gray;
+}
+
+/*
+  <span class="ace_storage ace_type">function</span>
+  <span class="ace_entity ace_name ace_function">example</span>
+  <span class="ace_paren ace_lparen">(</span>
+*/

@@ -24,7 +24,12 @@ class Button1 extends React.Component {
 
   render() {
     if (this.props.type && (this.props.type == 'dropdown')) {
-      const elements = [];
+      // move these to onMount
+      let header = this.props.datatype;
+      if (header == "codeFontSize" || header == "outputFontSize") {
+        header = "Font Size";
+      }
+      let elements = [];
       this.props.options.forEach((option) => {
         if (option == 'c_cpp') {
           elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{"C++"}</Dropdown.Item>);
@@ -34,7 +39,7 @@ class Button1 extends React.Component {
       });
       return (
         <Dropdown onSelect={this.handleSelect}>
-          <Dropdown.Header>{ this.props.datatype }</Dropdown.Header>
+          <Dropdown.Header>{ header }</Dropdown.Header>
           <Dropdown.Toggle>
             { this.props.option }
           </Dropdown.Toggle>

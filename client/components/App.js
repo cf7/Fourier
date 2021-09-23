@@ -12,11 +12,13 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
 import AceEditor from 'react-ace';
-
 // languages
 import 'ace-builds/src-min-noconflict/mode-javascript';
 import 'ace-builds/src-min-noconflict/mode-python';
 import 'ace-builds/src-min-noconflict/mode-c_cpp';
+
+import CodeMirror from 'react-codemirror';
+// import 'CodeMirror/mode/javascript/javascript';
 
 // themes
 import 'ace-builds/src-min-noconflict/theme-textmate';
@@ -25,58 +27,28 @@ import 'ace-builds/src-min-noconflict/theme-monokai';
 import { Parser } from 'acorn';
 import JSONPretty from 'react-json-pretty';
 import ReactJsonPrint from 'react-json-print';
-// import json2html from 'node-json2html';
-// import { JsonTable } from 'react-json-to-html';
+
+import jsTokens from 'js-tokens';
 
 function Title() {
   return <h1>Fourier</h1>
 }
 
-function AST2(props) {
+function AST(props) {
   return (
     <ReactJsonPrint expanded dataObject={Parser.parse(props.code, { ecmaVersion: 2020 })} />
   );
 }
 
-// function AST() {
-//   // Note: 'html' attr is vulnerable to XSS attacks!
-//   let data = {
-//     "type": "Program"
-//   };
-//   let template = {
-//     '<>':'ul', 'html': [
-//       {'<>':'li', 'class':'list-container', 'html': [
-//           {'<>':'span', 'class':'value', 'html': {'<>':'span', 'class':'item-name', 'html':'Program'}},
-//           {'<>':'span', 'class':'prefix', 'text': "&nbsp;{" },
-//           {'<>':'ul', 'class':'value-body', 'html': function (entry,idx) {
-//               return {'<>':'li', 'class':'entry', 'html':[
-//                   {'<>':'span', 'class':'key', 'html': [
-//                       {'<>':'span', 'class':'key-name', 'text':"type"},
-//                       {'<>':'span', 'text':':&nbsp;'}
-//                     ]
-//                   },
-//                   {'<>':'span', 'class':'value', 'html': {
-//                     '<>':'span', 'class':'value-name', 'html': {
-//                       '<>':'span', 'text':"${type}"
-//                       }
-//                     }
-//                   } 
-//                 ]
-//               } // end return
-//             } // end function
-//           }, // end ul
-//           {'<>':'span', 'class':'suffix', 'text':"}" }
-//         ]
-//       }
-//     ]
-//   };
+function Translation(props) {
 
-//   return (
-//     <Container className="tree-display-container">
-//       { json2html.render(data, template) }
-//     </Container>
-//   );
-// }
+  return (
+    <div className='translation'>
+      <span><a>Declare function</a> that takes <a>single parameter.</a> </span>
+      <span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span>
+    </div>
+  );
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -89,14 +61,17 @@ class App extends React.Component {
       codeFontSize: '14',
       outputFontSize: '14',
       displayToggle: 'translation',
-      code: `function example(x) { console.log("x"); }`,
-      translation: 'Example translation will appear here after submitting.'
+      code: `function example(x) { console.log(x); }`,
+      translation: "<div className='translation'><span><a>Declare function</a> that takes <a>single parameter.</a> </span><span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span></div>",
+      test: ''
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
     this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20']
     this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20']
     this.temp = [];
+    this.codeMirror = null;
+    this.ace = {};
   }
 
   handleContent = (event) => {
@@ -167,8 +142,81 @@ class App extends React.Component {
     this.setState({ code: content });
   }
 
+  componentDidMount = () => {
+    let codeMirror = this.codeMirror.getCodeMirror()
+    if (codeMirror) {
+      console.log("codeMirror");
+      console.log(codeMirror);
+      console.log(codeMirror.markText);
+      let doc = codeMirror.getDoc();
+      console.log(doc);
+      // codemirror content lines are zero-indexed
+      codeMirror.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
+    }
+  }
+
   handleSubmit = (event) => {
-    console.log(this.state.codeFontSize);
+    let json = Parser.parse(this.state.code, { ecmaVersion: 2020 });
+    console.log(json);
+
+    function traverse(obj) {
+      if( obj !== null && typeof obj == "object" ) {
+        Object.entries(obj).forEach(([key, value]) => {
+          // key is either an array index or object key
+          if (key == "start" || key == "end") {
+            delete obj[key];
+          } else {
+            traverse(value);
+          }
+        });
+        // return the modified json at the end
+        return obj;
+      } else {
+        // json is a number or string
+        return obj;
+      }
+    }
+
+    // console.log(traverse(json));
+    // this.setState({ test: traverse(json) });
+
+    // jsTokens returns a generator
+    // must access using a loop
+    // const tokens = Array.from(jsTokens(this.state.code));
+    // this.setState({ test: tokens });
+
+    // this.setState({ test: "test" });
+
+
+    /*
+      type - Program
+        body
+          type - FunctionDeclaration
+          id
+            type - Identifier
+            name - example
+          params
+            type
+            name - x
+          body
+            type - BlockStatement
+            body
+              type - ExpressionStatement
+              expression
+                type - CallExpression
+                callee
+                  type
+                  object
+                    type
+                    name - console
+                  property
+                    type
+                    name - log
+                arguments
+                  type
+                  value - x
+    */
+
     // let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
     // console.log(syntaxTree);
     // this.setState({ translation: JSON.stringify(syntaxTree)  });
@@ -181,6 +229,17 @@ class App extends React.Component {
     // request.send(JSON.stringify({
     //   "code": this.state.code
     // })); // make this synchronous to expect the response translation
+
+    /*
+      Run each level of code through the same network because it will have the same
+      encodings and vocabulary
+      Just reuse the same categories at each level and output a summary
+      Store the outputs at different levels to create the structure of summaries
+      Then have a second network go over the stuctured summaries to create the
+      human summary
+
+      First pass might not need nlp, simply labeling everything at different scales
+    */
   }
 
   render() {
@@ -247,6 +306,8 @@ class App extends React.Component {
                   tabSize: 2,
                   useWorker: false
                 }}
+                className={this.state.test}
+                ref={(r) => {this.ace = r;}}
               />
               <Button1 submit={this.handleSubmit} />
             </Col>
@@ -281,8 +342,8 @@ class App extends React.Component {
                 </Form>
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
-                { (this.state.displayToggle == 'translation') && this.state.translation }
-                { (this.state.displayToggle == 'tree') && <AST2 code={this.state.code} /> }
+                { (this.state.displayToggle == 'translation') && <Translation translation={this.state.translation} /> }
+                { (this.state.displayToggle == 'tree') && <AST code={this.state.code} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 
                       id='json-pretty' 
@@ -292,8 +353,24 @@ class App extends React.Component {
                     </JSONPretty>
                 }
               </Panel>
+              <Row>
+                <CodeMirror 
+                  ref={(c) => {this.codeMirror = c;}} 
+                  value={this.state.code}
+                /> {/* use CodeMirror markText() function to access dom nodes and changes styles dynamically */}
+              </Row>
             </Col>
           </Row>
+          {/*<JSONPretty 
+                      id='json-pretty2' 
+                      data={JSON.stringify(this.state.test, { ecmaVersion: 2020 })}
+                      onJSONPrettyError={e => console.error(e)}
+                    >
+                    </JSONPretty>*/}
+          {/*<p>
+          { this.state.code }
+          </p>*/}
+          
         </Container>
       </Layout>
     );

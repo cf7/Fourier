@@ -35,6 +35,7 @@ div.btn-group {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
+    text-transform: capitalize;
   }
   label {
     background-color: white;
@@ -80,10 +81,8 @@ div.dropdown-header {
   -khtml-user-select: none;
   -webkit-user-select: none;
   -o-user-select: none;
+  text-transform: capitalize;
 }
-
-
-
 
 
 /*
