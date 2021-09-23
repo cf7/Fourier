@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Layout } from './Layout.js';
 import { Panel } from './Panel.js';
 import { Button1 } from './Button.js';
@@ -40,15 +41,36 @@ function AST(props) {
   );
 }
 
-function Translation(props) {
+// function Translation(props) {
+//   let descriptions = ["Declare function", "single parameter", "Function executes", "console log", "parameter value"];
+//   // process translation here
+//   let cm = null;
+//   // called on each render
+//   useEffect(() => {
+//     if (props.codeMirror) {
+//       cm = props.codeMirror.getCodeMirror();
+//     }
+//   });
 
-  return (
-    <div className='translation'>
-      <span><a>Declare function</a> that takes <a>single parameter.</a> </span>
-      <span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span>
-    </div>
-  );
-}
+//   function handleMouseOver (event) {
+//     console.log(cm);
+//     if (cm) {
+//       console.log("codeMirror");
+//       console.log(cm);
+//       console.log(cm.markText);
+//       // let doc = codeMirror.getDoc();
+//       // console.log(doc);
+//       // codemirror content lines are zero-indexed
+//       let mark = cm.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
+//     }
+//   }
+//   return (
+//     <div className='translation'>
+//       <span><a onMouseOver={handleMouseOver}>Declare function</a> that takes <a>single parameter.</a> </span>
+//       <span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span>
+//     </div>
+//   );
+// }
 
 class App extends React.Component {
   constructor(props) {
@@ -71,7 +93,8 @@ class App extends React.Component {
     this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20']
     this.temp = [];
     this.codeMirror = null;
-    this.ace = {};
+    this.cm = null;
+    this._mark = null;
   }
 
   handleContent = (event) => {
@@ -143,16 +166,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    let codeMirror = this.codeMirror.getCodeMirror()
-    if (codeMirror) {
-      console.log("codeMirror");
-      console.log(codeMirror);
-      console.log(codeMirror.markText);
-      let doc = codeMirror.getDoc();
-      console.log(doc);
-      // codemirror content lines are zero-indexed
-      codeMirror.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
-    }
+    this.cm = this.codeMirror.getCodeMirror();
   }
 
   handleSubmit = (event) => {
@@ -217,19 +231,6 @@ class App extends React.Component {
                   value - x
     */
 
-    // let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
-    // console.log(syntaxTree);
-    // this.setState({ translation: JSON.stringify(syntaxTree)  });
-    // console.log(this.state.translation);
-
-    // console.log("Submitting!");
-    // const request = new XMLHttpRequest();
-    // request.open('POST', '/translate', true);
-    // request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    // request.send(JSON.stringify({
-    //   "code": this.state.code
-    // })); // make this synchronous to expect the response translation
-
     /*
       Run each level of code through the same network because it will have the same
       encodings and vocabulary
@@ -240,6 +241,23 @@ class App extends React.Component {
 
       First pass might not need nlp, simply labeling everything at different scales
     */
+  }
+  handleMouseOver = (event) => {
+    if (this.cm) {
+      console.log("codeMirror");
+      console.log(this.cm);
+      console.log(this.cm.markText);
+      // let doc = codeMirror.getDoc();
+      // console.log(doc);
+      // codemirror content lines are zero-indexed
+      this._mark = this.cm.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
+    }
+  }
+
+  handleMouseLeave = (event) => {
+    if (this._mark) {
+      this._mark.clear();
+    }
   }
 
   render() {
@@ -342,7 +360,10 @@ class App extends React.Component {
                 </Form>
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
-                { (this.state.displayToggle == 'translation') && <Translation translation={this.state.translation} /> }
+                { (this.state.displayToggle == 'translation') && <div className='translation'>
+      <span><a onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>Declare function</a> that takes <a>single parameter.</a> </span>
+      <span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span>
+    </div> }
                 { (this.state.displayToggle == 'tree') && <AST code={this.state.code} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 
@@ -354,10 +375,12 @@ class App extends React.Component {
                 }
               </Panel>
               <Row>
-                <CodeMirror 
-                  ref={(c) => {this.codeMirror = c;}} 
-                  value={this.state.code}
-                /> {/* use CodeMirror markText() function to access dom nodes and changes styles dynamically */}
+                <Panel>
+                  <CodeMirror 
+                    ref={(c) => {this.codeMirror = c;}} 
+                    value={this.state.code}
+                  /> {/* use CodeMirror markText() function to access dom nodes and changes styles dynamically */}
+                </Panel>
               </Row>
             </Col>
           </Row>
