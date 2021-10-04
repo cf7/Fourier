@@ -28,6 +28,8 @@ import 'ace-builds/src-min-noconflict/theme-monokai';
 import { Parser } from 'acorn';
 import JSONPretty from 'react-json-pretty';
 import ReactJsonPrint from 'react-json-print';
+import HTMLReactParser from 'html-react-parser';
+import JSXParser from 'react-jsx-parser';
 
 import jsTokens from 'js-tokens';
 
@@ -84,17 +86,23 @@ class App extends React.Component {
       outputFontSize: '14',
       displayToggle: 'translation',
       code: `function example(x) { console.log(x); }`,
-      translation: "<div className='translation'><span><a>Declare function</a> that takes <a>single parameter.</a> </span><span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span></div>",
-      test: ''
+      codeMirrorCode: '',
+      output: "Declare function that takes single parameter. Function executes console log that prints parameter value.",
+      translation: [],
+      range: {},
+      cmMounted: false,
+      marked: '',
+      test: '',
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
-    this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20']
-    this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20']
+    this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
+    this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
     this.temp = [];
     this.codeMirror = null;
     this.cm = null;
     this._mark = null;
+    this.translation = [];
   }
 
   handleContent = (event) => {
@@ -160,16 +168,26 @@ class App extends React.Component {
   }
 
   onChange = (content) => {
-    console.log("edit");
-    console.log(content);
+    // console.log("edit");
+    // console.log(content);
     this.setState({ code: content });
   }
 
   componentDidMount = () => {
-    this.cm = this.codeMirror.getCodeMirror();
+    // cm instance doesn't update after this
+    // won't see new lines
+    this.setState({ cmMounted: true });
   }
+  
+  // handleRef = (codeMirror) => {
+  //   if (this.state.cmMounted) {
+  //     this.codeMirror = codeMirror;
+  //   }
+  // }
 
-  handleSubmit = (event) => {
+
+  // DO NOT TOUCH: data generator for engine
+  generateData = () => {
     let json = Parser.parse(this.state.code, { ecmaVersion: 2020 });
     console.log(json);
 
@@ -191,44 +209,175 @@ class App extends React.Component {
       }
     }
 
-    // console.log(traverse(json));
-    // this.setState({ test: traverse(json) });
+    this.setState({ test: traverse(json) });
+  }
 
-    // jsTokens returns a generator
-    // must access using a loop
-    // const tokens = Array.from(jsTokens(this.state.code));
-    // this.setState({ test: tokens });
+  handleSubmit = (event) => {
 
-    // this.setState({ test: "test" });
+    this.generateData();
+    // (<div className='translation'><span><a onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>Declare function</a> that takes <a>single parameter.</a> </span><span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span></div>)
+    
+    // console.log(this.state.code);
+    // if (this.codeMirror) {
+    //   this.cm = this.codeMirror.getCodeMirror();
+    // }
+    // this.setState({ codeMirrorCode: this.state.code });
+    // // this.cm = this.codeMirror.getCodeMirror();
+    // // experimental translation processing
 
+    // // engine: always make sure there is period and space at end of each segment
+    // let data = "Declare function that takes single parameter. Function executes console log that prints parameter value."
+
+    // // doc.posFromIndex() returns the position of content relative to single line version of doc (all code compressed to one line)
+    // if (this.cm) {
+    //   console.log(this.cm);
+    //   // for (let i=0; i < this.cm.lineCount(); i++) {
+    //   //   console.log(this.cm.getLine(i));
+    //   // }
+    // }
+
+    // function getRange(s,t) {
+    //   let range = [];
+    //   if (t.indexOf(s) != -1 && s.length > 1) {
+    //     // range.push({ line: })
+    //   }
+    // }
+
+    // data.split('.').forEach((segment) => {
+    //   let len = segment.length
+    //   if (segment) {
+    //     if (segment.substring(len-2,len-1) != '. ') {
+    //       segment += '. ';
+    //     }
+    //     this.translation.push(segment);
+    //   }
+    // });
+
+    // console.log(this.translation);
+
+    // this.setState({ translation: this.translation });
 
     /*
-      type - Program
-        body
-          type - FunctionDeclaration
-          id
-            type - Identifier
-            name - example
-          params
-            type
-            name - x
-          body
-            type - BlockStatement
-            body
-              type - ExpressionStatement
-              expression
-                type - CallExpression
-                callee
-                  type
-                  object
-                    type
-                    name - console
-                  property
-                    type
-                    name - log
-                arguments
-                  type
-                  value - x
+      addKeyMap: ƒ (map, bottom)
+addLineClass: ƒ ()
+addLineWidget: ƒ ()
+addOverlay: ƒ ()
+addSelection: ƒ ()
+addWidget: ƒ (pos, node, scroll, vert, horiz)
+changeGeneration: ƒ ()
+charCoords: ƒ (pos, mode)
+clearGutter: ƒ ()
+clearHistory: ƒ ()
+clipPos: ƒ ()
+constructor: ƒ CodeMirror(place, options)
+coordsChar: ƒ (coords, mode)
+cursorCoords: ƒ (start, mode)
+defaultCharWidth: ƒ ()
+defaultTextHeight: ƒ ()
+deleteH: ƒ ()
+eachLine: ƒ ()
+endOperation: ƒ ()
+execCommand: ƒ (cmd)
+extendSelection: ƒ ()
+extendSelections: ƒ ()
+extendSelectionsBy: ƒ ()
+findMarks: ƒ ()
+findMarksAt: ƒ ()
+findPosH: ƒ (from, amount, unit, visually)
+findPosV: ƒ (from, amount, unit, goalColumn)
+findWordAt: ƒ (pos)
+firstLine: ƒ ()
+focus: ƒ ()
+getAllMarks: ƒ ()
+getCursor: ƒ ()
+getDoc: ƒ ()
+getExtending: ƒ ()
+getGutterElement: ƒ ()
+getHelper: ƒ (pos, type)
+getHelpers: ƒ (pos, type)
+getHistory: ƒ ()
+getInputField: ƒ ()
+getLine: ƒ ()
+getLineHandle: ƒ ()
+getLineHandleVisualStart: ƒ ()
+getLineNumber: ƒ ()
+getLineTokens: ƒ (line, precise)
+getMode: ƒ ()
+getModeAt: ƒ (pos)
+getOption: ƒ (option)
+getRange: ƒ ()
+getScrollInfo: ƒ ()
+getScrollerElement: ƒ ()
+getSelection: ƒ ()
+getSelections: ƒ ()
+getStateAfter: ƒ (line, precise)
+getTokenAt: ƒ (pos, precise)
+getTokenTypeAt: ƒ (pos)
+getValue: ƒ ()
+getViewport: ƒ ()
+getWrapperElement: ƒ ()
+hasFocus: ƒ ()
+heightAtLine: ƒ (line, mode, includeWidgets)
+historySize: ƒ ()
+indentLine: ƒ ()
+indentSelection: ƒ ()
+indexFromPos: ƒ ()
+isClean: ƒ ()
+isReadOnly: ƒ ()
+iterLinkedDocs: ƒ ()
+lastLine: ƒ ()
+lineAtHeight: ƒ (height, mode)
+lineCount: ƒ ()
+lineInfo: ƒ ()
+lineSeparator: ƒ ()
+linkedDoc: ƒ ()
+listSelections: ƒ ()
+markClean: ƒ ()
+markText: ƒ ()
+moveH: ƒ ()
+moveV: ƒ ()
+off: ƒ (type, f)
+on: ƒ (type, f)
+operation: ƒ (f)
+phrase: ƒ (phraseText)
+posFromIndex: ƒ ()
+redo: ƒ ()
+redoSelection: ƒ ()
+refresh: ƒ ()
+removeKeyMap: ƒ (map)
+removeLineClass: ƒ ()
+removeLineWidget: ƒ ()
+removeOverlay: ƒ ()
+replaceRange: ƒ ()
+replaceSelection: ƒ ()
+replaceSelections: ƒ ()
+scrollIntoView: ƒ ()
+scrollTo: ƒ ()
+setBookmark: ƒ ()
+setCursor: ƒ ()
+setDirection: ƒ ()
+setExtending: ƒ ()
+setGutterMarker: ƒ ()
+setHistory: ƒ ()
+setOption: ƒ (option, value)
+setSelection: ƒ ()
+setSelections: ƒ ()
+setSize: ƒ ()
+setValue: ƒ ()
+somethingSelected: ƒ ()
+splitLines: ƒ ()
+startOperation: ƒ ()
+swapDoc: ƒ ()
+toggleOverwrite: ƒ (value)
+triggerElectric: ƒ ()
+triggerOnKeyDown: ƒ ()
+triggerOnKeyPress: ƒ ()
+triggerOnKeyUp: ƒ onKeyUp(e)
+triggerOnMouseDown: ƒ ()
+undo: ƒ ()
+undoSelection: ƒ ()
+unlinkDoc: ƒ ()
+
     */
 
     /*
@@ -242,22 +391,28 @@ class App extends React.Component {
       First pass might not need nlp, simply labeling everything at different scales
     */
   }
+
   handleMouseOver = (event) => {
+    // console.log(event);
+    // console.log(event.target);
+    // console.log(event.target.innerHTML);
     if (this.cm) {
-      console.log("codeMirror");
-      console.log(this.cm);
-      console.log(this.cm.markText);
+      // console.log("codeMirror");
+      // console.log(this.cm);
+      // console.log(this.cm.markText);
       // let doc = codeMirror.getDoc();
       // console.log(doc);
       // codemirror content lines are zero-indexed
       this._mark = this.cm.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
     }
+    this.setState({ marked: "marked" });
   }
 
   handleMouseLeave = (event) => {
     if (this._mark) {
       this._mark.clear();
     }
+    this.setState({ marked: '' });
   }
 
   render() {
@@ -308,7 +463,7 @@ class App extends React.Component {
                 placeholder={`function example(x) { console.log("x"); }`}
                 mode={this.state.mode}
                 theme={this.state.theme}
-                name="blah2"
+                name="code-input" // id when parsed
                 onLoad={this.onLoad}
                 onChange={this.onChange}
                 fontSize={Number(this.state.codeFontSize)}
@@ -360,10 +515,7 @@ class App extends React.Component {
                 </Form>
               </Panel>
               <Panel className='display' userContent={this.state.userContent}>
-                { (this.state.displayToggle == 'translation') && <div className='translation'>
-      <span><a onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>Declare function</a> that takes <a>single parameter.</a> </span>
-      <span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span>
-    </div> }
+                { (this.state.displayToggle == 'translation') && <div className="translation"> { this.state.translation.map((segment) => { return (<span onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>{segment}</span>); }) } </div> }
                 { (this.state.displayToggle == 'tree') && <AST code={this.state.code} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 
@@ -374,14 +526,12 @@ class App extends React.Component {
                     </JSONPretty>
                 }
               </Panel>
-              <Row>
+              {/*<Row>
                 <Panel>
-                  <CodeMirror 
-                    ref={(c) => {this.codeMirror = c;}} 
-                    value={this.state.code}
-                  /> {/* use CodeMirror markText() function to access dom nodes and changes styles dynamically */}
+                  
+         
                 </Panel>
-              </Row>
+              </Row>*/}
             </Col>
           </Row>
           {/*<JSONPretty 
@@ -393,8 +543,8 @@ class App extends React.Component {
           {/*<p>
           { this.state.code }
           </p>*/}
-          
-        </Container>
+{/*          { JSON.stringify(this.state.test) }
+*/}        </Container>
       </Layout>
     );
   }

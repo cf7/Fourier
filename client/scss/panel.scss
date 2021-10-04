@@ -1,3 +1,5 @@
+$height: 500px;
+
 .panel {
   /*
   display: grid;
@@ -48,6 +50,11 @@ form {
   }
 }
 
+
+#code-input {
+  height: $height !important;
+}
+
 div.display-options {
   display: inline;
   border: 0px;
@@ -68,7 +75,7 @@ div.display {
   display: inline-flex;
   background-color: rgba(lightblue, 20%);
   border: 0px;
-  min-height: 30%;
+  min-height: $height;
   max-height: 50%;
   overflow: scroll;
   scroll-behavior: smooth;
@@ -76,11 +83,9 @@ div.display {
 
 div.translation {
   span {
-    a {
       &:hover {
         color: #205fab !important;
       }
-    }
   }
 }
 
