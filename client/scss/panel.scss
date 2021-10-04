@@ -75,8 +75,7 @@ div.display {
   display: inline-flex;
   background-color: rgba(lightblue, 20%);
   border: 0px;
-  min-height: $height;
-  max-height: 50%;
+  height: $height;
   overflow: scroll;
   scroll-behavior: smooth;
 }

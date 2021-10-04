@@ -79,15 +79,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       hasContent: false,
-      userContent: "Translation appears here . . .",
       mode: "javascript",
       theme: "textmate",
       codeFontSize: '14',
       outputFontSize: '14',
       displayToggle: 'translation',
-      code: `function example(x) { console.log(x); }`,
+      displayCode: `function example(x) { console.log(x); }`,
+      inputCode: `function example(x) { console.log(x); }`,
+      submit: false,
       codeMirrorCode: '',
-      output: "Declare function that takes single parameter. Function executes console log that prints parameter value.",
+      output: "Click submit to translate.",
+      output2: "Declare function that takes single parameter. Function executes console log that prints parameter value.",
       translation: [],
       range: {},
       cmMounted: false,
@@ -143,9 +145,10 @@ class App extends React.Component {
         this.setState({ displayToggle: value });
         break;
       default:
-        this.setState({ displayToggle: 'translation' });
+        this.setState({ displayToggle: 'placeholder' });
     }
   }
+
   // handleMode = (mode) => {
   //   console.log("mode select");
   //   this.setState({ mode: mode });
@@ -170,20 +173,14 @@ class App extends React.Component {
   onChange = (content) => {
     // console.log("edit");
     // console.log(content);
-    this.setState({ code: content });
+    this.setState({ displayCode: content });
   }
 
   componentDidMount = () => {
     // cm instance doesn't update after this
     // won't see new lines
-    this.setState({ cmMounted: true });
+    // this.setState({ cmMounted: true });
   }
-  
-  // handleRef = (codeMirror) => {
-  //   if (this.state.cmMounted) {
-  //     this.codeMirror = codeMirror;
-  //   }
-  // }
 
 
   // DO NOT TOUCH: data generator for engine
@@ -213,206 +210,39 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+    // this.generateData();
 
-    this.generateData();
-    // (<div className='translation'><span><a onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>Declare function</a> that takes <a>single parameter.</a> </span><span><a>Function executes</a> <a>console log</a> that prints <a>parameter value.</a> </span></div>)
-    
-    // console.log(this.state.code);
-    // if (this.codeMirror) {
-    //   this.cm = this.codeMirror.getCodeMirror();
-    // }
-    // this.setState({ codeMirrorCode: this.state.code });
-    // // this.cm = this.codeMirror.getCodeMirror();
-    // // experimental translation processing
+    /* API Call here */
 
-    // // engine: always make sure there is period and space at end of each segment
-    // let data = "Declare function that takes single parameter. Function executes console log that prints parameter value."
+    // use inputCode
 
-    // // doc.posFromIndex() returns the position of content relative to single line version of doc (all code compressed to one line)
-    // if (this.cm) {
-    //   console.log(this.cm);
-    //   // for (let i=0; i < this.cm.lineCount(); i++) {
-    //   //   console.log(this.cm.getLine(i));
-    //   // }
-    // }
+    // this.setState({ submit: true });
 
-    // function getRange(s,t) {
-    //   let range = [];
-    //   if (t.indexOf(s) != -1 && s.length > 1) {
-    //     // range.push({ line: })
-    //   }
-    // }
-
-    // data.split('.').forEach((segment) => {
-    //   let len = segment.length
-    //   if (segment) {
-    //     if (segment.substring(len-2,len-1) != '. ') {
-    //       segment += '. ';
-    //     }
-    //     this.translation.push(segment);
-    //   }
-    // });
-
-    // console.log(this.translation);
-
-    // this.setState({ translation: this.translation });
-
-    /*
-      addKeyMap: ƒ (map, bottom)
-addLineClass: ƒ ()
-addLineWidget: ƒ ()
-addOverlay: ƒ ()
-addSelection: ƒ ()
-addWidget: ƒ (pos, node, scroll, vert, horiz)
-changeGeneration: ƒ ()
-charCoords: ƒ (pos, mode)
-clearGutter: ƒ ()
-clearHistory: ƒ ()
-clipPos: ƒ ()
-constructor: ƒ CodeMirror(place, options)
-coordsChar: ƒ (coords, mode)
-cursorCoords: ƒ (start, mode)
-defaultCharWidth: ƒ ()
-defaultTextHeight: ƒ ()
-deleteH: ƒ ()
-eachLine: ƒ ()
-endOperation: ƒ ()
-execCommand: ƒ (cmd)
-extendSelection: ƒ ()
-extendSelections: ƒ ()
-extendSelectionsBy: ƒ ()
-findMarks: ƒ ()
-findMarksAt: ƒ ()
-findPosH: ƒ (from, amount, unit, visually)
-findPosV: ƒ (from, amount, unit, goalColumn)
-findWordAt: ƒ (pos)
-firstLine: ƒ ()
-focus: ƒ ()
-getAllMarks: ƒ ()
-getCursor: ƒ ()
-getDoc: ƒ ()
-getExtending: ƒ ()
-getGutterElement: ƒ ()
-getHelper: ƒ (pos, type)
-getHelpers: ƒ (pos, type)
-getHistory: ƒ ()
-getInputField: ƒ ()
-getLine: ƒ ()
-getLineHandle: ƒ ()
-getLineHandleVisualStart: ƒ ()
-getLineNumber: ƒ ()
-getLineTokens: ƒ (line, precise)
-getMode: ƒ ()
-getModeAt: ƒ (pos)
-getOption: ƒ (option)
-getRange: ƒ ()
-getScrollInfo: ƒ ()
-getScrollerElement: ƒ ()
-getSelection: ƒ ()
-getSelections: ƒ ()
-getStateAfter: ƒ (line, precise)
-getTokenAt: ƒ (pos, precise)
-getTokenTypeAt: ƒ (pos)
-getValue: ƒ ()
-getViewport: ƒ ()
-getWrapperElement: ƒ ()
-hasFocus: ƒ ()
-heightAtLine: ƒ (line, mode, includeWidgets)
-historySize: ƒ ()
-indentLine: ƒ ()
-indentSelection: ƒ ()
-indexFromPos: ƒ ()
-isClean: ƒ ()
-isReadOnly: ƒ ()
-iterLinkedDocs: ƒ ()
-lastLine: ƒ ()
-lineAtHeight: ƒ (height, mode)
-lineCount: ƒ ()
-lineInfo: ƒ ()
-lineSeparator: ƒ ()
-linkedDoc: ƒ ()
-listSelections: ƒ ()
-markClean: ƒ ()
-markText: ƒ ()
-moveH: ƒ ()
-moveV: ƒ ()
-off: ƒ (type, f)
-on: ƒ (type, f)
-operation: ƒ (f)
-phrase: ƒ (phraseText)
-posFromIndex: ƒ ()
-redo: ƒ ()
-redoSelection: ƒ ()
-refresh: ƒ ()
-removeKeyMap: ƒ (map)
-removeLineClass: ƒ ()
-removeLineWidget: ƒ ()
-removeOverlay: ƒ ()
-replaceRange: ƒ ()
-replaceSelection: ƒ ()
-replaceSelections: ƒ ()
-scrollIntoView: ƒ ()
-scrollTo: ƒ ()
-setBookmark: ƒ ()
-setCursor: ƒ ()
-setDirection: ƒ ()
-setExtending: ƒ ()
-setGutterMarker: ƒ ()
-setHistory: ƒ ()
-setOption: ƒ (option, value)
-setSelection: ƒ ()
-setSelections: ƒ ()
-setSize: ƒ ()
-setValue: ƒ ()
-somethingSelected: ƒ ()
-splitLines: ƒ ()
-startOperation: ƒ ()
-swapDoc: ƒ ()
-toggleOverwrite: ƒ (value)
-triggerElectric: ƒ ()
-triggerOnKeyDown: ƒ ()
-triggerOnKeyPress: ƒ ()
-triggerOnKeyUp: ƒ onKeyUp(e)
-triggerOnMouseDown: ƒ ()
-undo: ƒ ()
-undoSelection: ƒ ()
-unlinkDoc: ƒ ()
-
-    */
-
-    /*
-      Run each level of code through the same network because it will have the same
-      encodings and vocabulary
-      Just reuse the same categories at each level and output a summary
-      Store the outputs at different levels to create the structure of summaries
-      Then have a second network go over the stuctured summaries to create the
-      human summary
-
-      First pass might not need nlp, simply labeling everything at different scales
-    */
+    this.setState({ inputCode: this.state.displayCode });
+    this.setState({ output: this.state.output2 });
   }
 
   handleMouseOver = (event) => {
     // console.log(event);
     // console.log(event.target);
     // console.log(event.target.innerHTML);
-    if (this.cm) {
-      // console.log("codeMirror");
-      // console.log(this.cm);
-      // console.log(this.cm.markText);
-      // let doc = codeMirror.getDoc();
-      // console.log(doc);
-      // codemirror content lines are zero-indexed
-      this._mark = this.cm.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
-    }
-    this.setState({ marked: "marked" });
+    // if (this.cm) {
+    //   // console.log("codeMirror");
+    //   // console.log(this.cm);
+    //   // console.log(this.cm.markText);
+    //   // let doc = codeMirror.getDoc();
+    //   // console.log(doc);
+    //   // codemirror content lines are zero-indexed
+    //   this._mark = this.cm.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
+    // }
+    // this.setState({ marked: "marked" });
   }
 
   handleMouseLeave = (event) => {
-    if (this._mark) {
-      this._mark.clear();
-    }
-    this.setState({ marked: '' });
+    // if (this._mark) {
+    //   this._mark.clear();
+    // }
+    // this.setState({ marked: '' });
   }
 
   render() {
@@ -470,7 +300,7 @@ unlinkDoc: ƒ ()
                 showPrintMargin={true}
                 showGutter={true}
                 highlightActiveLine={true}
-                value={this.state.code}
+                value={this.state.displayCode}
                 setOptions={{
                   enableBasicAutocompletion: false,
                   enableLiveAutocompletion: false,
@@ -480,7 +310,6 @@ unlinkDoc: ƒ ()
                   useWorker: false
                 }}
                 className={this.state.test}
-                ref={(r) => {this.ace = r;}}
               />
               <Button1 submit={this.handleSubmit} />
             </Col>
@@ -514,37 +343,21 @@ unlinkDoc: ƒ ()
                   </Row>
                 </Form>
               </Panel>
-              <Panel className='display' userContent={this.state.userContent}>
-                { (this.state.displayToggle == 'translation') && <div className="translation"> { this.state.translation.map((segment) => { return (<span onMouseOver={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}>{segment}</span>); }) } </div> }
-                { (this.state.displayToggle == 'tree') && <AST code={this.state.code} /> }
+              <Panel className='display'>
+                { (this.state.displayToggle == 'translation') && this.state.output }
+                { (this.state.displayToggle == 'tree') && <AST code={this.state.inputCode} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 
                       id='json-pretty' 
-                      data={JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 }))}
+                      data={JSON.stringify(Parser.parse(this.state.inputCode, { ecmaVersion: 2020 }))}
                       onJSONPrettyError={e => console.error(e)}
                     >
                     </JSONPretty>
                 }
               </Panel>
-              {/*<Row>
-                <Panel>
-                  
-         
-                </Panel>
-              </Row>*/}
             </Col>
           </Row>
-          {/*<JSONPretty 
-                      id='json-pretty2' 
-                      data={JSON.stringify(this.state.test, { ecmaVersion: 2020 })}
-                      onJSONPrettyError={e => console.error(e)}
-                    >
-                    </JSONPretty>*/}
-          {/*<p>
-          { this.state.code }
-          </p>*/}
-{/*          { JSON.stringify(this.state.test) }
-*/}        </Container>
+        </Container>
       </Layout>
     );
   }
