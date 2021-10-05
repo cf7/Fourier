@@ -56,6 +56,7 @@ class Button1 extends React.Component {
           type="submit"
           value="Submit"
           variant="outline-primary"
+          className="submit-btn"
         />
       );
     }

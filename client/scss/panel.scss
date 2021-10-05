@@ -1,4 +1,5 @@
 $height: 500px;
+// $width: 500px;
 
 .panel {
   /*
@@ -52,11 +53,12 @@ form {
 
 
 #code-input {
+  width: inherit !important;
   height: $height !important;
 }
 
 div.display-options {
-  display: inline;
+  display: inline-flex;
   border: 0px;
   padding: 0px;
   min-height: 2rem;
@@ -75,6 +77,7 @@ div.display {
   display: inline-flex;
   background-color: rgba(lightblue, 20%);
   border: 0px;
+  // width: $width;
   height: $height;
   overflow: scroll;
   scroll-behavior: smooth;

@@ -18,8 +18,16 @@
   margin-bottom: 1em;
 }
 
+.panel-views {
+  // display: flex !important;
+  align-items: center;
+  justify-content: center;
+  // .row { input.submit-btn {} }
+}
+
 h1 {
   /* grid-area: header; */
+  align-items: center;
   align-content: center;
   text-align: center;
   margin-bottom: 2rem;

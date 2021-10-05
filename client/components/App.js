@@ -252,7 +252,7 @@ class App extends React.Component {
           <Row>
             <Title />
           </Row>
-          <Row>
+          <Row className="panel-views">
             <Col>
               <Panel className="controls">
                 <Form>
@@ -311,7 +311,12 @@ class App extends React.Component {
                 }}
                 className={this.state.test}
               />
-              <Button1 submit={this.handleSubmit} />
+            </Col>
+            <Col>
+              <Row>
+                <Button1 submit={this.handleSubmit} />
+                {/* Progress bar: now, visuallyHidden */}
+              </Row>
             </Col>
             <Col>
               <Panel className='display-options'>
