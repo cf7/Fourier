@@ -82,7 +82,7 @@ class App extends React.Component {
       mode: "javascript",
       theme: "textmate",
       codeFontSize: '14',
-      outputFontSize: '14',
+      outputFontSize: '17',
       displayToggle: 'translation',
       displayCode: `function example(x) { console.log(x); }`,
       inputCode: `function example(x) { console.log(x); }`,
@@ -253,7 +253,7 @@ class App extends React.Component {
             <Title />
           </Row>
           <Row className="panel-views">
-            <Col>
+            <Col className="column_1">
               <Panel className="controls">
                 <Form>
                   <Row>
@@ -312,13 +312,13 @@ class App extends React.Component {
                 className={this.state.test}
               />
             </Col>
-            <Col>
+            <Col className="column_2">
               <Row>
                 <Button1 submit={this.handleSubmit} />
                 {/* Progress bar: now, visuallyHidden */}
               </Row>
             </Col>
-            <Col>
+            <Col className="column_3">
               <Panel className='display-options'>
                 <Form>
                   <Row>
@@ -349,7 +349,7 @@ class App extends React.Component {
                 </Form>
               </Panel>
               <Panel className='display'>
-                { (this.state.displayToggle == 'translation') && this.state.output }
+                { (this.state.displayToggle == 'translation') && <p style={{ fontSize: this.state.outputFontSize + 'px' }}>{this.state.output}</p>}
                 { (this.state.displayToggle == 'tree') && <AST code={this.state.inputCode} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 

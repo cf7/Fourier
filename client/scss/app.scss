@@ -32,7 +32,21 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
   color: #205fab;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
+
+.column_1.col {
+  padding-left: 0px;
+}
+
+.column_3.col {
+  padding-right: 0px;
+}
+
+// div.col div.controls #code-input {
+//   padding-left: 0px !important;
+// }
 
 .ace-tm {
   background-color: rgba(#205fab, 0.1) !important;

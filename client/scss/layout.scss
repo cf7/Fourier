@@ -17,6 +17,10 @@ $primary: #205fab;
   }
 }
 
+header div.container {
+  padding: 0px;
+}
+
 a.nav-link {
   color: $primary !important;
   &:hover {
@@ -31,6 +35,10 @@ footer {
   min-width: 100%;
   display: inline-block;
 }
+
+// @media only screen and (min-width: 500px) {
+//   display: none;
+// }
 
 /* 
 
