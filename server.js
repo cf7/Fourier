@@ -10,7 +10,7 @@ const express = require('express');
 // express uses middleware to process req and res objects
 const logger = require('morgan');
 const path = require('path'); // for cross-platform compatibility
-
+const proxy = require('express-http-proxy');
 const routes = require('./client/api/routes.js');
 
 const app = express();
@@ -30,6 +30,8 @@ const app = express();
 //   })
 // );
 
+// set proxy before middleware
+app.use('/predict', proxy('https://fourier-model.herokuapp.com/', {}));
 
 // middleware order matters
 app.use(logger('dev'));

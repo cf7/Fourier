@@ -21,6 +21,8 @@ import 'ace-builds/src-min-noconflict/mode-c_cpp';
 import CodeMirror from 'react-codemirror';
 // import 'CodeMirror/mode/javascript/javascript';
 
+import axios from 'axios';
+
 // themes
 import 'ace-builds/src-min-noconflict/theme-textmate';
 import 'ace-builds/src-min-noconflict/theme-monokai';
@@ -167,7 +169,7 @@ class App extends React.Component {
   // }
 
   onLoad = (event) => {
-    console.log("loaded");
+    // console.log("loaded");
   }
 
   onChange = (content) => {
@@ -213,7 +215,14 @@ class App extends React.Component {
     // this.generateData();
 
     /* API Call here */
-
+    axios.get('/predict')
+      .then(function (response) {
+        console.log(response);
+        this.setState({ test: response });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // use inputCode
 
     // this.setState({ submit: true });
@@ -361,6 +370,7 @@ class App extends React.Component {
                     </JSONPretty>
                 }
               </Panel>
+              { this.state.test }
             </Col>
           </Row>
         </Container>
