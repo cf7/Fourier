@@ -310,6 +310,7 @@ class App extends React.Component {
                   useWorker: false
                 }}
                 className={this.state.test}
+                style={{}}
               />
             </Col>
             <Col className="column_2">

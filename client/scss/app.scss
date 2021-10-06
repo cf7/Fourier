@@ -40,9 +40,19 @@ h1 {
   padding-left: 0px;
 }
 
+.column_2.col {
+  justify-content: center;
+  .row > input.submit-btn {
+    // width: 50%;
+    max-width: 200px;
+  }
+}
+
 .column_3.col {
   padding-right: 0px;
 }
+
+
 
 // div.col div.controls #code-input {
 //   padding-left: 0px !important;
