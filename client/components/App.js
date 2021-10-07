@@ -212,32 +212,32 @@ class App extends React.Component {
 
     this.setState({ test: processedData });
 
-    return JSON.stringify(processedData);
+    return processedData;
   }
 
   handleSubmit = (event) => {
     let data = this.generateData();
     console.log(data);
-    
-    // let requestOptions = {
-    //   method: 'post',
-    //   url: '/model/predict',
-    //   data: '',
-    //   // headers: {
-    //   //   'Content-Type': 'multipart/form-data',
-    //   //   'Access-Control-Allow-Origin': '*',
-    //   // },
-    // };
-    // /* API Call here */
-    // axios(requestOptions)
-    //   .then(function (response) {
-    //     console.log(response);
-    //     this.setState({ test: JSON.stringify(response) });
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // // use inputCode
+
+    let requestOptions = {
+      method: 'post',
+      url: '/model/predict',
+      data: data,
+      // headers: {
+      //   'Content-Type': 'multipart/form-data',
+      //   'Access-Control-Allow-Origin': '*',
+      // },
+    };
+    /* API Call here */
+    axios(requestOptions)
+      .then(function (response) {
+        console.log(response);
+        this.setState({ test: JSON.stringify(response) });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // use inputCode
 
     // // this.setState({ submit: true });
 
