@@ -187,7 +187,7 @@ class App extends React.Component {
 
   // DO NOT TOUCH: data generator for engine
   generateData = () => {
-    let json = Parser.parse(this.state.code, { ecmaVersion: 2020 });
+    let json = Parser.parse(this.state.inputCode, { ecmaVersion: 2020 });
     console.log(json);
 
     function traverse(obj) {
@@ -208,24 +208,38 @@ class App extends React.Component {
       }
     }
 
-    this.setState({ test: traverse(json) });
+    let processedData = traverse(json);
+
+    this.setState({ test: processedData });
+
+    return JSON.stringify(processedData);
   }
 
   handleSubmit = (event) => {
-    // this.generateData();
+    let data = this.generateData();
+    console.log(data);
+    
+    // let requestOptions = {
+    //   method: 'post',
+    //   url: '/model/predict',
+    //   data: '',
+    //   // headers: {
+    //   //   'Content-Type': 'multipart/form-data',
+    //   //   'Access-Control-Allow-Origin': '*',
+    //   // },
+    // };
+    // /* API Call here */
+    // axios(requestOptions)
+    //   .then(function (response) {
+    //     console.log(response);
+    //     this.setState({ test: JSON.stringify(response) });
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    // // use inputCode
 
-    /* API Call here */
-    axios.get('/predict')
-      .then(function (response) {
-        console.log(response);
-        this.setState({ test: response });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    // use inputCode
-
-    // this.setState({ submit: true });
+    // // this.setState({ submit: true });
 
     this.setState({ inputCode: this.state.displayCode });
     this.setState({ output: this.state.output2 });
@@ -318,8 +332,6 @@ class App extends React.Component {
                   tabSize: 2,
                   useWorker: false
                 }}
-                className={this.state.test}
-                style={{}}
               />
             </Col>
             <Col className="column_2">
@@ -370,9 +382,12 @@ class App extends React.Component {
                     </JSONPretty>
                 }
               </Panel>
-              { this.state.test }
             </Col>
           </Row>
+          <JSONPretty
+                data={JSON.stringify(this.state.test)}
+              >
+              </JSONPretty>
         </Container>
       </Layout>
     );

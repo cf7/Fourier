@@ -31,7 +31,9 @@ const app = express();
 // );
 
 // set proxy before middleware
-app.use('/predict', proxy('https://fourier-model.herokuapp.com/', {}));
+// proxy simply replaces long url with short one '/model'
+// when calling from frontend consider '/model' the root '/'
+app.use('/model', proxy('https://fourier-model.herokuapp.com', {}));
 
 // middleware order matters
 app.use(logger('dev'));
