@@ -43,10 +43,9 @@ class About extends React.Component {
           <p>
             Training data sample:
             {'{"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","object":{"type":"Identifier","name":"console"},"property":{"type":"Identifier","name":"log"},"computed":false,"optional":false},"arguments":[{"type":"Literal","value":"hello","raw":"\"hello\""}],"optional":false}}],"sourceType":"script"}'}
-            The model consumes json strings without escape characters (i.e. the output of JSON.stringify(code_ast) or more verbosely JSON.stringify(Acorn.parse(code, { ecmaVersion: 2020 }))).
+            {/* The model consumes json strings without escape characters (i.e. the output of JSON.stringify(code_ast) or more verbosely JSON.stringify(Acorn.parse(code, { ecmaVersion: 2020 }))). */}
           </p>
           <p>
-          {/*
             Interesting edge cases when building this app:
 
             1) javascript and python json handlers convert differently
@@ -57,10 +56,13 @@ class About extends React.Component {
             JSON.stringify() output is not compatible if copy and pasted directly into python
             But if the json is sent over wire, when it reaches python it is compatible
 
-            Alone this would not be an issue, but combined with boolean literals it becomes an issue
+            Alone this would not be an issue because, but combined with boolean literals it becomes an issue
 
             javascript boolean literals true/false
             python boolean literals True/False
+
+            Again, boolean literals alone wouldn't be an issue because json.loads() converts them if they are strings
+            But different boolean literals combined with different escape character patterns creates incompatibility issue
 
             so to copy paste javascript json, need to stringify it
             when arriving in python code, need to wrap it in quotes
@@ -69,7 +71,7 @@ class About extends React.Component {
             the combined issue is sidestepped when loading from a file in python
             file I/O automatically converts boolean literals to python True/False boolean literals
             and converts "\"hello\"" to "'hello'"
-            */}
+            
           </p>
         </Container>
       </Layout>
