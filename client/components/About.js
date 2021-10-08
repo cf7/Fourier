@@ -65,6 +65,10 @@ class About extends React.Component {
             so to copy paste javascript json, need to stringify it
             when arriving in python code, need to wrap it in quotes
             but when wrapping in quotes, the "\"hello\"" create a syntax error
+
+            the combined issue is sidestepped when loading from a file in python
+            file I/O automatically converts boolean literals to python True/False boolean literals
+            and converts "\"hello\"" to "'hello'"
             */}
           </p>
         </Container>
