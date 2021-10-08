@@ -46,6 +46,7 @@ class About extends React.Component {
             The model consumes json strings without escape characters (i.e. the output of JSON.stringify(code_ast) or more verbosely JSON.stringify(Acorn.parse(code, { ecmaVersion: 2020 }))).
           </p>
           <p>
+          {/*
             Interesting edge cases when building this app:
 
             1) javascript and python json handlers convert differently
@@ -56,6 +57,15 @@ class About extends React.Component {
             JSON.stringify() output is not compatible if copy and pasted directly into python
             But if the json is sent over wire, when it reaches python it is compatible
 
+            Alone this would not be an issue, but combined with boolean literals it becomes an issue
+
+            javascript boolean literals true/false
+            python boolean literals True/False
+
+            so to copy paste javascript json, need to stringify it
+            when arriving in python code, need to wrap it in quotes
+            but when wrapping in quotes, the "\"hello\"" create a syntax error
+            */}
           </p>
         </Container>
       </Layout>
