@@ -79,6 +79,7 @@ function AST(props) {
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // only use setState() for changes that are visible to the UI
     this.state = {
       hasContent: false,
       mode: "javascript",
@@ -97,6 +98,7 @@ class App extends React.Component {
       cmMounted: false,
       marked: '',
       test: '',
+      loading: false,
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -107,6 +109,9 @@ class App extends React.Component {
     this.cm = null;
     this._mark = null;
     this.translation = [];
+
+    // binding is necessary to make 'this' refer to App component when callback is passed into child components
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleContent = (event) => {
@@ -151,37 +156,16 @@ class App extends React.Component {
     }
   }
 
-  // handleMode = (mode) => {
-  //   console.log("mode select");
-  //   this.setState({ mode: mode });
-  // }
-
-  // handleTheme = (theme) => {
-  //   console.log("theme select");
-  //   this.setState({ theme: theme });
-  // }
-
-  // handleFontSize = (event) => {
-  //   console.log(event);
-  //   console.log(event.target);
-  //   console.log(event.target.value);
-  //   this.setState({ fontSize: event.target.value });
-  // }
-
   onLoad = (event) => {
     // console.log("loaded");
   }
 
   onChange = (content) => {
-    // console.log("edit");
-    // console.log(content);
     this.setState({ displayCode: content });
   }
 
   componentDidMount = () => {
-    // cm instance doesn't update after this
-    // won't see new lines
-    // this.setState({ cmMounted: true });
+    
   }
 
 
@@ -216,6 +200,7 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+    this.setState({ loading: true });
     let data = this.generateData();
     console.log(data);
 
@@ -229,12 +214,17 @@ class App extends React.Component {
       // },
     };
     /* API Call here */
+    // functions defined with 'function' have their own 'this'
+    // arrow functions do not
     axios(requestOptions)
-      .then(function (response) {
-        console.log(response);
-        this.setState({ test: JSON.stringify(response) });
+      .then((response) => {
+        console.log(this);
+        this.setState({ loading: false });
+        // console.log(response);
+        // console.log(response.data);
+        // this.setState({ output: response.data });
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
     // use inputCode
@@ -246,26 +236,11 @@ class App extends React.Component {
   }
 
   handleMouseOver = (event) => {
-    // console.log(event);
-    // console.log(event.target);
-    // console.log(event.target.innerHTML);
-    // if (this.cm) {
-    //   // console.log("codeMirror");
-    //   // console.log(this.cm);
-    //   // console.log(this.cm.markText);
-    //   // let doc = codeMirror.getDoc();
-    //   // console.log(doc);
-    //   // codemirror content lines are zero-indexed
-    //   this._mark = this.cm.markText( {line: 0, ch: 0}, {line: 0}, { className: "marked" });
-    // }
-    // this.setState({ marked: "marked" });
+    
   }
 
   handleMouseLeave = (event) => {
-    // if (this._mark) {
-    //   this._mark.clear();
-    // }
-    // this.setState({ marked: '' });
+    
   }
 
   render() {
@@ -336,7 +311,7 @@ class App extends React.Component {
             </Col>
             <Col className="column_2">
               <Row>
-                <Button1 submit={this.handleSubmit} />
+                <Button1 submit={this.handleSubmit} loading={this.state.loading} />
                 {/* Progress bar: now, visuallyHidden */}
               </Row>
             </Col>
@@ -384,10 +359,10 @@ class App extends React.Component {
               </Panel>
             </Col>
           </Row>
-          <JSONPretty
+          {/*<JSONPretty
                 data={JSON.stringify(this.state.test)}
               >
-              </JSONPretty>
+              </JSONPretty>*/}
         </Container>
       </Layout>
     );

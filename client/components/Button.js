@@ -6,14 +6,26 @@ class Button1 extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: false,
+    };
   }
 
   handleClick = (event) => {
     console.log("Clicked!");
     if (this.props.submit) {
+      this.setState({ isLoading: true });
       this.props.submit();
     }
   }
+
+  // handleLoading = (p) => {
+  //   console.log("outside");
+  //   if (!this.props.loading) {
+  //     console.log("inside");
+  //     this.setState({ isLoading: false });
+  //   }
+  // }
 
   handleSelect = (eventKey, event) => {
     event.persist();
@@ -21,6 +33,7 @@ class Button1 extends React.Component {
     console.log(this);
     this.props.handleSelect(eventKey, this.props.datatype);
   }
+
 
   render() {
     if (this.props.type && (this.props.type == 'dropdown')) {
@@ -51,10 +64,11 @@ class Button1 extends React.Component {
     } else {
       return (
         <Button
-          onClick={this.handleClick}
+          onClick={this.props.loading ? null : this.handleClick}
           as="input"
           type="submit"
-          value="Submit"
+          disabled={this.props.loading}
+          value={ this.props.loading ? 'Loading...' : 'Submit' }
           variant="outline-primary"
           className="submit-btn"
         />
