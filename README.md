@@ -46,7 +46,7 @@ Building interface for proof of concept\
 Training rudimentary core NLP model for javascript
 
 ### TODOS
-Train NLP models for more languages (Python, C++)
+Train NLP models for more languages (Python, C++)\
 Implement navigation to map translations to their code origins
 
 ## References
