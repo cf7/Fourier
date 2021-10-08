@@ -2,7 +2,7 @@
 
 Fourier is a source code summarizer that uses natural language processing to summarize code into human readable phrases. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
-Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages much easier and much less time-intensive.
+Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages easier and less time-intensive.
 
 Check out the prototype app!\
 [https://fourier-app.herokuapp.com/](https://fourier-app.herokuapp.com/)
@@ -45,7 +45,7 @@ $ npm run dev-start
 Building interface for proof of concept\
 Training rudimentary core NLP model for javascript
 
-# TODOS
+### TODOS
 Train NLP models for more languages (Python, C++)
 Implement navigation to map translations to their code origins
 
