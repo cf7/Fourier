@@ -202,33 +202,40 @@ class App extends React.Component {
   handleSubmit = (event) => {
     this.setState({ loading: true });
     this.setState({ output: "Loading translation . . ." });
-    
+
     let data = this.generateData();
     console.log(data);
+    let form = new FormData();
+    // form.append(data);
+    // // JSON Notes:
+    // // - sending data as string over wire makes axios insert escapes '\"'
+    // //   model will not recognize escapes
 
-    let requestOptions = {
-      method: 'post',
-      url: '/model/predict',
-      data: data,
-      // headers: {
-      //   'Content-Type': 'multipart/form-data',
-      //   'Access-Control-Allow-Origin': '*',
-      // },
-    };
+    // let requestOptions = {
+    //   method: 'post',
+    //   url: '/model/predict',
+    //   data: form,
+    //   headers: {
+    //     'Content-Type': `multipart/form-data;boundary=${form._boundary}`,
+    //     // 'Access-Control-Allow-Origin': '*',
+    //   },
+    // };
+    form.append('data', JSON.stringify(data));
     /* API Call here */
     // functions defined with 'function' have their own 'this'
     // arrow functions do not
-    axios(requestOptions)
+    axios.post('/model/predict', form) // (requestOptions)
       .then((response) => {
         console.log(this);
         this.setState({ loading: false });
-        // console.log(response);
-        // console.log(response.data);
+        console.log(response);
+        console.log(response.data);
         this.setState({ output: response.data });
       })
       .catch((error) => {
         console.log(error);
         this.setState({ output: "An error occurred." });
+        this.setState({ loading: false });
       });
     // use inputCode
 
