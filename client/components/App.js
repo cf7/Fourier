@@ -170,8 +170,8 @@ class App extends React.Component {
 
 
   // DO NOT TOUCH: data generator for engine
-  generateData = () => {
-    let json = Parser.parse(this.state.inputCode, { ecmaVersion: 2020 });
+  generateData = (code) => {
+    let json = Parser.parse(code, { ecmaVersion: 2020 });
     console.log(json);
 
     function traverse(obj) {
@@ -200,16 +200,18 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
+    this.setState({ inputCode: this.state.displayCode });
     this.setState({ loading: true });
     this.setState({ output: "Loading translation . . ." });
 
-    let data = this.generateData();
+    let data = this.generateData(this.state.displayCode);
     console.log(data);
+    console.log(JSON.stringify(data));
     let form = new FormData();
     // form.append(data);
-    // // JSON Notes:
-    // // - sending data as string over wire makes axios insert escapes '\"'
-    // //   model will not recognize escapes
+    // JSON Notes:
+    // - sending data as string over wire makes axios insert escapes '\"'
+    //   model will not recognize escapes
 
     // let requestOptions = {
     //   method: 'post',
@@ -241,7 +243,6 @@ class App extends React.Component {
 
     // // this.setState({ submit: true });
 
-    // this.setState({ inputCode: this.state.displayCode });
     // this.setState({ output: this.state.output2 });
   }
 
@@ -373,6 +374,7 @@ class App extends React.Component {
                 data={JSON.stringify(this.state.test)}
               >
               </JSONPretty>*/}
+          { JSON.stringify(this.state.test) }
         </Container>
       </Layout>
     );

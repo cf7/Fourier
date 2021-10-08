@@ -40,6 +40,19 @@ class About extends React.Component {
             correlate with those sequences.
             The model then returns its own predicted sequence of english words that match the input code sequence.
           </p>
+          <p>
+            Training data sample:
+            {'{"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","object":{"type":"Identifier","name":"console"},"property":{"type":"Identifier","name":"log"},"computed":false,"optional":false},"arguments":[{"type":"Literal","value":"hello","raw":"\"hello\""}],"optional":false}}],"sourceType":"script"}'}
+            The model consumes json strings without escape characters (i.e. the output of JSON.stringify(code_ast) or more verbosely JSON.stringify(Acorn.parse(code, { ecmaVersion: 2020 }))).
+          </p>
+          <p>
+            Interesting edge cases when building this app:
+
+            1) javascript and python json handlers convert differently
+            JSON.stringify --> "raw":"\"hello\""
+            Over wire (https) --> \"raw\":\"\"hello\"\"
+            json.loads() (python) --> syntax error 
+          </p>
         </Container>
       </Layout>
     );
