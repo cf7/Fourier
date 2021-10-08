@@ -11,6 +11,8 @@ Check out the prototype app!\
 ~~~
 // javascript
 function example(x) { console.log(x); }
+// translation
+"Declare function that takes single parameter. Function executes console log that prints parameter value."
 ~~~
 #### Complicated Example
 ~~~
