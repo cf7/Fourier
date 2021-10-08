@@ -49,9 +49,13 @@ class About extends React.Component {
             Interesting edge cases when building this app:
 
             1) javascript and python json handlers convert differently
-            JSON.stringify --> "raw":"\"hello\""
-            Over wire (https) --> \"raw\":\"\"hello\"\"
-            json.loads() (python) --> syntax error 
+            JSON.stringify --> "raw":"\"hello\"" --> json.loads() (python) --> syntax error 
+
+            Over wire (https) --> \"raw\":\"\"hello\"\" --> json.loads() (python) --> 'raw':'"hello"'
+
+            JSON.stringify() output is not compatible if copy and pasted directly into python
+            But if the json is sent over wire, when it reaches python it is compatible
+
           </p>
         </Container>
       </Layout>
