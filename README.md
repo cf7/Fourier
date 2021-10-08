@@ -6,6 +6,8 @@ Fourier is not meant to replace the human reader, but to augment them. This tool
 
 Check out the prototype app!\
 [https://fourier-app.herokuapp.com/](https://fourier-app.herokuapp.com/)
+Here's the NLP model that performs the translations
+[LSTM](https://www.kaggle.com/cf1111/fourier2/notebook)
 
 #### Simple Example
 ~~~
