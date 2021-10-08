@@ -201,6 +201,8 @@ class App extends React.Component {
 
   handleSubmit = (event) => {
     this.setState({ loading: true });
+    this.setState({ output: "Loading translation . . ." });
+    
     let data = this.generateData();
     console.log(data);
 
@@ -222,17 +224,18 @@ class App extends React.Component {
         this.setState({ loading: false });
         // console.log(response);
         // console.log(response.data);
-        // this.setState({ output: response.data });
+        this.setState({ output: response.data });
       })
       .catch((error) => {
         console.log(error);
+        this.setState({ output: "An error occurred." });
       });
     // use inputCode
 
     // // this.setState({ submit: true });
 
-    this.setState({ inputCode: this.state.displayCode });
-    this.setState({ output: this.state.output2 });
+    // this.setState({ inputCode: this.state.displayCode });
+    // this.setState({ output: this.state.output2 });
   }
 
   handleMouseOver = (event) => {

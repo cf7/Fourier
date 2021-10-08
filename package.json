@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "reset": "npm run build; npm start",
     "start": "node server.js",
     "nodemon": "nodemon server.js --delay 2",
     "build": "rm build/*; webpack",
