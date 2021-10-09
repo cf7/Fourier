@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import AceEditor from 'react-ace';
 // languages
@@ -99,6 +100,7 @@ class App extends React.Component {
       marked: '',
       test: '',
       loading: false,
+      progress: 70,
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -200,9 +202,14 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
-    this.setState({ inputCode: this.state.displayCode });
-    this.setState({ loading: true });
-    this.setState({ output: "Loading translation . . ." });
+    this.setState({ 
+      inputCode: this.state.displayCode,
+      loading: true,
+      output: "Loading translation . . .",
+      // progressHidden: false,
+    });
+    // this.setState({ loading: true });
+    // this.setState({ output: "Loading translation . . ." });
 
     let data = this.generateData(this.state.displayCode);
     console.log(data);
@@ -227,13 +234,16 @@ class App extends React.Component {
     /* API Call here */
     // functions defined with 'function' have their own 'this'
     // arrow functions do not
-    axios.post('https://fourier-model.herokuapp.com/predict') //'/model/predict', form) // (requestOptions)
+    axios.post('https://fourier-model.herokuapp.com/predict', form) //'/model/predict', form) // (requestOptions)
       .then((response) => {
         console.log(this);
         this.setState({ loading: false });
         console.log(response);
         console.log(response.data);
-        this.setState({ output: response.data });
+        this.setState({ 
+          output: response.data,
+          // progressHidden: true,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -325,6 +335,7 @@ class App extends React.Component {
               <Row>
                 <Button1 submit={this.handleSubmit} loading={this.state.loading} />
                 {/* Progress bar: now, visuallyHidden */}
+                <ProgressBar now={this.state.progress} />
               </Row>
             </Col>
             <Col className="column_3">

@@ -133,6 +133,7 @@ module.exports = {
   },
   devtool: 'inline-source-map', // error-tracking so error not erased by bundle.js
   devServer: {
+    // https: true,
     static: {
       directory: path.join(__dirname, 'client/'),
       publicPath: '/'
@@ -141,6 +142,9 @@ module.exports = {
       logging: 'verbose',
       overlay: true
     },
-    hot: false
+    hot: false,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   }
 };
