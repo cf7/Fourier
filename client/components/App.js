@@ -223,10 +223,11 @@ class App extends React.Component {
     //   },
     // };
     form.append('data', JSON.stringify(data));
+    // form.append('Access-Control-Allow-Origin', '*');
     /* API Call here */
     // functions defined with 'function' have their own 'this'
     // arrow functions do not
-    axios.post('/model/predict', form) // (requestOptions)
+    axios.post('https://fourier-model.herokuapp.com/predict') //'/model/predict', form) // (requestOptions)
       .then((response) => {
         console.log(this);
         this.setState({ loading: false });
