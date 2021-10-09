@@ -100,7 +100,8 @@ class App extends React.Component {
       marked: '',
       test: '',
       loading: false,
-      progress: 70,
+      progressBar: 'hidden-progress',
+      progress: 100,
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -206,7 +207,7 @@ class App extends React.Component {
       inputCode: this.state.displayCode,
       loading: true,
       output: "Loading translation . . .",
-      // progressHidden: false,
+      progressBar: '',
     });
     // this.setState({ loading: true });
     // this.setState({ output: "Loading translation . . ." });
@@ -242,7 +243,7 @@ class App extends React.Component {
         console.log(response.data);
         this.setState({ 
           output: response.data,
-          // progressHidden: true,
+          progressBar: 'hidden-progress',
         });
       })
       .catch((error) => {
@@ -335,7 +336,7 @@ class App extends React.Component {
               <Row>
                 <Button1 submit={this.handleSubmit} loading={this.state.loading} />
                 {/* Progress bar: now, visuallyHidden */}
-                <ProgressBar now={this.state.progress} />
+                <ProgressBar className={this.state.progressBar} now={this.state.progress} />
               </Row>
             </Col>
             <Col className="column_3">

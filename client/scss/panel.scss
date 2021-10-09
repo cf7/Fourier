@@ -93,7 +93,25 @@ div.translation {
 
 div.progress {
   padding: 0px;
+  animation: load;
+  animation-duration: 2s;
+  animation-function: ease;
+  animation-iteration-count: infinite;
 }
+
+@keyframes load {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.hidden-progress {
+  display: none;
+}
+
 // .test {
 //   div.ace_content {
 //     div.ace_text-layer {
