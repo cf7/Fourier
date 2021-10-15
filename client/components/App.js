@@ -94,7 +94,8 @@ class App extends React.Component {
       codeMirrorCode: '',
       output: "Click submit to translate.",
       output2: "Declare function that takes single parameter. Function executes console log that prints parameter value.",
-      translation: [],
+      showOutput: '',
+      showTranslation: '',
       range: {},
       cmMounted: false,
       marked: '',
@@ -197,18 +198,35 @@ class App extends React.Component {
 
     let processedData = traverse(json);
 
-    this.setState({ test: processedData });
+    // this.setState({ test: processedData });
 
     return processedData;
   }
 
+  generateData2 = (data) => {
+    let tokens = [];
+    for (const token of jsTokens(data)) {
+      tokens.push(token);
+    }
+    let chars = [];
+    tokens.forEach((obj) => {
+      chars.push(obj.value);
+    });
+    return chars;
+  }
+
   handleSubmit = (event) => {
+    let output = this.generateData2(this.state.displayCode);
     this.setState({ 
       inputCode: this.state.displayCode,
-      loading: true,
-      output: "Loading translation . . .",
+      // loading: true,
+      output: "Declares variable and initializes to integer value", // "Loading translation . . .",
       progressBar: '',
+      test: output,
+      showOutput: 'show',
     });
+    
+
     // this.setState({ loading: true });
     // this.setState({ output: "Loading translation . . ." });
 
@@ -235,22 +253,22 @@ class App extends React.Component {
     /* API Call here */
     // functions defined with 'function' have their own 'this'
     // arrow functions do not
-    axios.post('https://fourier-model.herokuapp.com/predict', form) //'/model/predict', form) // (requestOptions)
-      .then((response) => {
-        console.log(this);
-        this.setState({ loading: false });
-        console.log(response);
-        console.log(response.data);
-        this.setState({ 
-          output: response.data,
-          progressBar: 'hidden-progress',
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({ output: "An error occurred." });
-        this.setState({ loading: false });
-      });
+    // axios.post('https://fourier-model.herokuapp.com/predict', form) //'/model/predict', form) // (requestOptions)
+    //   .then((response) => {
+    //     console.log(this);
+    //     this.setState({ loading: false });
+    //     console.log(response);
+    //     console.log(response.data);
+    //     this.setState({ 
+    //       output: response.data,
+    //       progressBar: 'hidden-progress',
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     this.setState({ output: "An error occurred." });
+    //     this.setState({ loading: false });
+    //   });
     // use inputCode
 
     // // this.setState({ submit: true });
@@ -369,8 +387,8 @@ class App extends React.Component {
                   </Row>
                 </Form>
               </Panel>
-              <Panel className='display'>
-                { (this.state.displayToggle == 'translation') && <p style={{ fontSize: this.state.outputFontSize + 'px' }}>{this.state.output}</p>}
+              <Panel className={'display ' + this.state.showOutput}>
+                { (this.state.displayToggle == 'translation') && <p className={this.state.showOutput} style={{ fontSize: this.state.outputFontSize + 'px' }}>{this.state.output}</p>}
                 { (this.state.displayToggle == 'tree') && <AST code={this.state.inputCode} /> }
                 { (this.state.displayToggle == 'json') && 
                     <JSONPretty 

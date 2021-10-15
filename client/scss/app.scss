@@ -16,11 +16,14 @@
   */
   margin-top: 1em;
   margin-bottom: 1em;
+  align-items: center;
+  justify-content: center;
 }
 
 .panel-views {
   // display: flex !important;
-  align-items: center;
+  // vertical-align: middle;
+  // align-items: center;
   justify-content: center;
   // .row { input.submit-btn {} }
 }
@@ -41,14 +44,19 @@ h1 {
 }
 
 .column_2.col {
+  display: inline-flex;
   justify-content: center;
+  align-items: center;
   .row > input.submit-btn {
     // width: 50%;
+    display: inline-flex;
     max-width: 200px;
+    vertical-align: middle;
   }
 }
 
 .column_3.col {
+  display: block;
   padding-right: 0px;
 }
 
