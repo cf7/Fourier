@@ -1,6 +1,8 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 class Button1 extends React.Component {
 
@@ -63,15 +65,21 @@ class Button1 extends React.Component {
       );
     } else {
       return (
-        <Button
-          onClick={this.props.loading ? null : this.handleClick}
-          as="input"
-          type="submit"
-          disabled={this.props.loading}
-          value={ this.props.loading ? 'Loading...' : 'Submit' }
-          variant="outline-primary"
-          className="submit-btn"
-        />
+        <OverlayTrigger
+          delay={300}
+          placement="top"
+          overlay={<Tooltip className='submit-btn-tooltip'>Click to translate code!</Tooltip>}
+        >
+          <Button
+            onClick={this.props.loading ? null : this.handleClick}
+            as="input"
+            type="submit"
+            disabled={this.props.loading}
+            value={ this.props.loading ? 'Loading...' : 'Submit' }
+            variant="outline-primary"
+            className="submit-btn"
+          />
+        </OverlayTrigger>
       );
     }
   }

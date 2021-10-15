@@ -12,6 +12,8 @@ import Col from 'react-bootstrap/Col';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import AceEditor from 'react-ace';
 // languages
@@ -85,11 +87,11 @@ class App extends React.Component {
       hasContent: false,
       mode: "javascript",
       theme: "textmate",
-      codeFontSize: '14',
+      codeFontSize: '17',
       outputFontSize: '17',
       displayToggle: 'translation',
       displayCode: `function example(x) { console.log(x); }`,
-      inputCode: `function example(x) { console.log(x); }`,
+      inputCode: '',
       submit: false,
       codeMirrorCode: '',
       output: "Click submit to translate.",
@@ -216,7 +218,7 @@ class App extends React.Component {
   }
 
   handleSubmit = (event) => {
-    let output = this.generateData2(this.state.displayCode);
+    let output = this.generateData(this.state.displayCode);
     this.setState({ 
       inputCode: this.state.displayCode,
       // loading: true,
@@ -352,8 +354,8 @@ class App extends React.Component {
             </Col>
             <Col className="column_2">
               <Row>
-                <Button1 submit={this.handleSubmit} loading={this.state.loading} />
-                {/* Progress bar: now, visuallyHidden */}
+                  <Button1 submit={this.handleSubmit} loading={this.state.loading} />
+                  {/* Progress bar: now, visuallyHidden */}
                 <ProgressBar className={this.state.progressBar} now={this.state.progress} />
               </Row>
             </Col>
@@ -388,9 +390,9 @@ class App extends React.Component {
                 </Form>
               </Panel>
               <Panel className={'display ' + this.state.showOutput}>
-                { (this.state.displayToggle == 'translation') && <p className={this.state.showOutput} style={{ fontSize: this.state.outputFontSize + 'px' }}>{this.state.output}</p>}
-                { (this.state.displayToggle == 'tree') && <AST code={this.state.inputCode} /> }
-                { (this.state.displayToggle == 'json') && 
+                { this.state.inputCode && (this.state.displayToggle == 'translation') && <p className={this.state.showOutput} style={{ fontSize: this.state.outputFontSize + 'px' }}>{this.state.output}</p>}
+                { this.state.inputCode && (this.state.displayToggle == 'tree') && <AST code={this.state.inputCode} /> }
+                { this.state.inputCode && (this.state.displayToggle == 'json') && 
                     <JSONPretty 
                       id='json-pretty' 
                       data={JSON.stringify(Parser.parse(this.state.inputCode, { ecmaVersion: 2020 }))}
