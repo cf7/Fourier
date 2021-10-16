@@ -31,7 +31,7 @@ class About extends React.Component {
             The ASTs are parsed, trimmed, and processed into a digestible form for the model.
 
             The model itself is classified as a Sequence-to-Sequence machine learning algorithm.
-            It features an encoder and decoder, each a composite of neural network layers built with LSTM neuron layers.
+            It features an encoder and decoder, each a composite of Embedding, LSTM, and Dense neural network layers.
             The code for the model and its performance metrics can be found on Kaggle at <a ref="https://www.kaggle.com/cf1111/fourier2/notebook">Fourier</a>
           </p>
           <p>
@@ -42,6 +42,7 @@ class About extends React.Component {
           </p>
           <p>
             Training data sample:
+            code: console.log("hello");
             {'{"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","object":{"type":"Identifier","name":"console"},"property":{"type":"Identifier","name":"log"},"computed":false,"optional":false},"arguments":[{"type":"Literal","value":"hello","raw":"\"hello\""}],"optional":false}}],"sourceType":"script"}'}
             {/* The model consumes json strings without escape characters (i.e. the output of JSON.stringify(code_ast) or more verbosely JSON.stringify(Acorn.parse(code, { ecmaVersion: 2020 }))). */}
           </p>

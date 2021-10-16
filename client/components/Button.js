@@ -45,13 +45,15 @@ class Button1 extends React.Component {
         header = "Font Size";
       }
       let elements = [];
-      this.props.options.forEach((option) => {
-        if (option == 'c_cpp') {
-          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{"C++"}</Dropdown.Item>);
-        } else {
-          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{option}</Dropdown.Item>);
-        }
-      });
+      if (this.props.options) {
+        this.props.options.forEach((option) => {
+          if (option == 'c_cpp') {
+            elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{"C++"}</Dropdown.Item>);
+          } else {
+            elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{option}</Dropdown.Item>);
+          }
+        });
+      }
       return (
         <Dropdown onSelect={this.handleSelect}>
           <Dropdown.Header>{ header }</Dropdown.Header>

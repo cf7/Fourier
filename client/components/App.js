@@ -3,14 +3,13 @@ import { useEffect } from 'react';
 import { Layout } from './Layout.js';
 import { Panel } from './Panel.js';
 import { Button1 } from './Button.js';
-import { Input } from './Input.js';
+import { Editor } from './Editor.js';
+import { Display } from './Display.js';
 
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -92,7 +91,7 @@ class App extends React.Component {
       displayToggle: 'translation',
       displayCode: `function example(x) { console.log(x); }`,
       inputCode: '',
-      submit: false,
+      submitted: false,
       codeMirrorCode: '',
       output: "Click submit to translate.",
       output2: "Declare function that takes single parameter. Function executes console log that prints parameter value.",
@@ -118,6 +117,8 @@ class App extends React.Component {
 
     // binding is necessary to make 'this' refer to App component when callback is passed into child components
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   handleContent = (event) => {
@@ -146,32 +147,12 @@ class App extends React.Component {
     }
   }
 
-  handleToggle = (value, event) => {
-    switch (value) {
-      case 'translation':
-        this.setState({ displayToggle: value });
-        break;
-      case 'tree':
-        this.setState({ displayToggle: value });
-        break;
-      case 'json':
-        this.setState({ displayToggle: value });
-        break;
-      default:
-        this.setState({ displayToggle: 'placeholder' });
-    }
-  }
-
-  onLoad = (event) => {
-    // console.log("loaded");
-  }
-
   onChange = (content) => {
     this.setState({ displayCode: content });
   }
 
   componentDidMount = () => {
-    
+      
   }
 
 
@@ -251,6 +232,16 @@ class App extends React.Component {
     //   },
     // };
     form.append('data', JSON.stringify(data));
+
+    // let delay = (ms) => { new Promise((resolve) => setTimeout(resolve, ms)) };
+    
+    // simulate HTTP request
+    setTimeout(() => { 
+      this.setState({
+        submitted: true,
+      }); 
+    }, 7000);
+    
     // form.append('Access-Control-Allow-Origin', '*');
     /* API Call here */
     // functions defined with 'function' have their own 'this'
@@ -295,71 +286,65 @@ class App extends React.Component {
           </Row>
           <Row className="panel-views">
             <Col className="column_1">
-              <Panel className="controls">
-                <Form>
-                  <Row>
-                    <Col>
-                      <Form.Label>
-                        <Button1 
-                          type="dropdown" 
-                          datatype="mode" 
-                          option={this.state.mode} 
-                          options={this.modes} 
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                      <Form.Label>
-                        <Button1 
-                          type="dropdown" 
-                          datatype="theme" 
-                          option={this.state.theme} 
-                          options={this.themes} 
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                      <Form.Label>
-                        <Button1
-                          type="dropdown"
-                          datatype="codeFontSize"
-                          option={this.state.codeFontSize}
-                          options={this.codeFontSizes}
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                    </Col>
-                  </Row>
-                </Form>
-              </Panel>
-              <AceEditor
-                placeholder={`function example(x) { console.log("x"); }`}
+              <Editor 
                 mode={this.state.mode}
+                modes={this.modes}
                 theme={this.state.theme}
-                name="code-input" // id when parsed
-                onLoad={this.onLoad}
+                themes={this.themes}
+                codeFontSize={this.state.codeFontSize}
+                codeFontSizes={this.codeFontSizes}
+                handleSelect={this.handleSelect}
                 onChange={this.onChange}
-                fontSize={Number(this.state.codeFontSize)}
-                showPrintMargin={true}
-                showGutter={true}
-                highlightActiveLine={true}
-                value={this.state.displayCode}
-                setOptions={{
-                  enableBasicAutocompletion: false,
-                  enableLiveAutocompletion: false,
-                  enableSnippets: false,
-                  showLineNumbers: true,
-                  tabSize: 2,
-                  useWorker: false
-                }}
+                displayCode={this.state.displayCode}
+
               />
             </Col>
             <Col className="column_2">
               <Row>
                   <Button1 submit={this.handleSubmit} loading={this.state.loading} />
                   {/* Progress bar: now, visuallyHidden */}
-                <ProgressBar className={this.state.progressBar} now={this.state.progress} />
               </Row>
             </Col>
             <Col className="column_3">
+              <Row>
+              {
+                this.state.submitted 
+
+                ? 
+                
+                (
+                  <Display 
+                    outputFontSize={this.state.outputFontSize}
+                    outputFontSizes={this.outputFontSizes}
+                    inputCode={this.state.inputCode}
+                    displayToggle={this.state.displayToggle}
+                    showOutput={this.state.showOutput}
+                    handleSelect={this.handleSelect}
+                  />
+                )
+
+                :
+
+                (
+                  this.state.progressBar 
+
+                  ?
+
+                  <p>
+                    Welcome to Fourier! To get started, try inputting some code into 
+                    the editor to the left. 
+                  </p>
+
+                  :
+
+                  <ProgressBar 
+                    className={this.state.progressBar} 
+                    now={this.state.progress} 
+                  />
+                )
+              }
+              </Row>
+              {/* 
               <Panel className='display-options'>
                 <Form>
                   <Row>
@@ -401,6 +386,8 @@ class App extends React.Component {
                     </JSONPretty>
                 }
               </Panel>
+
+              */}
             </Col>
           </Row>
           {/*<JSONPretty

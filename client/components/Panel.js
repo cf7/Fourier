@@ -1,5 +1,4 @@
 import React from 'react';
-import { Input } from './Input.js';
 import { Button } from './Button.js';
 
 import Container from 'react-bootstrap/Container';
