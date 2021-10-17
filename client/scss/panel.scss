@@ -12,63 +12,65 @@ $height: 500px;
     "footer footer footer";
   grid-column-gap: 10px;
   */
-  display: inline-flex;
+  // display: inline-flex;
   border: 1px solid #000000;
   border-radius: 1em;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
   min-height: 0.5rem;
   padding-top: 2em;
   padding-bottom: 2em;
 }
 
-div.controls {
+div.controls.panel.container {
+  // display: inline-block;
   border: 0px;
   padding: 0px;
-  justify-content: left;
-}
-
-form {
-  display: inline-flex;
-  margin: 0px;
-  .row {
-    display: inline-flex;
-    margin: 0px;
-    .col {
-      display: inline-flex;
-      padding: 0px;
+  // justify-content: space-evenly;
+  form.controls-form {
+    // display: flex;
+    // margin: 0px;
+    .row {
+      // display: inline-block;
+      margin: 0px;
+      .col {
+        // display: inline-block;
+        padding-left: 0px;
+        label.form-label * {
+          display: inline-block;
+          padding-right: 10px;
+          div.dropdown-header {
+            padding-left: 0px;
+            font-size: 1rem;
+          }
+          // p {
+          //   display: none;
+          //   padding: 7px 0px 7px 0px;
+          //   // vertical-align: top;
+          //   margin: 0px;
+          //   font-family: inherit;
+          // }
+        }
+      }
     }
   }
 }
 
-.form-label {
-  display: inline;
-  padding: 0px;
-  p {
-    display: inline-flex;
-    padding: 7px 0px 7px 0px;
-    vertical-align: top;
-    margin: 0px;
-    font-family: inherit;
-  }
-}
-
-
-#code-input {
-  width: inherit !important;
-  height: $height !important;
-}
+// #code-input {
+//   width: inherit !important;
+//   height: $height !important;
+// }
 
 div.display-options {
-  display: inline-flex;
+  // display: inline-flex;
   border: 0px;
   padding: 0px;
   min-height: 2rem;
-  justify-content: left;
+  // justify-content: left;
   .row {
-    display: inline-flex;
+    // display: inline-flex;
     margin: 0px;
     .col {
-      display: inline-flex;
+      // display: inline-flex;
       padding: 0px;
     }
   }
@@ -84,7 +86,7 @@ div.display-options {
 // }
 
 div.display {
-  display: inline-flex;
+  // display: inline-flex;
   background-color: rgba(lightblue, 20%);
   border: 0px;
   // width: $width;
@@ -134,8 +136,8 @@ div.translation {
 
 div.progress {
   padding: 0px;
-  margin-top: 3px;
-  height: 0.5em;
+  // margin-top: 3px;
+  height: 6px;
   animation: load;
   animation-duration: 2s;
   animation-function: ease;
@@ -151,9 +153,9 @@ div.progress {
   }
 }
 
-.hidden-progress {
-  display: none;
-}
+// .hidden-progress {
+//   display: none;
+// }
 
 // .test {
 //   div.ace_content {

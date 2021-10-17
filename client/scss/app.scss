@@ -16,15 +16,15 @@
   */
   margin-top: 1em;
   margin-bottom: 1em;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
 }
 
 .panel-views {
   // display: flex !important;
   // vertical-align: middle;
   // align-items: center;
-  justify-content: center;
+  // justify-content: center;
   // .row { input.submit-btn {} }
 }
 
@@ -40,24 +40,29 @@ h1 {
 }
 
 .column_1.col {
+  display: inline-block;
   padding-left: 0px;
 }
 
 .column_2.col {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  // display: inline-flex;
+  // justify-content: center;
+  // align-items: center;
   .row > input.submit-btn {
     // width: 50%;
-    display: inline-flex;
+    // display: inline-flex;
     max-width: 200px;
-    vertical-align: middle;
+    // vertical-align: middle;
   }
 }
 
 .column_3.col {
-  display: block;
+  // display: block;
   padding-right: 0px;
+  div.row {
+    // display: inline-block;
+  }
+  // align-items: center;
 }
 
 
@@ -69,3 +74,42 @@ h1 {
 .ace-tm {
   background-color: rgba(#205fab, 0.1) !important;
 }
+
+/*
+  CSS 101:
+  
+  (block, inline, inline-block do not require parent container elements
+  they can be applied directly to the element implementing the rule)
+
+  display: block;
+  - elements take up their own line and take 100% of width, cannot adjust manually
+  - elements cannot end up side by side ever
+
+  display: inline;
+  - elements all fall onto the same line in the container
+  - cannot apply width or height rules to any of the elements
+  - elements do not wrap and instead get jammed up
+  - cannot apply transforms on inline elements
+
+  display: inline-block; // most common before flex and grid
+  - elements fall onto same line
+  - can apply width and height rules
+
+
+  flex and grid require parent container elements
+  parent element applies "display" tag to its child elements, not recursively
+  
+  display: flex;
+  - container element still behaves block style, stretches 100% width of viewport
+  - child elements fall side by side
+  - (i.e. "flex" pseudo for "block-flex")
+
+  display: inline-flex;
+  - container element only stretches width to its child elements, no further
+
+  Rules:
+
+  vertical-align - only applies to display: block elements
+  align-items - y-direction, only applies to display: flex elements
+  justify-content - x-direction
+*/

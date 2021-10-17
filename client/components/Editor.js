@@ -19,7 +19,7 @@ class Editor extends React.Component {
     return (
       <>
         <Panel className="controls">
-          <Form>
+          <Form className="controls-form">
             <Row>
               <Col>
                 <Form.Label>

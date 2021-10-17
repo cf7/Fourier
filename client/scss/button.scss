@@ -1,5 +1,5 @@
 .dropdown {
-  display: inline-flex;
+  // display: inline-flex;
 }
 
 .custom-btn {
@@ -12,6 +12,7 @@ button.dropdown-toggle {
   border: 1px solid #205fab;
   padding: 0px 4px 0px 4px;
   line-height: 1;
+  height: 2.0rem;
   // &:hover {
   //   background-color: rgba(#205fab, 0.5);
   // }
@@ -21,13 +22,18 @@ button.dropdown-toggle {
   // }
 }
 
+div.dropdown-menu.show {
+  min-width: 7rem !important;
+  max-width: 75% !important;
+}
+
 div.btn-group {
   margin-bottom: 0.5rem;
   .toggle-group-header {
-    display: block;
+    // display: block;
     padding: 0.5rem 1rem;
     margin-bottom: 0;
-    font-size: 0.875rem;
+    // font-size: 0.875rem;
     color: #6c757d;
     white-space: nowrap;
     user-select: none;

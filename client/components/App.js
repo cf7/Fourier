@@ -239,8 +239,9 @@ class App extends React.Component {
     setTimeout(() => { 
       this.setState({
         submitted: true,
+        progressBar: 'hidden-progress',
       }); 
-    }, 7000);
+    }, 6000);
     
     // form.append('Access-Control-Allow-Origin', '*');
     /* API Call here */
@@ -286,6 +287,7 @@ class App extends React.Component {
           </Row>
           <Row className="panel-views">
             <Col className="column_1">
+              {/*<Row>*/}
               <Editor 
                 mode={this.state.mode}
                 modes={this.modes}
@@ -296,17 +298,17 @@ class App extends React.Component {
                 handleSelect={this.handleSelect}
                 onChange={this.onChange}
                 displayCode={this.state.displayCode}
-
               />
+              {/*</Row>*/}
             </Col>
             <Col className="column_2">
-              <Row>
+              {/*<Row>*/}
                   <Button1 submit={this.handleSubmit} loading={this.state.loading} />
                   {/* Progress bar: now, visuallyHidden */}
-              </Row>
+              {/*</Row>*/}
             </Col>
             <Col className="column_3">
-              <Row>
+              {/*<Row>*/}
               {
                 this.state.submitted 
 
@@ -319,6 +321,7 @@ class App extends React.Component {
                     inputCode={this.state.inputCode}
                     displayToggle={this.state.displayToggle}
                     showOutput={this.state.showOutput}
+                    output={this.state.output}
                     handleSelect={this.handleSelect}
                   />
                 )
@@ -338,12 +341,11 @@ class App extends React.Component {
                   :
 
                   <ProgressBar 
-                    className={this.state.progressBar} 
                     now={this.state.progress} 
                   />
                 )
               }
-              </Row>
+              {/*</Row>*/}
               {/* 
               <Panel className='display-options'>
                 <Form>
