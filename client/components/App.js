@@ -236,12 +236,12 @@ class App extends React.Component {
     // let delay = (ms) => { new Promise((resolve) => setTimeout(resolve, ms)) };
     
     // simulate HTTP request
-    setTimeout(() => { 
-      this.setState({
-        submitted: true,
-        progressBar: 'hidden-progress',
-      }); 
-    }, 6000);
+    // setTimeout(() => { 
+    //   this.setState({
+    //     submitted: true,
+    //     progressBar: 'hidden-progress',
+    //   }); 
+    // }, 10000);
     
     // form.append('Access-Control-Allow-Origin', '*');
     /* API Call here */
@@ -307,10 +307,10 @@ class App extends React.Component {
                   {/* Progress bar: now, visuallyHidden */}
               </Row>
             </Col>
-            <Col className="column_3">
-              {/*<Row>*/}
+            <Col className={"column_3 " + this.state.progressBar} >
+              <Row>
               {
-                true // this.state.submitted 
+                false // this.state.submitted 
 
                 ? 
                 
@@ -345,7 +345,7 @@ class App extends React.Component {
                   />
                 )
               }
-              {/*</Row>*/}
+              </Row>
               {/* 
               <Panel className='display-options'>
                 <Form>

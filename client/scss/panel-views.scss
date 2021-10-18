@@ -79,16 +79,17 @@ $height: 500px;
   // align-content: center;
   // align-items: center;
   // vertical-align: middle;
-  .row {
+  .row { // row must have height for submit-btn to align center
     // display: inline-flex;
-    align-self: center;
+    // align-self: center;
+    align-items: center;
     height: inherit;
     // flex-direction: column;
     // justify-content: center;
     input.submit-btn.btn.btn-outline-primary {
       // display: none !important;
       // justify-content: center;
-      align-self: center;
+      // align-self: center;
 
       width: 80px;
       height: 80px;
@@ -106,83 +107,88 @@ $height: 500px;
   padding-right: 0px;
   min-height: $min-height;
   height: $height;
-  div.display-options {
-    // display: inline-flex;
-    border: 0px;
-    padding: 0px;
-    // min-height: 2rem;
-    // justify-content: left;
-    form.display-form {
+  .row { // row must have height for align-self to work
+    // align-items: center;
+    height: inherit;
+    div.display-options {
       // display: inline-flex;
-      .row {
+      border: 0px;
+      padding: 0px;
+      // min-height: 2rem;
+      // justify-content: left;
+      form.display-form {
         // display: inline-flex;
-        margin: 0px;
-        .col {
+        .row {
           // display: inline-flex;
-          padding: 0px;
-          label.form-label {
-            div.dropdown {
-              display: inline-flex;
+          margin: 0px;
+          .col {
+            // display: inline-flex;
+            padding: 0px;
+            label.form-label {
+              div.dropdown {
+                display: inline-flex;
+              }
             }
           }
         }
       }
     }
-  }
-  div.display {
-    display: flex;
-    justify-content: center;
-    background-color: rgba(lightblue, 20%);
-    border: 0px;
-    // width: $width;
-    // height: $height;
-    overflow: scroll;
-    scroll-behavior: smooth;
-    &.show {
-      animation: show;
-      animation-duration: 3s;
-      animation-function: ease;
-      animation-fill-mode: both;
-    }
-    p.show {
-      animation: show-text;
-      animation-duration: 2.5s;
-      animation-delay: 0.5s;
-      animation-function: ease;
-      animation-fill-mode: both;
-    }
-    @keyframes show {
-      from {
-        height: $min-height;
+    div.display {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(lightblue, 20%);
+      border: 0px;
+      // width: $width;
+      // height: $height;
+      overflow: scroll;
+      scroll-behavior: smooth;
+      &.show {
+        animation: show;
+        animation-duration: 3s;
+        animation-function: ease;
+        animation-fill-mode: both;
       }
-      to {
-        height: $height;
+      p.show {
+        animation: show-text;
+        animation-duration: 2.5s;
+        animation-delay: 0.5s;
+        animation-fill-mode: both;
       }
-    }
-
-    @keyframes show-text {
-      from {
-        opacity: 0.0;
+      @keyframes show {
+        from {
+          height: $min-height;
+        }
+        to {
+          height: $height;
+        }
       }
-      to {
-        opacity: 1.0;
+      @keyframes show-text {
+        from {
+          opacity: 0.0;
+        }
+        to {
+          opacity: 1.0;
+        }
       }
     }
-  }
-  div.progress {
-    padding: 0px;
-    // margin-top: 3px;
-    height: 6px;
-    animation: load;
-    animation-duration: 2s;
-    animation-function: ease;
-    animation-iteration-count: infinite;
-    @keyframes load {
-      from {
-        width: 0%;
-      }
-      to {
-        width: 100%;
+    p {
+      align-self: center;
+    }
+    div.progress {
+      align-self: center;
+      padding: 0px;
+      // margin-top: 3px;
+      height: 6px;
+      animation: load;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      @keyframes load {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
       }
     }
   }
