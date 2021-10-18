@@ -307,10 +307,10 @@ class App extends React.Component {
                   {/* Progress bar: now, visuallyHidden */}
               </Row>
             </Col>
-            <Col className={"column_3 " + this.state.progressBar} >
-              <Row>
+            <Col className="column_3">
+              <Row className={this.state.progressBar} >
               {
-                false // this.state.submitted 
+                true // this.state.submitted 
 
                 ? 
                 
@@ -333,7 +333,7 @@ class App extends React.Component {
 
                   ?
 
-                  <p>
+                  <p className="test-welcome">
                     Welcome to Fourier! To get started, try inputting some code into 
                     the editor to the left. 
                   </p>

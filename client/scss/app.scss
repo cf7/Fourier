@@ -79,6 +79,7 @@ h1 {
     - flex-shrink: 1 // items can shrink smaller than their flex basis
     - flex-basis: auto // items have a base size of auto, 0 means items have base size of 0
   - flex-grow: 1 // items can grow larger than their flex-basis
+  - child elements default: align-self: stretch; elements stretch to height of parent container
   
   Shorthands:
   - flex: auto // allows larger items to grow faster and take more space
