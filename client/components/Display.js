@@ -47,8 +47,8 @@ class Display extends React.Component {
       <>
         <Panel className='display-options'>
           <Form className='display-form'>
-            {/*<Row>*/}
-              {/*<Col>*/}
+            <Row>
+              <Col>
                 <Form.Label>
                   <Button1
                     type="dropdown"
@@ -70,8 +70,8 @@ class Display extends React.Component {
                     JSON
                   </ToggleButton>
                 </ToggleButtonGroup>
-              {/*</Col>*/}
-            {/*</Row>*/}
+              </Col>
+            </Row>
           </Form>
         </Panel>
         <Panel className={'display ' + this.props.showOutput}>

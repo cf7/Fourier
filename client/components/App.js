@@ -302,15 +302,15 @@ class App extends React.Component {
               {/*</Row>*/}
             </Col>
             <Col className="column_2">
-              {/*<Row>*/}
+              <Row>
                   <Button1 submit={this.handleSubmit} loading={this.state.loading} />
                   {/* Progress bar: now, visuallyHidden */}
-              {/*</Row>*/}
+              </Row>
             </Col>
             <Col className="column_3">
               {/*<Row>*/}
               {
-                this.state.submitted 
+                true // this.state.submitted 
 
                 ? 
                 
@@ -396,7 +396,7 @@ class App extends React.Component {
                 data={JSON.stringify(this.state.test)}
               >
               </JSONPretty>*/}
-          { JSON.stringify(this.state.test) }
+          {/*{ JSON.stringify(this.state.test) }*/}
         </Container>
       </Layout>
     );

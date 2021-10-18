@@ -10,7 +10,7 @@ button.dropdown-toggle {
   background-color: white;
   color: #205fab;
   border: 1px solid #205fab;
-  padding: 0px 4px 0px 4px;
+  padding: 0px 8px 0px 8px;
   line-height: 1;
   height: 2.0rem;
   // &:hover {
@@ -56,7 +56,7 @@ div.btn-group {
 }
 
 .submit-btn-tooltip {
-  div.tooltip-inner{
+  div.tooltip-inner {
     background-color: #205fab;
   }
 }

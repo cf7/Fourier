@@ -1,5 +1,5 @@
 @import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
-@import './panel.scss';
+@import './panel-views.scss';
 @import './layout.scss';
 @import './button.scss';
 
@@ -14,24 +14,21 @@
     "body body"
     "footer footer";
   */
+  // display: block;
+  // justify-content: center;
   margin-top: 1em;
+  margin-right: 0em;
+  margin-left: 0em;
   margin-bottom: 1em;
+  padding: 0px;
   // align-items: center;
   // justify-content: center;
-}
-
-.panel-views {
-  // display: flex !important;
-  // vertical-align: middle;
-  // align-items: center;
-  // justify-content: center;
-  // .row { input.submit-btn {} }
 }
 
 h1 {
   /* grid-area: header; */
-  align-items: center;
-  align-content: center;
+  // align-items: center;
+  // align-content: center;
   text-align: center;
   margin-bottom: 2rem;
   color: #205fab;
@@ -39,31 +36,7 @@ h1 {
   padding-right: 0px !important;
 }
 
-.column_1.col {
-  display: inline-block;
-  padding-left: 0px;
-}
 
-.column_2.col {
-  // display: inline-flex;
-  // justify-content: center;
-  // align-items: center;
-  .row > input.submit-btn {
-    // width: 50%;
-    // display: inline-flex;
-    max-width: 200px;
-    // vertical-align: middle;
-  }
-}
-
-.column_3.col {
-  // display: block;
-  padding-right: 0px;
-  div.row {
-    // display: inline-block;
-  }
-  // align-items: center;
-}
 
 
 
@@ -71,9 +44,7 @@ h1 {
 //   padding-left: 0px !important;
 // }
 
-.ace-tm {
-  background-color: rgba(#205fab, 0.1) !important;
-}
+
 
 /*
   CSS 101:
@@ -103,13 +74,36 @@ h1 {
   - container element still behaves block style, stretches 100% width of viewport
   - child elements fall side by side
   - (i.e. "flex" pseudo for "block-flex")
+  - default responsive behaviors:
+    - flex-grow: 0 // items will not grow beyond content size
+    - flex-shrink: 1 // items can shrink smaller than their flex basis
+    - flex-basis: auto // items have a base size of auto, 0 means items have base size of 0
+  - flex-grow: 1 // items can grow larger than their flex-basis
+  
+  Shorthands:
+  - flex: auto // allows larger items to grow faster and take more space
+  - flex: 1 // forces items to maintain consistent size when growing
+  - flex: none // items don't grow/shrink, useful for only using alignment properties
+
+  - can set flex per item (i.e. flex: 3 for a small item to grow faster)
 
   display: inline-flex;
   - container element only stretches width to its child elements, no further
 
   Rules:
 
-  vertical-align - only applies to display: block elements
+  vertical-align - y-direction, only applies to display: block elements
   align-items - y-direction, only applies to display: flex elements
+  align-self - aligns a single item on the cross axis
+  align-items - aligns all of the items as a group on the y-axis
+
+  (when using align-items for y-axis, need to set flex-direction: column and 
+  explicity set height or box-size so that CSS has spare space to distribute the element relative to)
+
   justify-content - x-direction
+  align-content - y-direction
+  place-content - (shorthand) sets both directions
+  
+  (CSS will place spare space between elements depending on justify-content)
+  (justify-content doesn't work for block because there is no spare space to place)
 */

@@ -1,0 +1,235 @@
+$min-height: 20px;
+$height: 500px;
+// $width: 500px;
+
+.panel {
+  /*
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-areas:
+    "header header header"
+    "body body body"
+    "footer footer footer";
+  grid-column-gap: 10px;
+  */
+  // display: inline-flex;
+  border: 1px solid #000000;
+  border-radius: 1em;
+  // justify-content: space-evenly;
+  min-height: 0.5rem;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.panel-views {
+  // display: inline-flex;
+  // flex-wrap: wrap;
+  // vertical-align: middle;
+  // align-items: center;
+  // justify-content: center;
+  // .row { input.submit-btn {} }
+}
+
+.column_1.col {
+  // flex: 0; // determines how .col adjusts to div.panel-views flexbox
+  display: inline-block;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-width: 150px;
+  max-width: 510px;
+  min-height: $min-height;
+  height: $height;
+  div.controls.panel.container {
+    border: 0px;
+    padding: 0px;
+    form.controls-form {
+      .row {
+        margin: 0px;
+        .col {
+          padding-left: 0px;
+          padding-right: 0px;
+          label.form-label div {
+            display: inline-flex;
+          }
+        }
+      }
+    }
+  }
+
+  #code-input {
+    width: inherit !important;
+    height: $height !important;
+  }
+}
+
+.column_2.col {
+  // display: inline-block;
+  // inherits --bs-gutter-x: 1.5rem from div.panel-views.row
+  // --bs-gutter-x: 0rem;
+  flex: 0; // determines how .col adjusts to div.panel-views flexbox
+  // flex-direction: column;
+  min-height: $min-height;
+  height: $height;
+  margin: 45px 10px 45px 10px;
+  // justify-content: center;
+  // align-content: center;
+  // align-items: center;
+  // vertical-align: middle;
+  .row {
+    // display: inline-flex;
+    align-self: center;
+    height: inherit;
+    // flex-direction: column;
+    // justify-content: center;
+    input.submit-btn.btn.btn-outline-primary {
+      // display: none !important;
+      // justify-content: center;
+      align-self: center;
+
+      width: 80px;
+      height: 80px;
+      // display: inline-flex;
+      min-width: 70px;
+      max-width: 200px;
+      // vertical-align: middle;
+    }
+  }
+}
+
+.column_3.col {
+  display: inline-block;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-height: $min-height;
+  height: $height;
+}
+
+div.display-options {
+  // display: inline-flex;
+  border: 0px;
+  padding: 0px;
+  // min-height: 2rem;
+  // justify-content: left;
+  form.display-form {
+    // display: inline-flex;
+    .row {
+      // display: inline-flex;
+      margin: 0px;
+      .col {
+        // display: inline-flex;
+        padding: 0px;
+        label.form-label div {
+          display: inline-flex;
+        }
+      }
+    }
+  }
+}
+
+div.display {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(lightblue, 20%);
+  border: 0px;
+  // width: $width;
+  // height: $height;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  &.show {
+    animation: show;
+    animation-duration: 3s;
+    animation-function: ease;
+    animation-fill-mode: both;
+  }
+  p.show {
+    animation: show-text;
+    animation-duration: 2.5s;
+    animation-delay: 0.5s;
+    animation-function: ease;
+    animation-fill-mode: both;
+  }
+  @keyframes show {
+    from {
+      height: $min-height;
+    }
+    to {
+      height: $height;
+    }
+  }
+
+  @keyframes show-text {
+    from {
+      opacity: 0.0;
+    }
+    to {
+      opacity: 1.0;
+    }
+  }
+}
+
+
+
+// div.translation {
+//   span {
+//       &:hover {
+//         color: #205fab !important;
+//       }
+//   }
+// }
+
+div.progress {
+  padding: 0px;
+  // margin-top: 3px;
+  height: 6px;
+  animation: load;
+  animation-duration: 2s;
+  animation-function: ease;
+  animation-iteration-count: infinite;
+  @keyframes load {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+}
+
+
+
+
+
+
+.ace-tm {
+  background-color: rgba(#205fab, 0.1) !important;
+}
+
+// .hidden-progress {
+//   display: none;
+// }
+
+// .test {
+//   div.ace_content {
+//     div.ace_text-layer {
+//       div.ace_line {
+//         span.ace_entity.ace_name.ace_function {
+//           color: #205fab;
+//           // &:hover {
+//           //   color: #205fab !important;
+//           // }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// span.marked {
+//   background-color: #205fab4a;
+//   color: white;
+// }
+
+/*
+  <span class="ace_storage ace_type">function</span>
+  <span class="ace_entity ace_name ace_function">example</span>
+  <span class="ace_paren ace_lparen">(</span>
+*/
