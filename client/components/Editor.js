@@ -28,7 +28,7 @@ class Editor extends React.Component {
                     datatype="mode" 
                     option={this.props.mode} 
                     options={this.props.modes} 
-                    handleSelect={this.handleSelect} 
+                    handleSelect={this.props.handleSelect} 
                   />
                 </Form.Label>
                 <Form.Label>
@@ -37,7 +37,7 @@ class Editor extends React.Component {
                     datatype="theme" 
                     option={this.props.theme}
                     options={this.props.themes}
-                    handleSelect={this.handleSelect} 
+                    handleSelect={this.props.handleSelect} 
                   />
                 </Form.Label>
                 <Form.Label>
@@ -46,7 +46,7 @@ class Editor extends React.Component {
                     datatype="codeFontSize"
                     option={this.props.codeFontSize}
                     options={this.props.codeFontSizes}
-                    handleSelect={this.handleSelect} 
+                    handleSelect={this.props.handleSelect} 
                   />
                 </Form.Label>
               </Col>
@@ -58,8 +58,8 @@ class Editor extends React.Component {
           mode={this.props.mode}
           theme={this.props.theme}
           name="code-input" // id when parsed
-          onLoad={this.onLoad}
-          onChange={this.onChange}
+          onLoad={this.props.onLoad}
+          onChange={this.props.onChange}
           fontSize={Number(this.props.codeFontSize)}
           showPrintMargin={true}
           showGutter={true}
@@ -71,8 +71,10 @@ class Editor extends React.Component {
             enableSnippets: false,
             showLineNumbers: true,
             tabSize: 2,
-            useWorker: false
+            useWorker: false,
+            hasCssTransforms: true,
           }}
+          // style={{ width: 'inherit', height: '500px' }}
         />
       </>
     );

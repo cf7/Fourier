@@ -31,14 +31,14 @@ $height: 500px;
 }
 
 .column_1.col {
-  // flex: 0; // determines how .col adjusts to div.panel-views flexbox
-  display: inline-block;
+  flex: 0; // determines how .col adjusts to div.panel-views flexbox
+  // display: inline-block;
   padding-left: 0px;
   padding-right: 0px;
-  min-width: 150px;
-  max-width: 510px;
-  min-height: $min-height;
-  height: $height;
+  // min-width: 150px;
+  // max-width: 510px;
+  // min-height: $min-height;
+  // height: $height;
   div.controls.panel.container {
     border: 0px;
     padding: 0px;
@@ -48,19 +48,23 @@ $height: 500px;
         .col {
           padding-left: 0px;
           padding-right: 0px;
-          label.form-label div {
-            display: inline-flex;
+          label.form-label {
+            div {
+              display: inline-flex;
+            }
           }
         }
       }
     }
   }
-
-  #code-input {
-    width: inherit !important;
-    height: $height !important;
-  }
 }
+// when editor cursor in wrong position, it's because Ace relies on monospace or monaco 
+// fonts that are being overridden by global font styles
+// (also check if there are conflicting css styling rules)
+// #code-input {
+//   font-family: inherit;
+//   font: inherit;
+// }
 
 .column_2.col {
   // display: inline-block;
@@ -102,98 +106,87 @@ $height: 500px;
   padding-right: 0px;
   min-height: $min-height;
   height: $height;
-}
-
-div.display-options {
-  // display: inline-flex;
-  border: 0px;
-  padding: 0px;
-  // min-height: 2rem;
-  // justify-content: left;
-  form.display-form {
+  div.display-options {
     // display: inline-flex;
-    .row {
+    border: 0px;
+    padding: 0px;
+    // min-height: 2rem;
+    // justify-content: left;
+    form.display-form {
       // display: inline-flex;
-      margin: 0px;
-      .col {
+      .row {
         // display: inline-flex;
-        padding: 0px;
-        label.form-label div {
-          display: inline-flex;
+        margin: 0px;
+        .col {
+          // display: inline-flex;
+          padding: 0px;
+          label.form-label div {
+            display: inline-flex;
+          }
         }
+      }
+    }
+  }
+  div.display {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(lightblue, 20%);
+    border: 0px;
+    // width: $width;
+    // height: $height;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    &.show {
+      animation: show;
+      animation-duration: 3s;
+      animation-function: ease;
+      animation-fill-mode: both;
+    }
+    p.show {
+      animation: show-text;
+      animation-duration: 2.5s;
+      animation-delay: 0.5s;
+      animation-function: ease;
+      animation-fill-mode: both;
+    }
+    @keyframes show {
+      from {
+        height: $min-height;
+      }
+      to {
+        height: $height;
+      }
+    }
+
+    @keyframes show-text {
+      from {
+        opacity: 0.0;
+      }
+      to {
+        opacity: 1.0;
+      }
+    }
+  }
+  div.progress {
+    padding: 0px;
+    // margin-top: 3px;
+    height: 6px;
+    animation: load;
+    animation-duration: 2s;
+    animation-function: ease;
+    animation-iteration-count: infinite;
+    @keyframes load {
+      from {
+        width: 0%;
+      }
+      to {
+        width: 100%;
       }
     }
   }
 }
 
-div.display {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(lightblue, 20%);
-  border: 0px;
-  // width: $width;
-  // height: $height;
-  overflow: scroll;
-  scroll-behavior: smooth;
-  &.show {
-    animation: show;
-    animation-duration: 3s;
-    animation-function: ease;
-    animation-fill-mode: both;
-  }
-  p.show {
-    animation: show-text;
-    animation-duration: 2.5s;
-    animation-delay: 0.5s;
-    animation-function: ease;
-    animation-fill-mode: both;
-  }
-  @keyframes show {
-    from {
-      height: $min-height;
-    }
-    to {
-      height: $height;
-    }
-  }
 
-  @keyframes show-text {
-    from {
-      opacity: 0.0;
-    }
-    to {
-      opacity: 1.0;
-    }
-  }
-}
-
-
-
-// div.translation {
-//   span {
-//       &:hover {
-//         color: #205fab !important;
-//       }
-//   }
-// }
-
-div.progress {
-  padding: 0px;
-  // margin-top: 3px;
-  height: 6px;
-  animation: load;
-  animation-duration: 2s;
-  animation-function: ease;
-  animation-iteration-count: infinite;
-  @keyframes load {
-    from {
-      width: 0%;
-    }
-    to {
-      width: 100%;
-    }
-  }
-}
 
 
 

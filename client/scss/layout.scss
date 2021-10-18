@@ -18,8 +18,8 @@ $primary: #205fab;
 }
 
 #layout.container {
-  justify-content: center;
-  div {
+  // justify-content: center;
+  div.app-view {
     max-width: 1430px;
     max-height: 1200px;
   }
