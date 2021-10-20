@@ -203,7 +203,7 @@ class App extends React.Component {
     this.setState({ 
       inputCode: this.state.displayCode,
       // loading: true,
-      output: "Declares variable and initializes to integer value", // "Loading translation . . .",
+      output: "Declares variable and initializes to integer value. Function takes single parameter.", // "Loading translation . . .",
       progressBar: '',
       test: output,
       showOutput: 'show',
@@ -310,7 +310,7 @@ class App extends React.Component {
             <Col className="column_3">
               <Row className={this.state.progressBar} >
               {
-                true // this.state.submitted 
+                false // this.state.submitted 
 
                 ? 
                 
@@ -327,22 +327,44 @@ class App extends React.Component {
                 )
 
                 :
-
+                
                 (
-                  this.state.progressBar 
+                <div className="test-welcome">
+                  {
+                  
+                    this.state.progressBar 
 
-                  ?
+                    ?
 
-                  <p className="test-welcome">
-                    Welcome to Fourier! To get started, try inputting some code into 
-                    the editor to the left. 
-                  </p>
+                    <p>
+                      Welcome to Fourier! To get started, try inputting some code into 
+                      the editor to the left, or simply click submit to translate the sample program.
 
-                  :
+                      Keep in mind that only simple javascript programs will work for Fourier
+                      in its current phase of development.
 
-                  <ProgressBar 
-                    now={this.state.progress} 
-                  />
+                      Here are some more sample programs you can try:
+
+                      { `const addOne = function (x) { return x + 1; }`}
+                      { `let x = 30; let y = 40; x + y;` }
+                      { `for (const i = 0; i < 3; i++) { console.log(i); }` }
+
+                    </p>
+
+                    :
+
+                    <>
+                    <p>
+                      Loading . . .
+                    </p>
+                    <ProgressBar 
+                      now={this.state.progress} 
+                    />
+                    </>
+                  
+                  }
+                </div>
+
                 )
               }
               </Row>
@@ -396,7 +418,7 @@ class App extends React.Component {
                 data={JSON.stringify(this.state.test)}
               >
               </JSONPretty>*/}
-          {/*{ JSON.stringify(this.state.test) }*/}
+          { JSON.stringify(this.state.test) }
         </Container>
       </Layout>
     );

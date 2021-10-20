@@ -12,7 +12,7 @@ button.dropdown-toggle {
   border: 1px solid #205fab;
   padding: 0px 8px 0px 8px;
   line-height: 1;
-  height: 2.0rem;
+  height: 32px;
   // &:hover {
   //   background-color: rgba(#205fab, 0.5);
   // }
@@ -29,6 +29,7 @@ div.dropdown-menu.show {
 }
 
 div.btn-group {
+  align-items: center;
   margin-bottom: 0.5rem;
   .toggle-group-header {
     // display: block;
@@ -45,10 +46,13 @@ div.btn-group {
     text-transform: capitalize;
   }
   label {
+    
+  }
+  label.btn.btn-primary {
     background-color: white;
     color: #205fab;
     border: 1px solid #205fab;
-    text-align: center;
+    height: 32px !important;
     vertical-align: middle;
     input {
       display: none;
@@ -60,6 +64,19 @@ div.btn-group {
   div.tooltip-inner {
     background-color: #205fab;
   }
+}
+
+input.submit-btn.btn.btn-outline-primary {
+  // display: none !important;
+  // justify-content: center;
+  // align-self: center;
+
+  width: 80px;
+  height: 40px;
+  // display: inline-flex;
+  min-width: 70px;
+  max-width: 200px;
+  // vertical-align: middle;
 }
 
 // .btn {

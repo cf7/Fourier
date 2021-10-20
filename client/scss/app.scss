@@ -36,6 +36,13 @@ h1 {
   padding-right: 0px !important;
 }
 
+.about-view {
+  margin-top: 1em;
+  margin-right: 0em;
+  margin-left: 0em;
+  margin-bottom: 1em;
+  padding: 0px;
+}
 
 
 
@@ -80,7 +87,7 @@ h1 {
     - flex-basis: auto // items have a base size of auto, 0 means items have base size of 0
   - flex-grow: 1 // items can grow larger than their flex-basis
   - child elements default: align-self: stretch; elements stretch to height of parent container
-  
+
   Shorthands:
   - flex: auto // allows larger items to grow faster and take more space
   - flex: 1 // forces items to maintain consistent size when growing

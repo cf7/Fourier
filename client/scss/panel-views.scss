@@ -40,6 +40,8 @@ $height: 500px;
   // max-width: 510px;
   min-height: $min-height;
   height: $height;
+  margin-right: 0px;
+  margin-left: 0px;
   div.controls.panel.container {
     border: 0px;
     padding: 0px;
@@ -87,34 +89,24 @@ $height: 500px;
     height: inherit;
     // flex-direction: column;
     // justify-content: center;
-    input.submit-btn.btn.btn-outline-primary {
-      // display: none !important;
-      // justify-content: center;
-      // align-self: center;
-
-      width: 80px;
-      height: 80px;
-      // display: inline-flex;
-      min-width: 70px;
-      max-width: 200px;
-      // vertical-align: middle;
-    }
   }
 }
 
 .column_3.col {
-  // display: inline-block;
+  display: inline-block;
   flex: 1;
   padding-left: 0px;
   padding-right: 0px;
   // margin-left: 10px;
   min-height: $min-height;
   height: $height;
-  .row { // row must have height for align-self to work
+  .hidden-progress.row { // row must have height for align-self to work
     // align-items: center;
     // display: block;
     align-content: center;
-    height: inherit;
+    height: fit-content;
+    margin-right: 0px;
+    margin-left: 0px;
     div.display-options {
       // display: inline-flex;
       // align-self: flex-start;
@@ -150,6 +142,7 @@ $height: 500px;
       // height: $height;
       overflow: scroll;
       scroll-behavior: smooth;
+      padding: auto;
       &.show {
         animation: show;
         animation-duration: 3s;
@@ -179,27 +172,33 @@ $height: 500px;
         }
       }
     }
-    p.test-welcome {
-      align-self: center;
-    }
-    div.progress {
-      align-self: center;
-      padding: 0px;
-      // margin-top: 3px;
-      height: 6px;
-      animation: load;
-      animation-duration: 2s;
-      animation-iteration-count: infinite;
-      @keyframes load {
-        from {
-          width: 0%;
-        }
-        to {
-          width: 100%;
+  }
+  .row {
+      height: 500px;
+      margin-right: 0px;
+      margin-left: 0px;
+      div.test-welcome {
+        // text-align: bottom;
+        align-self: center;
+      }
+      div.progress {
+        // align-self: center;
+        padding: 0px;
+        // margin-top: 3px;
+        height: 20px;
+        animation: load;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        @keyframes load {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
         }
       }
     }
-  }
 }
 
 

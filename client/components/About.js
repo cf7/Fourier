@@ -10,10 +10,10 @@ class About extends React.Component {
   render() {
     return (
       <Layout>
-        <Container>
-          <p>
-            About Page
-          </p>
+        <Container className="about-view">
+          <h1>
+            About
+          </h1>
           <p>
           Fourier is a source code summarizer that uses natural language processing to summarize code into human readable phrases. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
@@ -21,7 +21,14 @@ class About extends React.Component {
           </p>
           <p>
             Current Functionality:
-            So far Fourier only processes simple javascript translations.
+            So far Fourier only processes very simple javascript code. At its current phase, it merely translates source code directly
+            into "legible" English snippets. The snippets themselves are too literal and basic to be useful for summarizing, but they will eventually become
+            a stepping stone.
+
+            In the future, a second model will be built to summarize these first snippets to produce actual summaries.
+
+            It is also difficult to get hold of suitable training data since there are virtually no random source code generators
+            available open source. ("Random" meaning entirely unrelated programs. Current source generators involve compiling off an existing codebase.)
 
             Fourier is still in its proof of concept phase and is NOT built for performance.
 
