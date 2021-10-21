@@ -14,6 +14,18 @@ class About extends React.Component {
           <h1>
             About
           </h1>
+
+          <p>
+            Here's a quick layout of the tech stack:
+
+            pages - React
+
+            client server - Express & Node
+
+            model - Tensorflow & Keras
+
+            bundler - Webpack
+          </p>
           <p>
           Fourier is a source code summarizer that uses natural language processing to summarize code into human readable phrases. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 

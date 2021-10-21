@@ -75,16 +75,17 @@ class Display extends React.Component {
           </Form>
         </Panel>
         <Panel className={'display ' + this.props.showOutput}>
-          { this.props.inputCode && (this.props.displayToggle == 'translation') && <p className={this.props.showOutput} style={{ fontSize: this.props.outputFontSize + 'px' }}>{this.props.output}</p>}
-          { this.props.inputCode && (this.props.displayToggle == 'tree') && <AST code={this.props.inputCode} /> }
-          { this.props.inputCode && (this.props.displayToggle == 'json') && 
+          { <p className={this.props.showOutput} style={{ fontSize: this.props.outputFontSize + 'px' }}>{this.props.output}</p> }
+          {/*{ this.props.inputText && (this.props.displayToggle == 'translation') && <p className={this.props.showOutput} style={{ fontSize: this.props.outputFontSize + 'px' }}>{this.props.output}</p>}
+          { this.props.inputText && (this.props.displayToggle == 'tree') && <AST code={this.props.inputText} /> }
+          { this.props.inputText && (this.props.displayToggle == 'json') && 
               <JSONPretty 
                 id='json-pretty' 
-                data={JSON.stringify(Parser.parse(this.props.inputCode, { ecmaVersion: 2020 }))}
+                data={JSON.stringify(Parser.parse(this.props.inputText, { ecmaVersion: 2020 }))}
                 onJSONPrettyError={e => console.error(e)}
               >
               </JSONPretty>
-          }
+          }*/}
         </Panel>
       </>
     );

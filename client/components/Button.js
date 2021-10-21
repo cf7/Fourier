@@ -70,14 +70,14 @@ class Button1 extends React.Component {
         <OverlayTrigger
           delay={300}
           placement="top"
-          overlay={<Tooltip className='submit-btn-tooltip'>Click to translate code!</Tooltip>}
+          overlay={<Tooltip className='submit-btn-tooltip'>Click to translate!</Tooltip>}
         >
           <Button
             onClick={this.props.loading ? null : this.handleClick}
             as="input"
             type="submit"
             disabled={this.props.loading}
-            value={ this.props.loading ? 'Loading...' : 'Submit' }
+            value={ this.props.loading ? 'Loading...' : 'Translate' }
             variant="outline-primary"
             className="submit-btn"
           />

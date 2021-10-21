@@ -86,11 +86,11 @@ class App extends React.Component {
       hasContent: false,
       mode: "javascript",
       theme: "textmate",
-      codeFontSize: '17',
+      editorFontSize: '17',
       outputFontSize: '17',
       displayToggle: 'translation',
       displayCode: `function example(x) { console.log(x); }`,
-      inputCode: '',
+      inputText: '',
       submitted: false,
       codeMirrorCode: '',
       output: "Click submit to translate.",
@@ -102,12 +102,12 @@ class App extends React.Component {
       marked: '',
       test: '',
       loading: false,
-      progressBar: 'hidden-progress',
+      progressBar: '',
       progress: 100,
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
-    this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
+    this.editorFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
     this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
     this.temp = [];
     this.codeMirror = null;
@@ -136,8 +136,8 @@ class App extends React.Component {
       case 'theme':
         this.setState({ theme: option });
         break;
-      case 'codeFontSize':
-        this.setState({ codeFontSize: option });
+      case 'editorFontSize':
+        this.setState({ editorFontSize: option });
         break;
       case 'outputFontSize':
         this.setState({ outputFontSize: option });
@@ -201,10 +201,10 @@ class App extends React.Component {
   handleSubmit = (event) => {
     let output = this.generateData(this.state.displayCode);
     this.setState({ 
-      inputCode: this.state.displayCode,
+      inputText: this.state.displayCode,
       // loading: true,
       output: "Declares variable and initializes to integer value. Function takes single parameter.", // "Loading translation . . .",
-      progressBar: '',
+      progressBar: 'show-progress',
       test: output,
       showOutput: 'show',
     });
@@ -239,7 +239,7 @@ class App extends React.Component {
     // setTimeout(() => { 
     //   this.setState({
     //     submitted: true,
-    //     progressBar: 'hidden-progress',
+    //     progressBar: '',
     //   }); 
     // }, 10000);
     
@@ -263,7 +263,7 @@ class App extends React.Component {
     //     this.setState({ output: "An error occurred." });
     //     this.setState({ loading: false });
     //   });
-    // use inputCode
+    // use inputText
 
     // // this.setState({ submit: true });
 
@@ -293,8 +293,8 @@ class App extends React.Component {
                 modes={this.modes}
                 theme={this.state.theme}
                 themes={this.themes}
-                codeFontSize={this.state.codeFontSize}
-                codeFontSizes={this.codeFontSizes}
+                editorFontSize={this.state.editorFontSize}
+                editorFontSizes={this.editorFontSizes}
                 handleSelect={this.handleSelect}
                 onChange={this.onChange}
                 displayCode={this.state.displayCode}
@@ -310,7 +310,7 @@ class App extends React.Component {
             <Col className="column_3">
               <Row className={this.state.progressBar} >
               {
-                false // this.state.submitted 
+                true // this.state.submitted 
 
                 ? 
                 
@@ -318,7 +318,7 @@ class App extends React.Component {
                   <Display 
                     outputFontSize={this.state.outputFontSize}
                     outputFontSizes={this.outputFontSizes}
-                    inputCode={this.state.inputCode}
+                    inputText={this.state.inputText}
                     displayToggle={this.state.displayToggle}
                     showOutput={this.state.showOutput}
                     output={this.state.output}
@@ -336,6 +336,17 @@ class App extends React.Component {
 
                     ?
 
+                    <>
+                    <p>
+                      Loading . . .
+                    </p>
+                    <ProgressBar 
+                      now={this.state.progress} 
+                    />
+                    </>
+
+                    :
+
                     <p>
                       Welcome to Fourier! To get started, try inputting some code into 
                       the editor to the left, or simply click submit to translate the sample program.
@@ -350,17 +361,6 @@ class App extends React.Component {
                       { `for (const i = 0; i < 3; i++) { console.log(i); }` }
 
                     </p>
-
-                    :
-
-                    <>
-                    <p>
-                      Loading . . .
-                    </p>
-                    <ProgressBar 
-                      now={this.state.progress} 
-                    />
-                    </>
                   
                   }
                 </div>
@@ -418,7 +418,7 @@ class App extends React.Component {
                 data={JSON.stringify(this.state.test)}
               >
               </JSONPretty>*/}
-          { JSON.stringify(this.state.test) }
+          {/*{ JSON.stringify(this.state.test) }*/}
         </Container>
       </Layout>
     );

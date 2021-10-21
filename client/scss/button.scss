@@ -67,16 +67,13 @@ div.btn-group {
 }
 
 input.submit-btn.btn.btn-outline-primary {
-  // display: none !important;
-  // justify-content: center;
-  // align-self: center;
-
-  width: 80px;
-  height: 40px;
-  // display: inline-flex;
+  // display: flex;
+  flex: 1;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
   min-width: 70px;
   max-width: 200px;
-  // vertical-align: middle;
 }
 
 // .btn {

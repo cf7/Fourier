@@ -22,7 +22,7 @@ class Editor extends React.Component {
           <Form className="controls-form">
             <Row>
               <Col>
-                <Form.Label>
+                {/*<Form.Label>
                   <Button1 
                     type="dropdown" 
                     datatype="mode" 
@@ -39,13 +39,13 @@ class Editor extends React.Component {
                     options={this.props.themes}
                     handleSelect={this.props.handleSelect} 
                   />
-                </Form.Label>
+                </Form.Label>*/}
                 <Form.Label>
                   <Button1
                     type="dropdown"
-                    datatype="codeFontSize"
-                    option={this.props.codeFontSize}
-                    options={this.props.codeFontSizes}
+                    datatype="Font Size"
+                    option={this.props.editorFontSize}
+                    options={this.props.editorFontSizes}
                     handleSelect={this.props.handleSelect} 
                   />
                 </Form.Label>
@@ -53,7 +53,10 @@ class Editor extends React.Component {
             </Row>
           </Form>
         </Panel>
-        <AceEditor
+        <Panel className="editor">
+          <textarea style={{ fontSize: this.props.editorFontSize + 'px' }}></textarea>
+        </Panel>
+        {/*<AceEditor
           placeholder={`function example(x) { console.log("x"); }`}
           mode={this.props.mode}
           theme={this.props.theme}
@@ -75,7 +78,7 @@ class Editor extends React.Component {
             hasCssTransforms: true,
           }}
           // style={{ width: 'inherit', height: '500px' }}
-        />
+        />*/}
       </>
     );
   }

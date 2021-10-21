@@ -114,4 +114,12 @@ h1 {
   
   (CSS will place spare space between elements depending on justify-content)
   (justify-content doesn't work for block because there is no spare space to place)
+
+
+  Units:
+
+  em and rem are font sizes! (applies font size to element size)
+
+  em - relative to nearest parent font size
+  rem - relative to root element (html element)
 */
