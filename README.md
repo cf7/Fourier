@@ -1,6 +1,9 @@
 # Fourier
 
-Fourier is a source code summarizer that uses natural language processing techniques to summarize code into human readable phrases and make those phrases navigable. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
+Fourier is a sandbox interface that I built specifically to demonstrate my frontend proficiencies for potential employers. It was originally intended for a NLP source code summarizer project . . . until I ran into a project-killing hurdle. (You can read about that [here](https://github.com/cf7/Fourier/blob/main/docs/original_README.md))
+
+
+ that uses natural language processing techniques to summarize code into human readable phrases and make those phrases navigable. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
 Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages much easier and much less time-intensive.
 
@@ -40,4 +43,3 @@ Haven't started core NLP engine
 ## References
 Of course, as often happens, a few months after ideating and building this project, I find out that someone else has already done it. Fortunately, my original idea takes their concept at least one step further by extending to natural language. Here's an excellent tool I found that is pretty much Fourier but stops at abstract syntax trees.\
 [AST Explorer](https://astexplorer.net/)
-
