@@ -49,6 +49,6 @@ Train NLP models for more languages (Python, C++)\
 Implement navigation to map translations to their code origins
 
 ## References
-Of course, as often happens, a few months after ideating and building this project, I find out that someone else has already done it. Fortunately, my original idea takes their concept at least one step further by extending the transformation to natural language. Here's an excellent tool I found that is pretty much Fourier but stops at abstract syntax trees.\
+Of course, as often happens, a few months after ideating and building this project, I find out that someone else has already done something very similar. Fortunately, my original idea takes their concept at least one step further by extending the transformation to natural language. Here's an excellent tool I found that is almost identical to Fourier with the exception that does not use machine learning or natural language processing but instead only generates abstract syntax trees.\
 [AST Explorer](https://astexplorer.net/)
 
