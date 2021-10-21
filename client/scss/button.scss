@@ -74,6 +74,24 @@ input.submit-btn.btn.btn-outline-primary {
   height: fit-content;
   min-width: 70px;
   max-width: 200px;
+  &.translate-highlighted {
+    animation: pulse-translate; // defined in panel-views.scss
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    // animation-fill-mode: before;
+    animation-direction: alternate;
+    @keyframes pulse-translate {
+      from {
+        border: 1px solid;
+        border-color: rgba(#205fab, 0.5);
+      }
+      to {
+        border: 10px solid;
+        border-color: rgba(#205fab, 0.5);
+      }
+    }
+  }
 }
 
 // .btn {

@@ -105,6 +105,7 @@ class App extends React.Component {
       progressBar: '',
       progress: 100,
       highlightEditor: false,
+      highlightTranslate: false,
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -146,6 +147,21 @@ class App extends React.Component {
       default:
         console.log("no datatype");
     }
+  }
+
+  handleLinkMouseOver = (event) => {
+    let targetName = event.target.name;
+    this.setState({
+      highlightEditor: targetName == 'editor' ? true : false,
+      highlightTranslate: targetName == 'translate' ? true : false,
+    });
+  }
+
+  handleLinkMouseLeave = (event) => {
+    this.setState({ 
+      highlightEditor: false,
+      highlightTranslate: false,
+    });
   }
 
   onChange = (content) => {
@@ -229,15 +245,7 @@ class App extends React.Component {
     // this.setState({ output: this.state.output2 });
   }
 
-  handleLinkMouseOver = (event) => {
-    console.log("over");
-    this.setState({ highlightEditor: true });
-  }
 
-  handleLinkMouseLeave = (event) => {
-    console.log("out");
-    this.setState({ highlightEditor: false });
-  }
 
   render() {
     return (
@@ -261,7 +269,11 @@ class App extends React.Component {
             </Col>
             <Col className="column_2">
               <Row>
-                  <Button1 submit={this.handleSubmit} loading={this.state.loading} />
+                  <Button1 
+                    submit={this.handleSubmit} 
+                    loading={this.state.loading} 
+                    highlightTranslate={this.state.highlightTranslate}
+                  />
                   {/* Progress bar: now, visuallyHidden */}
               </Row>
             </Col>
@@ -306,8 +318,8 @@ class App extends React.Component {
                     <Col className="welcome">
                       <h4 className="welcome-header">Welcome to Fourier!</h4>
 
-                      To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} ref='#'>editor</a> to the left, 
-                      or simply click submit to translate the sample text.
+                      To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="editor">editor</a> to the left, 
+                      or simply click <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="translate">Translate</a> to translate the sample text.
 
                       Keep in mind that the underlying natural language processing model is still learning.
                       It will most likely return jibberish, but it is translated jibberish!

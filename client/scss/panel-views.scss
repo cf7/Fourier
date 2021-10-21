@@ -73,7 +73,25 @@ $width: 510px;
       border: 0px;
     }
     &.editor-highlighted {
-      border-color: blue;
+      // border-color: blue;
+      animation: pulse-editor;
+      animation-duration: 0.8s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      // animation-fill-mode: before;
+      animation-direction: alternate;
+      @keyframes pulse-editor {
+        from {
+          border: 1px solid;
+          border-color: rgba(#205fab, 0.5);
+        }
+        to {
+          // transform: scale(1.2);
+          // border-radius: 10px;
+          border: 10px solid;
+          border-color: rgba(#205fab, 0.5);
+        }
+      }
     }
   }
 }

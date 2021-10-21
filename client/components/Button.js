@@ -79,7 +79,7 @@ class Button1 extends React.Component {
             disabled={this.props.loading}
             value={ this.props.loading ? 'Loading...' : 'Translate' }
             variant="outline-primary"
-            className="submit-btn"
+            className={"submit-btn " + (this.props.highlightTranslate ? 'translate-highlighted' : '')}
           />
         </OverlayTrigger>
       );
