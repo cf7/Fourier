@@ -72,6 +72,9 @@ $width: 510px;
       flex: 1;
       border: 0px;
     }
+    &.editor-highlighted {
+      border-color: blue;
+    }
   }
 }
 
@@ -98,6 +101,26 @@ $width: 510px;
     // height: fit-content;
     margin-right: 0px;
     margin-left: 0px;
+    div.welcome.col {
+      // transform: translate(0px, 100px);
+      // display: block;
+
+      h4.welcome-header {
+        // justify-content: center;
+        text-align: center;
+        color: #205fab;
+        // display: none;
+      }
+      
+      a {
+        color: #205fab;
+        &:hover {
+          color: lightblue !important;
+          text-decoration: underline;
+        }
+      }
+      
+    }
     div.display-options {
       height: fit-content;
       border: 0px;
@@ -157,7 +180,7 @@ $width: 510px;
       height: $height;
       margin-right: 0px;
       margin-left: 0px;
-      div.test-welcome {
+      div.loading {
         align-self: center;
         div.progress {
           padding: 0px;

@@ -90,7 +90,7 @@ class App extends React.Component {
       outputFontSize: '17',
       displayToggle: 'translation',
       displayCode: `function example(x) { console.log(x); }`,
-      inputText: '',
+      inputText: 'Hello! I am an example.',
       submitted: false,
       codeMirrorCode: '',
       output: "Click submit to translate.",
@@ -104,6 +104,7 @@ class App extends React.Component {
       loading: false,
       progressBar: '',
       progress: 100,
+      highlightEditor: false,
     };
     this.modes = ['javascript', 'python', 'c_cpp'];
     this.themes = ['textmate', 'monokai'];
@@ -148,6 +149,7 @@ class App extends React.Component {
   }
 
   onChange = (content) => {
+    console.log("change");
     this.setState({ displayCode: content });
   }
 
@@ -155,57 +157,14 @@ class App extends React.Component {
       
   }
 
-
-  // DO NOT TOUCH: data generator for engine
-  generateData = (code) => {
-    let json = Parser.parse(code, { ecmaVersion: 2020 });
-    console.log(json);
-
-    function traverse(obj) {
-      if( obj !== null && typeof obj == "object" ) {
-        Object.entries(obj).forEach(([key, value]) => {
-          // key is either an array index or object key
-          if (key == "start" || key == "end") {
-            delete obj[key];
-          } else {
-            traverse(value);
-          }
-        });
-        // return the modified json at the end
-        return obj;
-      } else {
-        // json is a number or string
-        return obj;
-      }
-    }
-
-    let processedData = traverse(json);
-
-    // this.setState({ test: processedData });
-
-    return processedData;
-  }
-
-  generateData2 = (data) => {
-    let tokens = [];
-    for (const token of jsTokens(data)) {
-      tokens.push(token);
-    }
-    let chars = [];
-    tokens.forEach((obj) => {
-      chars.push(obj.value);
-    });
-    return chars;
-  }
-
   handleSubmit = (event) => {
-    let output = this.generateData(this.state.displayCode);
+    // let output = this.generateData(this.state.displayCode);
     this.setState({ 
       inputText: this.state.displayCode,
       // loading: true,
-      output: "Declares variable and initializes to integer value. Function takes single parameter.", // "Loading translation . . .",
+      output: "Bonjour! Je suis un example.", // "Loading translation . . .",
       progressBar: 'show-progress',
-      test: output,
+      // test: output,
       showOutput: 'show',
     });
     
@@ -213,10 +172,10 @@ class App extends React.Component {
     // this.setState({ loading: true });
     // this.setState({ output: "Loading translation . . ." });
 
-    let data = this.generateData(this.state.displayCode);
-    console.log(data);
-    console.log(JSON.stringify(data));
-    let form = new FormData();
+    // let data = this.generateData(this.state.displayCode);
+    // console.log(data);
+    // console.log(JSON.stringify(data));
+    // let form = new FormData();
     // form.append(data);
     // JSON Notes:
     // - sending data as string over wire makes axios insert escapes '\"'
@@ -231,7 +190,7 @@ class App extends React.Component {
     //     // 'Access-Control-Allow-Origin': '*',
     //   },
     // };
-    form.append('data', JSON.stringify(data));
+    // form.append('data', JSON.stringify(data));
 
     // let delay = (ms) => { new Promise((resolve) => setTimeout(resolve, ms)) };
     
@@ -270,12 +229,14 @@ class App extends React.Component {
     // this.setState({ output: this.state.output2 });
   }
 
-  handleMouseOver = (event) => {
-    
+  handleLinkMouseOver = (event) => {
+    console.log("over");
+    this.setState({ highlightEditor: true });
   }
 
-  handleMouseLeave = (event) => {
-    
+  handleLinkMouseLeave = (event) => {
+    console.log("out");
+    this.setState({ highlightEditor: false });
   }
 
   render() {
@@ -289,15 +250,12 @@ class App extends React.Component {
             <Col className="column_1">
               {/*<Row>*/}
               <Editor 
-                mode={this.state.mode}
-                modes={this.modes}
-                theme={this.state.theme}
-                themes={this.themes}
                 editorFontSize={this.state.editorFontSize}
                 editorFontSizes={this.editorFontSizes}
                 handleSelect={this.handleSelect}
                 onChange={this.onChange}
-                displayCode={this.state.displayCode}
+                displayText={this.props.displayText}
+                highlightEditor={this.state.highlightEditor}
               />
               {/*</Row>*/}
             </Col>
@@ -334,7 +292,7 @@ class App extends React.Component {
 
                     ?
 
-                    <div className="test-welcome">
+                    <div className="loading">
                     <p>
                       Loading . . .
                     </p>
@@ -345,23 +303,15 @@ class App extends React.Component {
 
                     :
 
-                    <p>
-                      Welcome to Fourier! To get started, try inputting some code into 
-                      the editor to the left, or simply click submit to translate the sample program.
+                    <Col className="welcome">
+                      <h4 className="welcome-header">Welcome to Fourier!</h4>
 
-                      Keep in mind that only simple javascript programs will work for Fourier
-                      in its current phase of development.
+                      To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} ref='#'>editor</a> to the left, 
+                      or simply click submit to translate the sample text.
 
-                      Here are some more sample programs you can try:
-
-                      { `const addOne = function (x) { return x + 1; }`}
-                      { `let x = 30; let y = 40; x + y;` }
-                      { `for (const i = 0; i < 3; i++) { console.log(i); }` }
-
-                    </p>
-                    
-            
-                
+                      Keep in mind that the underlying natural language processing model is still learning.
+                      It will most likely return jibberish, but it is translated jibberish!
+                    </Col>
 
                 )
               }

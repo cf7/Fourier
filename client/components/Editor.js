@@ -53,8 +53,13 @@ class Editor extends React.Component {
             </Row>
           </Form>
         </Panel>
-        <Panel className="editor">
-          <textarea style={{ fontSize: this.props.editorFontSize + 'px' }}></textarea>
+        <Panel className={'editor ' + (this.props.highlightEditor ? 'editor-highlighted' : '')}>
+          <Form.Control 
+            as="textarea"
+            style={{ fontSize: this.props.editorFontSize + 'px' }}
+            value={this.props.displayText}
+            onChange={this.props.onChange}
+          />
         </Panel>
         {/*<AceEditor
           placeholder={`function example(x) { console.log("x"); }`}
