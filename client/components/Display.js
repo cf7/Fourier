@@ -58,7 +58,7 @@ class Display extends React.Component {
                     handleSelect={this.props.handleSelect} 
                   />
                 </Form.Label>
-                <ToggleButtonGroup name='display-toggle' type='radio' defaultValue='translation' onChange={this.handleToggle}>
+                {/*<ToggleButtonGroup name='display-toggle' type='radio' defaultValue='translation' onChange={this.handleToggle}>
                   <div className="toggle-group-header">display</div>
                   <ToggleButton id='translation-toggle' value="translation">
                     Translation
@@ -69,7 +69,7 @@ class Display extends React.Component {
                   <ToggleButton id='json-toggle' value="json">
                     JSON
                   </ToggleButton>
-                </ToggleButtonGroup>
+                </ToggleButtonGroup>*/}
               </Col>
             </Row>
           </Form>

@@ -236,12 +236,12 @@ class App extends React.Component {
     // let delay = (ms) => { new Promise((resolve) => setTimeout(resolve, ms)) };
     
     // simulate HTTP request
-    // setTimeout(() => { 
-    //   this.setState({
-    //     submitted: true,
-    //     progressBar: '',
-    //   }); 
-    // }, 10000);
+    setTimeout(() => { 
+      this.setState({
+        submitted: true,
+        progressBar: '',
+      }); 
+    }, 3000);
     
     // form.append('Access-Control-Allow-Origin', '*');
     /* API Call here */
@@ -310,7 +310,7 @@ class App extends React.Component {
             <Col className="column_3">
               <Row className={this.state.progressBar} >
               {
-                true // this.state.submitted 
+                this.state.submitted 
 
                 ? 
                 
@@ -329,21 +329,19 @@ class App extends React.Component {
                 :
                 
                 (
-                <div className="test-welcome">
-                  {
-                  
+                
                     this.state.progressBar 
 
                     ?
 
-                    <>
+                    <div className="test-welcome">
                     <p>
                       Loading . . .
                     </p>
                     <ProgressBar 
                       now={this.state.progress} 
                     />
-                    </>
+                    </div>
 
                     :
 
@@ -361,9 +359,9 @@ class App extends React.Component {
                       { `for (const i = 0; i < 3; i++) { console.log(i); }` }
 
                     </p>
-                  
-                  }
-                </div>
+                    
+            
+                
 
                 )
               }

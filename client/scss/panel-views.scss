@@ -1,5 +1,5 @@
 $min-height: 20px;
-$height: 500px;
+$height: 250px;
 $min-width: 150px;
 $width: 510px;
 
@@ -22,9 +22,9 @@ $width: 510px;
   padding-bottom: 2em;
 }
 
-.panel-views {
+.panel-views.row {
   // display: inline-flex;
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
   // vertical-align: middle;
   // align-items: center;
   // justify-content: center;
@@ -40,7 +40,7 @@ $width: 510px;
   min-width: 150px;
   max-width: 510px;
   min-height: $min-height;
-  height: $height;
+  height: fit-content;
   margin-right: 0px;
   margin-left: 0px;
   div.controls.panel.container {
@@ -67,41 +67,23 @@ $width: 510px;
     height: $height;
     min-width: $min-width;
     max-width: $width;
-    padding: 10px 10px 10px 10px;
+    padding: 32px 32px 32px 32px;
     textarea {
       flex: 1;
       border: 0px;
     }
   }
 }
-// when editor cursor in wrong position, it's because Ace relies on monospace or monaco 
-// fonts that are being overridden by global font styles
-// (also check if there are conflicting css styling rules)
-// #code-input {
-//   font-family: inherit;
-//   font: inherit;
-// }
 
 .column_2.col {
-  // display: inline-block;
   // inherits --bs-gutter-x: 1.5rem from div.panel-views.row
   // --bs-gutter-x: 0rem;
   flex: 0 1 0; // determines how .col adjusts to div.panel-views flexbox
-  // flex-direction: column;
   min-height: $min-height;
   height: $height;
   margin: 45px 10px 45px 10px;
-  // justify-content: center;
-  // align-content: center;
-  // align-items: center;
-  // vertical-align: middle;
   .row { // row must have height for submit-btn to align center
-    // display: inline-flex;
-    // align-self: center;
-    // align-items: center;
     height: inherit;
-    // flex-direction: column;
-    // justify-content: center;
   }
 }
 
@@ -111,9 +93,9 @@ $width: 510px;
   padding-left: 0px;
   padding-right: 0px;
   min-height: $min-height;
-  height: $height;
+  height: fit-content;
   .row { // row must have height for align-self to work
-    height: fit-content;
+    // height: fit-content;
     margin-right: 0px;
     margin-left: 0px;
     div.display-options {
@@ -135,17 +117,16 @@ $width: 510px;
       }
     }
     div.display {
-      display: flex;
+      // display: flex;
       justify-content: center;
       background-color: rgba(lightblue, 20%);
       border: 0px;
       overflow: scroll;
       scroll-behavior: smooth;
-      padding: auto;
+      padding: 32px 32px 32px 32px;
       &.show {
         animation: show;
         animation-duration: 3s;
-        animation-function: ease;
         animation-fill-mode: both;
       }
       p.show {
@@ -173,24 +154,24 @@ $width: 510px;
     }
   }
   .show-progress.row {
-      height: 500px;
+      height: $height;
       margin-right: 0px;
       margin-left: 0px;
       div.test-welcome {
         align-self: center;
-      }
-      div.progress {
-        padding: 0px;
-        height: 20px;
-        animation: load;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
-        @keyframes load {
-          from {
-            width: 0%;
-          }
-          to {
-            width: 100%;
+        div.progress {
+          padding: 0px;
+          height: 20px;
+          animation: load;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+          @keyframes load {
+            from {
+              width: 0%;
+            }
+            to {
+              width: 100%;
+            }
           }
         }
       }
