@@ -322,7 +322,7 @@ class App extends React.Component {
                       or simply click <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="translate">Translate</a> to translate the sample text.
 
                       Keep in mind that the underlying natural language processing model is still learning.
-                      It will most likely return jibberish, but it is translated jibberish!
+                      It will most likely return jibberish . . . but at least it is translated jibberish!
                     </Col>
 
                 )
