@@ -42,7 +42,6 @@ $ npm run dev-start
 ~~~
 
 ## Current Phase
-Building interface for proof of concept\
 Training rudimentary core NLP model for javascript
 
 ### TODOS
