@@ -15,32 +15,32 @@ import ReactJsonPrint from 'react-json-print';
 
 
 
-function AST(props) {
-    return (
-      <ReactJsonPrint expanded dataObject={Parser.parse(props.code, { ecmaVersion: 2020 })} />
-    );
-  }
+// function AST(props) {
+//     return (
+//       <ReactJsonPrint expanded dataObject={Parser.parse(props.code, { ecmaVersion: 2020 })} />
+//     );
+//   }
 
 class Display extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleToggle = (value, event) => {
-    switch (value) {
-      case 'translation':
-        this.setState({ displayToggle: value });
-        break;
-      case 'tree':
-        this.setState({ displayToggle: value });
-        break;
-      case 'json':
-        this.setState({ displayToggle: value });
-        break;
-      default:
-        this.setState({ displayToggle: 'placeholder' });
-    }
-  }
+  // handleToggle = (value, event) => {
+  //   switch (value) {
+  //     case 'translation':
+  //       this.setState({ displayToggle: value });
+  //       break;
+  //     case 'tree':
+  //       this.setState({ displayToggle: value });
+  //       break;
+  //     case 'json':
+  //       this.setState({ displayToggle: value });
+  //       break;
+  //     default:
+  //       this.setState({ displayToggle: 'placeholder' });
+  //   }
+  // }
 
   render () {
     return (

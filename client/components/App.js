@@ -83,51 +83,26 @@ class App extends React.Component {
     super(props);
     // only use setState() for changes that are visible to the UI
     this.state = {
-      hasContent: false,
-      mode: "javascript",
-      theme: "textmate",
       editorFontSize: '17',
       outputFontSize: '17',
-      displayToggle: 'translation',
-      displayCode: `function example(x) { console.log(x); }`,
-      inputText: 'Hello! I am an example.',
       submitted: false,
-      codeMirrorCode: '',
+      inputText: '',
       output: "Click submit to translate.",
-      output2: "Declare function that takes single parameter. Function executes console log that prints parameter value.",
       showOutput: '',
       showTranslation: '',
-      range: {},
-      cmMounted: false,
-      marked: '',
-      test: '',
       loading: false,
       progressBar: '',
       progress: 100,
       highlightEditor: false,
       highlightTranslate: false,
     };
-    this.modes = ['javascript', 'python', 'c_cpp'];
-    this.themes = ['textmate', 'monokai'];
     this.editorFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
     this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
-    this.temp = [];
-    this.codeMirror = null;
-    this.cm = null;
-    this._mark = null;
-    this.translation = [];
 
     // binding is necessary to make 'this' refer to App component when callback is passed into child components
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-
-  handleContent = (event) => {
-
-    // translation engine goes here
-
-    this.setState({ userContent: event.target.value });
   }
 
   handleSelect = (option, datatype) => {
@@ -166,7 +141,7 @@ class App extends React.Component {
 
   onChange = (content) => {
     console.log("change");
-    this.setState({ displayCode: content });
+    this.setState({ inputText: content });
   }
 
   componentDidMount = () => {
@@ -176,68 +151,40 @@ class App extends React.Component {
   handleSubmit = (event) => {
     // let output = this.generateData(this.state.displayCode);
     this.setState({ 
-      inputText: this.state.displayCode,
-      // loading: true,
-      output: "Bonjour! Je suis un example.", // "Loading translation . . .",
+      // output: "Bonjour! Je suis un example.", // "Loading translation . . .",
       progressBar: 'show-progress',
       // test: output,
-      showOutput: 'show',
+      // showOutput: 'show',
     });
     
-
-    // this.setState({ loading: true });
-    // this.setState({ output: "Loading translation . . ." });
-
-    // let data = this.generateData(this.state.displayCode);
-    // console.log(data);
-    // console.log(JSON.stringify(data));
-    // let form = new FormData();
-    // form.append(data);
-    // JSON Notes:
-    // - sending data as string over wire makes axios insert escapes '\"'
-    //   model will not recognize escapes
-
-    // let requestOptions = {
-    //   method: 'post',
-    //   url: '/model/predict',
-    //   data: form,
-    //   headers: {
-    //     'Content-Type': `multipart/form-data;boundary=${form._boundary}`,
-    //     // 'Access-Control-Allow-Origin': '*',
-    //   },
-    // };
-    // form.append('data', JSON.stringify(data));
-
-    // let delay = (ms) => { new Promise((resolve) => setTimeout(resolve, ms)) };
-    
-    // simulate HTTP request
-    setTimeout(() => { 
-      this.setState({
+    if (this.state.inputText) {
+      let form = new FormData();    
+      form.append('data', this.state.inputText);
+      axios.post('https://fourier-model.herokuapp.com/predict', form) //'/model/predict', form) // (requestOptions)
+        .then((response) => {
+          console.log(response);
+          console.log(response.data);
+          this.setState({
+            output: response.data,
+            submitted: true,
+            progressBar: '',
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.setState({ 
+            output: "An error occurred.",
+            submitted: true,
+            progressBar: '',
+          });
+        });
+    } else {
+      this.setState({ 
+        output: "Please provide English words for translation in the editor to the left.",
         submitted: true,
         progressBar: '',
-      }); 
-    }, 3000);
-    
-    // form.append('Access-Control-Allow-Origin', '*');
-    /* API Call here */
-    // functions defined with 'function' have their own 'this'
-    // arrow functions do not
-    // axios.post('https://fourier-model.herokuapp.com/predict', form) //'/model/predict', form) // (requestOptions)
-    //   .then((response) => {
-    //     console.log(this);
-    //     this.setState({ loading: false });
-    //     console.log(response);
-    //     console.log(response.data);
-    //     this.setState({ 
-    //       output: response.data,
-    //       progressBar: 'hidden-progress',
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     this.setState({ output: "An error occurred." });
-    //     this.setState({ loading: false });
-    //   });
+      });
+    }
     // use inputText
 
     // // this.setState({ submit: true });
@@ -288,8 +235,8 @@ class App extends React.Component {
                   <Display 
                     outputFontSize={this.state.outputFontSize}
                     outputFontSizes={this.outputFontSizes}
-                    inputText={this.state.inputText}
-                    displayToggle={this.state.displayToggle}
+                    // inputText={this.state.inputText}
+                    // displayToggle={this.state.displayToggle}
                     showOutput={this.state.showOutput}
                     output={this.state.output}
                     handleSelect={this.handleSelect}
@@ -300,31 +247,34 @@ class App extends React.Component {
                 
                 (
                 
-                    this.state.progressBar 
+                  this.state.progressBar 
 
-                    ?
+                  ?
 
-                    <div className="loading">
+                  <div className="loading">
+                  <p>
+                    Loading . . .
+                  </p>
+                  <ProgressBar 
+                    now={this.state.progress} 
+                  />
+                  </div>
+
+                  :
+
+                  <Col className="welcome">
+                    <h4 className="welcome-header">Welcome to Fourier!</h4>
                     <p>
-                      Loading . . .
+                    To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="editor">editor</a> to the left, 
+                    or simply click <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="translate">Translate</a> to translate the sample text.
                     </p>
-                    <ProgressBar 
-                      now={this.state.progress} 
-                    />
-                    </div>
-
-                    :
-
-                    <Col className="welcome">
-                      <h4 className="welcome-header">Welcome to Fourier!</h4>
-
-                      To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="editor">editor</a> to the left, 
-                      or simply click <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="translate">Translate</a> to translate the sample text.
-
-                      Keep in mind that the underlying natural language processing model is still learning.
-                      It will most likely return jibberish . . . but at least it is translated jibberish!
-                    </Col>
-
+                    <p>
+                    Keep in mind that the underlying natural language processing model is still learning.
+                    </p>
+                    <p>
+                    At its current stage, it will most likely return jibberish . . . but at least it is translated jibberish!
+                    </p>
+                  </Col>
                 )
               }
               </Row>

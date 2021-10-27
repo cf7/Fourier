@@ -129,15 +129,16 @@ $width: 510px;
         color: #205fab;
         // display: none;
       }
-      
-      a {
-        color: #205fab;
-        &:hover {
-          color: lightblue !important;
-          text-decoration: underline;
+      p {
+        text-align: justify;
+        a {
+          color: #205fab;
+          &:hover {
+            color: lightblue !important;
+            text-decoration: underline;
+          }
         }
       }
-      
     }
     div.display-options {
       height: fit-content;
