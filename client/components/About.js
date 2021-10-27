@@ -33,21 +33,20 @@ class About extends React.Component {
             hasn't been done before. 
 
             When you start off a machine learning project with tensorflow or keras as a beginner, reading the documentation
-            alone is an monumental task. What they don't mention in the documentation, however, is that in order for your project
-            to even function properly, it needs to have an extraordinary amount of data.
+            itself is an monumental task. What they don't mention in the documentation is that in order for your project
+            to even function at basic level, it needs to have an extraordinary amount of data.
 
-            At the very least, my model required a dataset of around 20,000 entries just to show that it was learning and adapting properly.
-            I feel like this should be mentioned at the beginning of the documentation for a codebase like Tensorflow.
+            At the very least, my model required a dataset of around 10,000 entries just to show that it was learning and adapting properly.
 
-            I spent about a month tweaking and configuring and toiling away, only to find out after weeks of googling and Stackoverflow that there was no way 
+            I spent about a month tweaking and configuring and toiling away and weeks of googling and Stackoverflow, I discovered there was no way 
             I was going to see results as long as my dataset was below 10,000 training samples.
 
             The particular data that Fourier required was "handcrafted" code examples with the target summaries that accompanied them.
-            (I tried to implement the model with only 60 training samples, thinking that the problem scaled down that far to still be able to see
-              results.)
+            (I tried to implement the model with only 60 training samples, thinking that the problem scaled down that far to still be able to see results.)
 
-            Don't get me wrong, the model worked. I know this because I exported and refactored it to run on different data (human language translations).
-            It just wasn't showing any signs of learning with only 60 samples.
+            Don't get me wrong, the model worked. I know this because I exported and refactored it to run on different data (human language translations), and it worked perfectly.
+            
+            It just wasn't showing any signs of learning with only 60 samples when run on programming languages.
 
           </p>
 

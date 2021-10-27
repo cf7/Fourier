@@ -202,6 +202,10 @@ $width: 510px;
       margin-left: 0px;
       div.loading {
         align-self: center;
+        display: block;
+        h5 {
+          text-align: center;
+        }
         div.progress {
           padding: 0px;
           height: 20px;
@@ -223,14 +227,22 @@ $width: 510px;
 
 
 
-
-
-
-
-
-.ace-tm {
-  background-color: rgba(#205fab, 0.1) !important;
+div.modal-dialog {
+  max-width: 600px;
+  // div.modal-footer {
+  //   // button {
+  //   //   background-color:
+  //   //   border-color: 
+  //   // }
+  // }
 }
+
+
+
+
+// .ace-tm {
+//   background-color: rgba(#205fab, 0.1) !important;
+// }
 
 // .hidden-progress {
 //   display: none;

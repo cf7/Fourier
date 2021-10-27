@@ -57,7 +57,7 @@ class Editor extends React.Component {
           <Form.Control 
             as="textarea"
             style={{ fontSize: this.props.editorFontSize + 'px' }}
-            value={this.props.inputText}
+            value={this.props.displayText}
             onChange={this.props.onChange}
           />
         </Panel>

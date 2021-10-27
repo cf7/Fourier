@@ -13,6 +13,8 @@ import Col from 'react-bootstrap/Col';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 // import AceEditor from 'react-ace';
 // languages
@@ -83,6 +85,7 @@ class App extends React.Component {
     super(props);
     // only use setState() for changes that are visible to the UI
     this.state = {
+      alertModal: false,
       editorFontSize: '17',
       outputFontSize: '17',
       submitted: false,
@@ -124,6 +127,11 @@ class App extends React.Component {
     }
   }
 
+  handleModalClose = () => {
+    console.log("close modal");
+    this.setState({ alertModal: false });
+  }
+
   handleLinkMouseOver = (event) => {
     let targetName = event.target.name;
     this.setState({
@@ -141,17 +149,15 @@ class App extends React.Component {
 
   onChange = (event) => {
     console.log("change");
-    // event.persist();
     console.log(event.target.value);
     this.setState({ displayText: event.target.value });
   }
 
   componentDidMount = () => {
-      
+    
   }
 
   handleSubmit = (event) => {
-    // let output = this.generateData(this.state.displayCode);
     this.setState({ 
       inputText: this.state.displayText, // "Loading translation . . .",
       submitted: false,
@@ -172,9 +178,12 @@ class App extends React.Component {
 
     } else {
 
+      // modal here
+
       this.setState({ 
-        output: "Please provide English words for translation in the editor to the left.",
-        submitted: true,
+        // output: "Please provide English words for translation in the editor to the left.",
+        alertModal: true,
+        submitted: false,
         progressBar: '',
       });
 
@@ -235,12 +244,19 @@ class App extends React.Component {
             </Col>
             <Col className="column_2">
               <Row>
+                <Modal show={this.state.alertModal} onHide={this.handleModalClose}>
+                  <Modal.Body>Please provide English words for translation in the editor to the left.</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="danger" onClick={this.handleModalClose}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
                   <Button1 
                     submit={this.handleSubmit} 
                     loading={this.state.loading} 
                     highlightTranslate={this.state.highlightTranslate}
                   />
-                  {/* Progress bar: now, visuallyHidden */}
               </Row>
             </Col>
             <Col className="column_3">
@@ -271,12 +287,12 @@ class App extends React.Component {
                   ?
 
                   <div className="loading">
-                  <p>
-                    Loading . . .
-                  </p>
-                  <ProgressBar 
-                    now={this.state.progress} 
-                  />
+                    <h5>
+                      Loading . . .
+                    </h5>
+                    <ProgressBar 
+                      now={this.state.progress} 
+                    />
                   </div>
 
                   :
