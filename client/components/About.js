@@ -1,21 +1,35 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+import Accordion from 'react-bootstrap/Accordion';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Layout } from './Layout.js';
+
+import ReactMarkdown from 'react-markdown';
 
 class About extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
     return (
       <Layout>
         <Container className="about-view">
+          <Row>
           <h1>
             About
           </h1>
+          </Row>
+          <Row>
+            {/*<Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+          <Accordion.Header>Fourier App</Accordion.Header>
+          <Accordion.Body>
 
-          <p>
+            <ReactMarkdown children={markdown} remarkPlugins={[remarkGfm]} />
+            
             Here's a quick layout of the tech stack:
 
             pages - React, React-Bootstrap styling
@@ -26,9 +40,7 @@ class About extends React.Component {
 
             bundler - Webpack
 
-          </p>
-
-          <p>
+          
             This app began as a source code summarizer. After a month or so of development, I finally learned why it
             hasn't been done before. 
 
@@ -48,15 +60,16 @@ class About extends React.Component {
             
             It just wasn't showing any signs of learning with only 60 samples when run on programming languages.
 
-          </p>
-
-
-          <p>
+          </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+          <Accordion.Header>Fourier Classic</Accordion.Header>
+          <Accordion.Body>
+          
           Fourier is a source code summarizer that uses natural language processing to summarize code into human readable phrases. It is a simple tool that is designed to increase the speed at which developers learn and understand code written by others.
 
           Fourier is not meant to replace the human reader, but to augment them. This tool hopefully makes understanding convoluted code bases and complex programming languages much easier and much less time-intensive.
-          </p>
-          <p>
+
             Current Functionality:
             So far Fourier only processes very simple javascript code. At its current phase, it merely translates source code directly
             into "legible" English snippets. The snippets themselves are too literal and basic to be useful for summarizing, but they will eventually become
@@ -77,20 +90,16 @@ class About extends React.Component {
             The model itself is classified as a Sequence-to-Sequence machine learning algorithm.
             It features an encoder and decoder, each a composite of Embedding, LSTM, and Dense neural network layers.
             The code for the model and its performance metrics can be found on Kaggle at <a ref="https://www.kaggle.com/cf1111/fourier2/notebook">Fourier</a>
-          </p>
-          <p>
+
             When code (in the form of an AST) is submitted to the Fourier backend, it goes through further transformations
             that eventually convert it into integer values that the model then reads to predict the human words it has learned to
             correlate with those sequences.
             The model then returns its own predicted sequence of english words that match the input code sequence.
-          </p>
-          <p>
+
             Training data sample:
             code: console.log("hello");
-            {'{"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","object":{"type":"Identifier","name":"console"},"property":{"type":"Identifier","name":"log"},"computed":false,"optional":false},"arguments":[{"type":"Literal","value":"hello","raw":"\"hello\""}],"optional":false}}],"sourceType":"script"}'}
-            {/* The model consumes json strings without escape characters (i.e. the output of JSON.stringify(code_ast) or more verbosely JSON.stringify(Acorn.parse(code, { ecmaVersion: 2020 }))). */}
-          </p>
-          <p>
+            ast: {'{"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type":"CallExpression","callee":{"type":"MemberExpression","object":{"type":"Identifier","name":"console"},"property":{"type":"Identifier","name":"log"},"computed":false,"optional":false},"arguments":[{"type":"Literal","value":"hello","raw":"\"hello\""}],"optional":false}}],"sourceType":"script"}'}
+
             Interesting edge cases when building this app:
 
             1) javascript and python json handlers convert differently
@@ -117,7 +126,10 @@ class About extends React.Component {
             file I/O automatically converts boolean literals to python True/False boolean literals
             and converts "\"hello\"" to "'hello'"
             
-          </p>
+          </Accordion.Body>
+          </Accordion.Item>
+          </Accordion>*/}
+          </Row>
         </Container>
       </Layout>
     );
