@@ -41,3 +41,23 @@ Haven't started core NLP engine
 ## References
 Of course, as often happens, a few months after ideating and building this project, I find out that someone else has already done it. Fortunately, my original idea takes their concept at least one step further by extending to natural language. Here's an excellent tool I found that is pretty much Fourier but stops at abstract syntax trees.\
 [AST Explorer](https://astexplorer.net/)
+
+---
+
+## Project-Killing Hurdle
+
+What many ML tutorials won't mention is that in order for your project to function at even a basic level,\
+it needs to have an extraordinary amount of data.
+
+I spent about a month tweaking, configuring, and toiling away. After a few weeks of googling and Stackoverflow,\
+I discovered there was no way I was going to see results as long as my dataset was below 10,000 training samples.
+
+At the very least, my model required this dataset of around 10,000 entries just to show that it was learning and adapting properly.
+
+The particular data that Fourier required was "handcrafted" code examples with the target summaries that accompanied them.\
+I was trying to implement the model with only 60 training samples, thinking that the problem could be scaled down that far to still see results.
+  
+This being said, the model does in fact work. I know this because I exported and refactored it to run on different data,\
+plain human language translations, and it worked perfectly.
+  
+It just wasn't showing any signs of learning with only 60 samples when run on programming languages.
