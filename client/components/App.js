@@ -122,8 +122,9 @@ export default class App extends React.Component {
       form.append('data', data);
       axios.post('https://fourier-model.herokuapp.com/predict', form)
         .then((response) => {
+          let translation = response.data.split('eostok')[0].trim();
           this.setState({
-            output: response.data,
+            output: translation,
             submitted: true,
             progressBar: '',
           });

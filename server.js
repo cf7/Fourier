@@ -1,12 +1,8 @@
 const express = require('express');
 const logger = require('morgan');
 const path = require('path');
-const proxy = require('express-http-proxy');
-const routes = require('./client/api/routes.js');
 
 const app = express();
-
-app.use('/model', proxy('https://fourier-model.herokuapp.com', {}));
 
 app.use(logger('dev'));
 app.use(express.json());
