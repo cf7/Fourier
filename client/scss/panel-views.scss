@@ -4,39 +4,21 @@ $min-width: 150px;
 $width: 510px;
 
 .panel {
-  /*
-  display: grid;
-  grid-template-columns: 200px 200px 200px;
-  grid-template-areas:
-    "header header header"
-    "body body body"
-    "footer footer footer";
-  grid-column-gap: 10px;
-  */
-  // display: inline-flex;
   border: 1px solid #000000;
   border-radius: 1em;
-  // justify-content: space-evenly;
   min-height: 0.5rem;
   padding-top: 2em;
   padding-bottom: 2em;
 }
 
 .panel-views.row {
-  // display: inline-flex;
   flex-wrap: wrap;
-  // vertical-align: middle;
-  // align-items: center;
-  // justify-content: center;
-  // .row { input.submit-btn {} }
 }
 
 .column_1.col {
-  flex: 1; // determines how .col adjusts to div.panel-views flexbox
-  // display: inline-block;
+  flex: 1;
   padding-left: 0px;
   padding-right: 0px;
-  // margin-right: 10px;
   min-width: 150px;
   max-width: 510px;
   min-height: $min-height;
@@ -73,12 +55,10 @@ $width: 510px;
       border: 0px;
     }
     &.editor-highlighted {
-      // border-color: blue;
       animation: pulse-editor;
       animation-duration: 0.8s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      // animation-fill-mode: before;
       animation-direction: alternate;
       @keyframes pulse-editor {
         from {
@@ -86,8 +66,6 @@ $width: 510px;
           border-color: rgba(#205fab, 0.5);
         }
         to {
-          // transform: scale(1.2);
-          // border-radius: 10px;
           border: 10px solid;
           border-color: rgba(#205fab, 0.5);
         }
@@ -97,13 +75,11 @@ $width: 510px;
 }
 
 .column_2.col {
-  // inherits --bs-gutter-x: 1.5rem from div.panel-views.row
-  // --bs-gutter-x: 0rem;
-  flex: 0 1 0; // determines how .col adjusts to div.panel-views flexbox
+  flex: 0 1 0;
   min-height: $min-height;
   height: $height;
   margin: 45px 10px 45px 10px;
-  .row { // row must have height for submit-btn to align center
+  .row {
     height: inherit;
   }
 }
@@ -115,20 +91,14 @@ $width: 510px;
   padding-right: 0px;
   min-height: $min-height;
   height: fit-content;
-  .row { // row must have height for align-self to work
-    // height: fit-content;
+  .row {
     margin-right: 0px;
     margin-left: 0px;
     div.welcome.col {
-      // transform: translate(0px, 100px);
-      // display: block;
-
       h4.welcome-header {
-        // justify-content: center;
         text-align: center;
         color: #205fab;
         margin-bottom: 16px;
-        // display: none;
       }
       p {
         text-align: justify;
@@ -160,7 +130,6 @@ $width: 510px;
       }
     }
     div.display {
-      // display: flex;
       justify-content: center;
       background-color: rgba(lightblue, 20%);
       border: 0px;
@@ -225,51 +194,6 @@ $width: 510px;
     }
 }
 
-
-
 div.modal-dialog {
   max-width: 600px;
-  // div.modal-footer {
-  //   // button {
-  //   //   background-color:
-  //   //   border-color: 
-  //   // }
-  // }
 }
-
-
-
-
-// .ace-tm {
-//   background-color: rgba(#205fab, 0.1) !important;
-// }
-
-// .hidden-progress {
-//   display: none;
-// }
-
-// .test {
-//   div.ace_content {
-//     div.ace_text-layer {
-//       div.ace_line {
-//         span.ace_entity.ace_name.ace_function {
-//           color: #205fab;
-//           // &:hover {
-//           //   color: #205fab !important;
-//           // }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// span.marked {
-//   background-color: #205fab4a;
-//   color: white;
-// }
-
-/*
-  <span class="ace_storage ace_type">function</span>
-  <span class="ace_entity ace_name ace_function">example</span>
-  <span class="ace_paren ace_lparen">(</span>
-*/

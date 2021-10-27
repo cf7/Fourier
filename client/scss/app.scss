@@ -4,29 +4,14 @@
 @import './button.scss';
 
 .app-view {
-  /*
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    "header header"
-    "body body"
-    "footer footer";
-  */
-  // display: block;
-  // justify-content: center;
   margin-top: 1em;
   margin-right: 0em;
   margin-left: 0em;
   margin-bottom: 1em;
   padding: 0px;
-  // align-items: center;
-  // justify-content: center;
 }
 
 h1 {
-  /* grid-area: header; */
-  // align-items: center;
-  // align-content: center;
   text-align: center;
   margin-bottom: 2rem;
   color: #205fab;
@@ -41,83 +26,3 @@ h1 {
   margin-bottom: 1em;
   padding: 0px;
 }
-
-
-
-
-// div.col div.controls #code-input {
-//   padding-left: 0px !important;
-// }
-
-
-
-/*
-  CSS 101:
-  
-  (block, inline, inline-block do not require parent container elements
-  they can be applied directly to the element implementing the rule)
-
-  display: block;
-  - elements take up their own line and take 100% of width, cannot adjust manually
-  - elements cannot end up side by side ever
-
-  display: inline;
-  - elements all fall onto the same line in the container
-  - cannot apply width or height rules to any of the elements
-  - elements do not wrap and instead get jammed up
-  - cannot apply transforms on inline elements
-
-  display: inline-block; // most common before flex and grid
-  - elements fall onto same line
-  - can apply width and height rules
-
-
-  flex and grid require parent container elements
-  parent element applies "display" tag to its child elements, not recursively
-  
-  display: flex;
-  - container element still behaves block style, stretches 100% width of viewport
-  - child elements fall side by side
-  - (i.e. "flex" pseudo for "block-flex")
-  - default responsive behaviors:
-    - flex-grow: 0 // items will not grow beyond content size
-    - flex-shrink: 1 // items can shrink smaller than their flex basis
-    - flex-basis: auto // items have a base size of auto, 0 means items have base size of 0
-  - flex-grow: 1 // items can grow larger than their flex-basis
-  - child elements default: align-self: stretch; elements stretch to height of parent container
-
-  Shorthands:
-  - flex: auto // allows larger items to grow faster and take more space
-  - flex: 1 // forces items to maintain consistent size when growing
-  - flex: none // items don't grow/shrink, useful for only using alignment properties
-
-  - can set flex per item (i.e. flex: 3 for a small item to grow faster)
-
-  display: inline-flex;
-  - container element only stretches width to its child elements, no further
-
-  Rules:
-
-  vertical-align - y-direction, only applies to display: block elements
-  align-items - y-direction, only applies to display: flex elements
-  align-self - aligns a single item on the cross axis
-  align-items - aligns all of the items as a group on the y-axis
-
-  (when using align-items for y-axis, need to set flex-direction: column and 
-  explicity set height or box-size so that CSS has spare space to distribute the element relative to)
-
-  justify-content - x-direction
-  align-content - y-direction
-  place-content - (shorthand) sets both directions
-  
-  (CSS will place spare space between elements depending on justify-content)
-  (justify-content doesn't work for block because there is no spare space to place)
-
-
-  Units:
-
-  em and rem are font sizes! (applies font size to element size)
-
-  em - relative to nearest parent font size
-  rem - relative to root element (html element)
-*/
