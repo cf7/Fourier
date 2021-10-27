@@ -1,29 +1,28 @@
 @import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
-@import './panel.scss';
+@import './panel-views.scss';
 @import './layout.scss';
 @import './button.scss';
 
 .app-view {
-  /*
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    "header header"
-    "body body"
-    "footer footer";
-  */
   margin-top: 1em;
+  margin-right: 0em;
+  margin-left: 0em;
   margin-bottom: 1em;
+  padding: 0px;
 }
 
 h1 {
-  /* grid-area: header; */
-  align-content: center;
   text-align: center;
   margin-bottom: 2rem;
   color: #205fab;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
-.ace-tm {
-  background-color: rgba(#205fab, 0.1) !important;
+.about-view {
+  margin-top: 1em;
+  margin-right: 0em;
+  margin-left: 0em;
+  margin-bottom: 1em;
+  padding: 0px;
 }

@@ -1,40 +1,54 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
-class Button1 extends React.Component {
+export default class FourierButton extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      isLoading: false,
+    };
   }
 
   handleClick = (event) => {
-    console.log("Clicked!");
     if (this.props.submit) {
+      this.setState({ isLoading: true });
       this.props.submit();
     }
   }
 
   handleSelect = (eventKey, event) => {
     event.persist();
-    console.log("Clicked!");
-    console.log(this);
     this.props.handleSelect(eventKey, this.props.datatype);
   }
 
   render() {
+
     if (this.props.type && (this.props.type == 'dropdown')) {
-      const elements = [];
-      this.props.options.forEach((option) => {
-        if (option == 'c_cpp') {
-          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{"C++"}</Dropdown.Item>);
-        } else {
-          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{option}</Dropdown.Item>);
-        }
-      });
+
+      let header = this.props.datatype;
+
+      if (header == "editorFontSize" || header == "outputFontSize") {
+        header = "Font Size";
+      }
+
+      let elements = [];
+
+      if (this.props.options) {
+
+        this.props.options.forEach((option, idx) => {
+          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)} key={idx}>{option}</Dropdown.Item>);
+        });
+
+      }
+
       return (
+
         <Dropdown onSelect={this.handleSelect}>
-          <Dropdown.Header>{ this.props.datatype }</Dropdown.Header>
+          <Dropdown.Header>{ header }</Dropdown.Header>
           <Dropdown.Toggle>
             { this.props.option }
           </Dropdown.Toggle>
@@ -42,19 +56,31 @@ class Button1 extends React.Component {
             { elements }
           </Dropdown.Menu>
         </Dropdown>
+        
       );
+
     } else {
+
       return (
-        <Button
-          onClick={this.handleClick}
-          as="input"
-          type="submit"
-          value="Submit"
-          variant="outline-primary"
-        />
+
+        <OverlayTrigger
+          delay={300}
+          placement="top"
+          overlay={<Tooltip className='submit-btn-tooltip'>Click to translate!</Tooltip>}
+        >
+          <Button
+            onClick={this.props.loading ? null : this.handleClick}
+            as="input"
+            type="submit"
+            disabled={this.props.loading}
+            value={ this.props.loading ? 'Loading...' : 'Translate' }
+            variant="outline-primary"
+            className={"submit-btn " + (this.props.highlightTranslate ? 'translate-highlighted' : '')}
+          />
+        </OverlayTrigger>
+
       );
+
     }
   }
 }
-
-export { Button1 };

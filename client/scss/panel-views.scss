@@ -1,0 +1,199 @@
+$min-height: 20px;
+$height: 250px;
+$min-width: 150px;
+$width: 510px;
+
+.panel {
+  border: 1px solid #000000;
+  border-radius: 1em;
+  min-height: 0.5rem;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.panel-views.row {
+  flex-wrap: wrap;
+}
+
+.column_1.col {
+  flex: 1;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-width: 150px;
+  max-width: 510px;
+  min-height: $min-height;
+  height: fit-content;
+  margin-right: 0px;
+  margin-left: 0px;
+  div.controls.panel.container {
+    border: 0px;
+    padding: 0px;
+    form.controls-form {
+      .row {
+        margin: 0px;
+        .col {
+          padding-left: 0px;
+          padding-right: 0px;
+          label.form-label {
+            div.dropdown {
+              display: inline-flex;
+            }
+          }
+        }
+      }
+    }
+  }
+  div.editor.panel.container {
+    display: flex;
+    min-height: $min-height;
+    height: $height;
+    min-width: $min-width;
+    max-width: $width;
+    padding: 32px 32px 32px 32px;
+    textarea {
+      flex: 1;
+      border: 0px;
+    }
+    &.editor-highlighted {
+      animation: pulse-editor;
+      animation-duration: 0.8s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      @keyframes pulse-editor {
+        from {
+          border: 1px solid;
+          border-color: rgba(#205fab, 0.5);
+        }
+        to {
+          border: 10px solid;
+          border-color: rgba(#205fab, 0.5);
+        }
+      }
+    }
+  }
+}
+
+.column_2.col {
+  flex: 0 1 0;
+  min-height: $min-height;
+  height: $height;
+  margin: 45px 10px 45px 10px;
+  .row {
+    height: inherit;
+  }
+}
+
+.column_3.col {
+  display: inline-block;
+  flex: 1;
+  padding-left: 0px;
+  padding-right: 0px;
+  min-height: $min-height;
+  height: fit-content;
+  .row {
+    margin-right: 0px;
+    margin-left: 0px;
+    div.welcome.col {
+      h4.welcome-header {
+        text-align: center;
+        color: #205fab;
+        margin-bottom: 16px;
+      }
+      p {
+        text-align: justify;
+        a {
+          color: #205fab;
+          &:hover {
+            color: lightblue !important;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    div.display-options {
+      height: fit-content;
+      border: 0px;
+      padding: 0px;
+      form.display-form {
+        .row {
+          margin: 0px;
+          .col {
+            padding: 0px;
+            label.form-label {
+              div.dropdown {
+                display: inline-flex;
+              }
+            }
+          }
+        }
+      }
+    }
+    div.display {
+      justify-content: center;
+      background-color: rgba(lightblue, 20%);
+      border: 0px;
+      overflow: scroll;
+      scroll-behavior: smooth;
+      padding: 32px 32px 32px 32px;
+      &.show {
+        animation: show;
+        animation-duration: 3s;
+        animation-fill-mode: both;
+      }
+      p.show {
+        animation: show-text;
+        animation-duration: 2.5s;
+        animation-delay: 0.5s;
+        animation-fill-mode: both;
+      }
+      @keyframes show {
+        from {
+          height: $min-height;
+        }
+        to {
+          height: $height;
+        }
+      }
+      @keyframes show-text {
+        from {
+          opacity: 0.0;
+        }
+        to {
+          opacity: 1.0;
+        }
+      }
+    }
+  }
+  .show-progress.row {
+      height: $height;
+      margin-right: 0px;
+      margin-left: 0px;
+      div.loading {
+        align-self: center;
+        display: block;
+        h5 {
+          text-align: center;
+        }
+        div.progress {
+          padding: 0px;
+          height: 20px;
+          animation: load;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+          @keyframes load {
+            from {
+              width: 0%;
+            }
+            to {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+}
+
+div.modal-dialog {
+  max-width: 600px;
+}

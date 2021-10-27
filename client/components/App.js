@@ -1,60 +1,50 @@
 import React from 'react';
-import { Layout } from './Layout.js';
-import { Panel } from './Panel.js';
-import { Button1 } from './Button.js';
-import { Input } from './Input.js';
+import Layout from './Layout.js';
+import Panel from './Panel.js';
+import FourierButton from './Button.js';
+import Editor from './Editor.js';
+import Display from './Display.js';
 
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
-import AceEditor from 'react-ace';
-
-// languages
-import 'ace-builds/src-min-noconflict/mode-javascript';
-import 'ace-builds/src-min-noconflict/mode-python';
-import 'ace-builds/src-min-noconflict/mode-c_cpp';
-
-// themes
-import 'ace-builds/src-min-noconflict/theme-textmate';
-import 'ace-builds/src-min-noconflict/theme-monokai';
-
-import { Parser } from 'acorn';
-import JSONPretty from 'react-json-pretty';
+import axios from 'axios';
 
 function Title() {
   return <h1>Fourier</h1>
 }
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasContent: false,
-      userContent: "Translation appears here . . .",
-      mode: "javascript",
-      theme: "textmate",
-      codeFontSize: '14',
-      outputFontSize: '14',
-      displayToggle: 'translation',
-      code: `function example(x) { console.log("x"); }`,
-      translation: 'translation'
+      alertModal: false,
+      editorFontSize: '17',
+      outputFontSize: '17',
+      submitted: false,
+      displayText: 'This is sample text.',
+      output: "Click submit to translate.",
+      showOutput: '',
+      showTranslation: '',
+      loading: false,
+      progressBar: '',
+      progress: 100,
+      highlightEditor: false,
+      highlightTranslate: false,
     };
-    this.modes = ['javascript', 'python', 'c_cpp'];
-    this.themes = ['textmate', 'monokai'];
-    this.codeFontSizes = ['11','12','13','14','15','16','17','18','19','20']
-    this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20']
-    this.temp = [];
-  }
+    this.editorFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
+    this.outputFontSizes = ['11','12','13','14','15','16','17','18','19','20'];
 
-  handleContent = (event) => {
-
-    // translation engine goes here
-
-    this.setState({ userContent: event.target.value });
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   handleSelect = (option, datatype) => {
@@ -65,8 +55,8 @@ class App extends React.Component {
       case 'theme':
         this.setState({ theme: option });
         break;
-      case 'codeFontSize':
-        this.setState({ codeFontSize: option });
+      case 'editorFontSize':
+        this.setState({ editorFontSize: option });
         break;
       case 'outputFontSize':
         this.setState({ outputFontSize: option });
@@ -76,62 +66,79 @@ class App extends React.Component {
     }
   }
 
-  handleToggle = (value, event) => {
-    switch (value) {
-      case 'translation':
-        this.setState({ displayToggle: value });
-        break;
-      case 'tree':
-        this.setState({ displayToggle: value });
-        break;
-      case 'json':
-        this.setState({ displayToggle: value });
-        break;
-      default:
-        this.setState({ displayToggle: 'translation' });
-    }
-  }
-  // handleMode = (mode) => {
-  //   console.log("mode select");
-  //   this.setState({ mode: mode });
-  // }
-
-  // handleTheme = (theme) => {
-  //   console.log("theme select");
-  //   this.setState({ theme: theme });
-  // }
-
-  // handleFontSize = (event) => {
-  //   console.log(event);
-  //   console.log(event.target);
-  //   console.log(event.target.value);
-  //   this.setState({ fontSize: event.target.value });
-  // }
-
-  onLoad = (event) => {
-    console.log("loaded");
+  handleModalClose = () => {
+    this.setState({ alertModal: false });
   }
 
-  onChange = (content) => {
-    console.log("edit");
-    console.log(content);
-    this.setState({ code: content });
+  handleLinkMouseOver = (event) => {
+    let targetName = event.target.name;
+    this.setState({
+      highlightEditor: targetName == 'editor' ? true : false,
+      highlightTranslate: targetName == 'translate' ? true : false,
+    });
+  }
+
+  handleLinkMouseLeave = (event) => {
+    this.setState({ 
+      highlightEditor: false,
+      highlightTranslate: false,
+    });
+  }
+
+  onChange = (event) => {
+    this.setState({ displayText: event.target.value });
   }
 
   handleSubmit = (event) => {
-    console.log(this.state.codeFontSize);
-    // let syntaxTree = Parser.parse(this.state.code, { ecmaVersion: 2020 });
-    // console.log(syntaxTree);
-    // this.setState({ translation: JSON.stringify(syntaxTree)  });
-    // console.log(this.state.translation);
+    this.setState({ 
+      inputText: this.state.displayText,
+      submitted: false,
+      progressBar: 'show-progress',
+    });
 
-    // console.log("Submitting!");
-    // const request = new XMLHttpRequest();
-    // request.open('POST', '/translate', true);
-    // request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    // request.send(JSON.stringify({
-    //   "code": this.state.code
-    // })); // make this synchronous to expect the response translation
+    let data = '';
+
+    if (this.state.inputText) {
+
+      data = this.state.inputText;
+
+    } else if (this.state.displayText) {
+
+      data = this.state.displayText;
+
+    } else {
+
+      this.setState({ 
+        alertModal: true,
+        submitted: false,
+        progressBar: '',
+      });
+
+    }
+
+    if (data) {
+
+      let form = new FormData();    
+      form.append('data', data);
+      axios.post('https://fourier-model.herokuapp.com/predict', form)
+        .then((response) => {
+          let translation = response.data.split('eostok')[0].trim();
+          this.setState({
+            output: translation,
+            submitted: true,
+            progressBar: '',
+          });
+        })
+        .catch((error) => {
+          this.setState({ 
+            output: "An error occurred.",
+            submitted: true,
+            progressBar: '',
+          });
+        });
+
+    }
+
   }
 
   render() {
@@ -141,108 +148,86 @@ class App extends React.Component {
           <Row>
             <Title />
           </Row>
-          <Row>
-            <Col>
-              <Panel className="controls">
-                <Form>
-                  <Row>
-                    <Col>
-                      <Form.Label>
-                        <Button1 
-                          type="dropdown" 
-                          datatype="mode" 
-                          option={this.state.mode} 
-                          options={this.modes} 
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                      <Form.Label>
-                        <Button1 
-                          type="dropdown" 
-                          datatype="theme" 
-                          option={this.state.theme} 
-                          options={this.themes} 
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                      <Form.Label>
-                        <Button1
-                          type="dropdown"
-                          datatype="codeFontSize"
-                          option={this.state.codeFontSize}
-                          options={this.codeFontSizes}
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                    </Col>
-                  </Row>
-                </Form>
-              </Panel>
-              <AceEditor
-                placeholder={`function example(x) { console.log("x"); }`}
-                mode={this.state.mode}
-                theme={this.state.theme}
-                name="blah2"
-                onLoad={this.onLoad}
+          <Row className="panel-views">
+            <Col className="column_1">
+              <Editor 
+                editorFontSize={this.state.editorFontSize}
+                editorFontSizes={this.editorFontSizes}
+                handleSelect={this.handleSelect}
                 onChange={this.onChange}
-                fontSize={Number(this.state.codeFontSize)}
-                showPrintMargin={true}
-                showGutter={true}
-                highlightActiveLine={true}
-                value={this.state.code}
-                setOptions={{
-                  enableBasicAutocompletion: false,
-                  enableLiveAutocompletion: false,
-                  enableSnippets: false,
-                  showLineNumbers: true,
-                  tabSize: 2,
-                  useWorker: false
-                }}
+                displayText={this.state.displayText}
+                highlightEditor={this.state.highlightEditor}
               />
-              <Button1 submit={this.handleSubmit} />
             </Col>
-            <Col>
-              <Panel className='display-options'>
-                <Form>
-                  <Row>
-                    <Col>
-                      <Form.Label>
-                        <Button1
-                          type="dropdown"
-                          datatype="outputFontSize"
-                          option={this.state.outputFontSize}
-                          options={this.outputFontSizes}
-                          handleSelect={this.handleSelect} 
-                        />
-                      </Form.Label>
-                      <ToggleButtonGroup name='display-toggle' type='radio' defaultValue='translation' onChange={this.handleToggle}>
-                        <div className="toggle-group-header">display</div>
-                        <ToggleButton id='translation-toggle' value="translation">
-                          Translation
-                        </ToggleButton>
-                        <ToggleButton id='tree-toggle' value="tree">
-                          Tree
-                        </ToggleButton>
-                        <ToggleButton id='json-toggle' value="json">
-                          JSON
-                        </ToggleButton>
-                      </ToggleButtonGroup>
-                    </Col>
-                  </Row>
-                </Form>
-              </Panel>
-              <Panel className='display' userContent={this.state.userContent}>
-                { (this.state.displayToggle == 'translation') && this.state.translation }
-                { (this.state.displayToggle == 'tree') && "ast" }
-                { (this.state.displayToggle == 'json') && 
-                    <JSONPretty 
-                      id='json-pretty' 
-                      data={JSON.stringify(Parser.parse(this.state.code, { ecmaVersion: 2020 }))}
-                      onJSONPrettyError={e => console.error(e)}
-                    >
-                    </JSONPretty>
-                }
-              </Panel>
+            <Col className="column_2">
+              <Row>
+                <Modal show={this.state.alertModal} onHide={this.handleModalClose}>
+                  <Modal.Body>Please provide English words for translation in the editor to the left.</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="danger" onClick={this.handleModalClose}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+                  <FourierButton 
+                    submit={this.handleSubmit} 
+                    loading={this.state.loading} 
+                    highlightTranslate={this.state.highlightTranslate}
+                  />
+              </Row>
+            </Col>
+            <Col className="column_3">
+              <Row className={this.state.progressBar} >
+              {
+                this.state.submitted 
+
+                ? 
+                
+                (
+                  <Display 
+                    outputFontSize={this.state.outputFontSize}
+                    outputFontSizes={this.outputFontSizes}
+                    showOutput={this.state.showOutput}
+                    output={this.state.output}
+                    handleSelect={this.handleSelect}
+                  />
+                )
+
+                :
+                
+                (
+                
+                  this.state.progressBar 
+
+                  ?
+
+                  <div className="loading">
+                    <h5>
+                      Loading . . .
+                    </h5>
+                    <ProgressBar 
+                      now={this.state.progress} 
+                    />
+                  </div>
+
+                  :
+
+                  <Col className="welcome">
+                    <h4 className="welcome-header">Welcome to Fourier!</h4>
+                    <p>
+                    To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="editor">editor</a> to the left, 
+                    or simply click <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="translate">Translate</a> to translate the sample text.
+                    </p>
+                    <p>
+                    Keep in mind that the underlying natural language processing model is still learning.
+                    </p>
+                    <p>
+                    At its current stage, it will most likely return jibberish . . . but at least it is translated jibberish!
+                    </p>
+                  </Col>
+                )
+              }
+              </Row>
             </Col>
           </Row>
         </Container>
@@ -250,5 +235,3 @@ class App extends React.Component {
     );
   }
 }
-
-export { App };

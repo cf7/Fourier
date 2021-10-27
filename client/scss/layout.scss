@@ -17,6 +17,17 @@ $primary: #205fab;
   }
 }
 
+#layout.container {
+  div.app-view {
+    max-width: 1430px;
+    max-height: 1200px;
+  }
+}
+
+header div.container {
+  padding: 0px;
+}
+
 a.nav-link {
   color: $primary !important;
   &:hover {
@@ -29,11 +40,5 @@ footer {
   justify-content: center;
   text-align: center;
   min-width: 100%;
-  display: inline-block;
+  height: 1em;
 }
-
-/* 
-
-primary: #205fab 
-#26c7c4
-*/
