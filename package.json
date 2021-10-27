@@ -32,7 +32,8 @@
     "node-polyfill-webpack-plugin": "^1.1.4",
     "path": "^0.12.7",
     "react-bootstrap": "^2.0.0",
-    "react-markdown": "^7.1.0"
+    "react-markdown": "^7.1.0",
+    "remark-breaks": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",

@@ -8,8 +8,6 @@ import { Panel } from './Panel.js';
 
 // import Form from 'react-bootstrap/Form';
 
-import AceEditor from 'react-ace';
-
 class Editor extends React.Component {
   constructor(props) {
     super(props);
