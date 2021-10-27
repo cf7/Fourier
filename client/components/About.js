@@ -3,12 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Layout } from './Layout.js';
+import Layout from './Layout.js';
 
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 
-class About extends React.Component {
+export default class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -104,5 +104,3 @@ ast: {"type":"Program","body":[{"type":"ExpressionStatement","expression":{"type
     );
   }
 }
-
-export { About };

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-class Button1 extends React.Component {
+export default class FourierButton extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,47 +14,39 @@ class Button1 extends React.Component {
   }
 
   handleClick = (event) => {
-    console.log("Clicked!");
     if (this.props.submit) {
       this.setState({ isLoading: true });
       this.props.submit();
     }
   }
 
-  // handleLoading = (p) => {
-  //   console.log("outside");
-  //   if (!this.props.loading) {
-  //     console.log("inside");
-  //     this.setState({ isLoading: false });
-  //   }
-  // }
-
   handleSelect = (eventKey, event) => {
     event.persist();
-    console.log("Clicked!");
-    console.log(this);
     this.props.handleSelect(eventKey, this.props.datatype);
   }
 
-
   render() {
+
     if (this.props.type && (this.props.type == 'dropdown')) {
-      // move these to onMount
+
       let header = this.props.datatype;
-      if (header == "codeFontSize" || header == "outputFontSize") {
+
+      if (header == "editorFontSize" || header == "outputFontSize") {
         header = "Font Size";
       }
+
       let elements = [];
+
       if (this.props.options) {
-        this.props.options.forEach((option) => {
-          if (option == 'c_cpp') {
-            elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{"C++"}</Dropdown.Item>);
-          } else {
-            elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)}>{option}</Dropdown.Item>);
-          }
+
+        this.props.options.forEach((option, idx) => {
+          elements.push(<Dropdown.Item datatype={this.props.datatype} eventKey={String(option)} key={idx}>{option}</Dropdown.Item>);
         });
+
       }
+
       return (
+
         <Dropdown onSelect={this.handleSelect}>
           <Dropdown.Header>{ header }</Dropdown.Header>
           <Dropdown.Toggle>
@@ -64,9 +56,13 @@ class Button1 extends React.Component {
             { elements }
           </Dropdown.Menu>
         </Dropdown>
+        
       );
+
     } else {
+
       return (
+
         <OverlayTrigger
           delay={300}
           placement="top"
@@ -82,9 +78,9 @@ class Button1 extends React.Component {
             className={"submit-btn " + (this.props.highlightTranslate ? 'translate-highlighted' : '')}
           />
         </OverlayTrigger>
+
       );
+
     }
   }
 }
-
-export { Button1 };

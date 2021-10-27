@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-class Layout extends React.Component {
+export default class Layout extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -17,7 +17,6 @@ class Layout extends React.Component {
               <Navbar.Brand id="brand" data-text="Fourier" href="/">Fourier</Navbar.Brand>
               <Nav className="nav-options">
                 <Nav.Link data-text="About" href="/about.html">About</Nav.Link>
-                {/*<Nav.Link data-text="Test" href="#">Test</Nav.Link>*/}
               </Nav>
             </Navbar>
           </Container>
@@ -32,5 +31,3 @@ class Layout extends React.Component {
     );
   }
 }
-
-export { Layout };
