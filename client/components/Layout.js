@@ -17,7 +17,7 @@ class Layout extends React.Component {
               <Navbar.Brand id="brand" data-text="Fourier" href="/">Fourier</Navbar.Brand>
               <Nav className="nav-options">
                 <Nav.Link data-text="About" href="/about.html">About</Nav.Link>
-                <Nav.Link data-text="Test" href="#">Test</Nav.Link>
+                {/*<Nav.Link data-text="Test" href="#">Test</Nav.Link>*/}
               </Nav>
             </Navbar>
           </Container>
