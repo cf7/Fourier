@@ -14,38 +14,38 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-import AceEditor from 'react-ace';
+// import AceEditor from 'react-ace';
 // languages
-import 'ace-builds/src-min-noconflict/mode-javascript';
-import 'ace-builds/src-min-noconflict/mode-python';
-import 'ace-builds/src-min-noconflict/mode-c_cpp';
+// import 'ace-builds/src-min-noconflict/mode-javascript';
+// import 'ace-builds/src-min-noconflict/mode-python';
+// import 'ace-builds/src-min-noconflict/mode-c_cpp';
 
-import CodeMirror from 'react-codemirror';
+// import CodeMirror from 'react-codemirror';
 // import 'CodeMirror/mode/javascript/javascript';
 
 import axios from 'axios';
 
 // themes
-import 'ace-builds/src-min-noconflict/theme-textmate';
-import 'ace-builds/src-min-noconflict/theme-monokai';
+// import 'ace-builds/src-min-noconflict/theme-textmate';
+// import 'ace-builds/src-min-noconflict/theme-monokai';
 
-import { Parser } from 'acorn';
-import JSONPretty from 'react-json-pretty';
-import ReactJsonPrint from 'react-json-print';
-import HTMLReactParser from 'html-react-parser';
-import JSXParser from 'react-jsx-parser';
+// import { Parser } from 'acorn';
+// import JSONPretty from 'react-json-pretty';
+// import ReactJsonPrint from 'react-json-print';
+// import HTMLReactParser from 'html-react-parser';
+// import JSXParser from 'react-jsx-parser';
 
-import jsTokens from 'js-tokens';
+// import jsTokens from 'js-tokens';
 
 function Title() {
   return <h1>Fourier</h1>
 }
 
-function AST(props) {
-  return (
-    <ReactJsonPrint expanded dataObject={Parser.parse(props.code, { ecmaVersion: 2020 })} />
-  );
-}
+// function AST(props) {
+//   return (
+//     <ReactJsonPrint expanded dataObject={Parser.parse(props.code, { ecmaVersion: 2020 })} />
+//   );
+// }
 
 // function Translation(props) {
 //   let descriptions = ["Declare function", "single parameter", "Function executes", "console log", "parameter value"];
@@ -86,7 +86,7 @@ class App extends React.Component {
       editorFontSize: '17',
       outputFontSize: '17',
       submitted: false,
-      inputText: '',
+      displayText: 'This is sample text.',
       output: "Click submit to translate.",
       showOutput: '',
       showTranslation: '',
@@ -139,9 +139,11 @@ class App extends React.Component {
     });
   }
 
-  onChange = (content) => {
+  onChange = (event) => {
     console.log("change");
-    this.setState({ inputText: content });
+    // event.persist();
+    console.log(event.target.value);
+    this.setState({ displayText: event.target.value });
   }
 
   componentDidMount = () => {
@@ -151,15 +153,37 @@ class App extends React.Component {
   handleSubmit = (event) => {
     // let output = this.generateData(this.state.displayCode);
     this.setState({ 
-      // output: "Bonjour! Je suis un example.", // "Loading translation . . .",
+      inputText: this.state.displayText, // "Loading translation . . .",
+      submitted: false,
       progressBar: 'show-progress',
       // test: output,
       // showOutput: 'show',
     });
-    
+
+    let data = '';
+
     if (this.state.inputText) {
+
+      data = this.state.inputText;
+
+    } else if (this.state.displayText) {
+
+      data = this.state.displayText;
+
+    } else {
+
+      this.setState({ 
+        output: "Please provide English words for translation in the editor to the left.",
+        submitted: true,
+        progressBar: '',
+      });
+
+    }
+
+    if (data) {
+
       let form = new FormData();    
-      form.append('data', this.state.inputText);
+      form.append('data', data);
       axios.post('https://fourier-model.herokuapp.com/predict', form) //'/model/predict', form) // (requestOptions)
         .then((response) => {
           console.log(response);
@@ -178,14 +202,9 @@ class App extends React.Component {
             progressBar: '',
           });
         });
-    } else {
-      this.setState({ 
-        output: "Please provide English words for translation in the editor to the left.",
-        submitted: true,
-        progressBar: '',
-      });
+
     }
-    // use inputText
+    // use displayText
 
     // // this.setState({ submit: true });
 
@@ -209,7 +228,7 @@ class App extends React.Component {
                 editorFontSizes={this.editorFontSizes}
                 handleSelect={this.handleSelect}
                 onChange={this.onChange}
-                displayText={this.props.displayText}
+                displayText={this.state.displayText}
                 highlightEditor={this.state.highlightEditor}
               />
               {/*</Row>*/}
@@ -235,7 +254,7 @@ class App extends React.Component {
                   <Display 
                     outputFontSize={this.state.outputFontSize}
                     outputFontSizes={this.outputFontSizes}
-                    // inputText={this.state.inputText}
+                    // displayText={this.state.displayText}
                     // displayToggle={this.state.displayToggle}
                     showOutput={this.state.showOutput}
                     output={this.state.output}
