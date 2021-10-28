@@ -9,3 +9,14 @@ Check out the demo for the app through the link below:\
 [https://fourier-app.herokuapp.com/](https://fourier-app.herokuapp.com/)
 
 For translating written text, Fourier uses a Sequence-to-Sequence neural network with LSTM layers, the code for which is featured on my [Kaggle](https://www.kaggle.com/cf1111/fourier4).
+
+---
+
+#### Setup
+
+~~~
+$ git clone https://github.com/cf7/Fourier.git
+$ npm install
+$ npm run build
+$ npm start
+~~~
