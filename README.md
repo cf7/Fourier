@@ -8,4 +8,4 @@ Check out the demo for the app through the link below:\
 (It is not mobile-friendly yet.)\
 [https://fourier-app.herokuapp.com/](https://fourier-app.herokuapp.com/)
 
-Fourier uses a Sequence-to-Sequence neural network with LSTM layers, the code for which is featured on my [Kaggle](https://www.kaggle.com/cf1111/fourier4).
+For translating written text, Fourier uses a Sequence-to-Sequence neural network with LSTM layers, the code for which is featured on my [Kaggle](https://www.kaggle.com/cf1111/fourier4).
