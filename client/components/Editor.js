@@ -23,7 +23,7 @@ export default class Editor extends React.Component {
                 <Form.Label>
                   <FourierButton
                     type="dropdown"
-                    datatype="Font Size"
+                    datatype="editorFontSize"
                     option={this.props.editorFontSize}
                     options={this.props.editorFontSizes}
                     handleSelect={this.props.handleSelect} 

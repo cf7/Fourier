@@ -29,27 +29,24 @@ export default class About extends React.Component {
                 <Accordion.Header>Fourier App</Accordion.Header>
                 <Accordion.Body>
                   <ReactMarkdown remarkPlugins={[remarkBreaks]}>
-  {`This app began as a source code summarizer. After a month or so of development, I finally learned why it hasn't been done before.
+{`This app began as a source code summarizer. After a month or so of development, I finally learned why it hasn't been done before.
+When you start off a machine learning project with tensorflow or keras as a beginner, reading the documentation
+itself is a monumental task. What they don't mention in the documentation is that in order for your project
+to function even at a basic level, it needs to have an extraordinary amount of data.
 
-  When you start off a machine learning project with tensorflow or keras as a beginner, reading the documentation
-  itself is a monumental task. What they don't mention in the documentation is that in order for your project
-  to function even at a basic level, it needs to have an extraordinary amount of data.
-  
-  At the very least, my model required a dataset of around 10,000 entries just to show that it was learning and adapting properly.
-  
-  I spent about a month tweaking, configuring, and toiling away. After a few weeks of googling and Stackoverflow,
-  
-  I discovered there was no way I was going to see results as long as my dataset was below 10,000 training samples.
-  
-  The particular data that Fourier required was "handcrafted" code examples with the target summaries that accompanied them.
-  (I tried to implement the model with only 60 training samples, thinking that the problem could be scaled down that far to still see results.)
-  
-  Don't get me wrong, the model worked. I know this because I exported and refactored it to run on different data, 
-  plain human language translations, and it worked perfectly.
-  
-  It just wasn't showing any signs of learning with only 60 samples when run on programming languages.
-  
-  If you'd like to learn about how development for the original Fourier went, check out the "Fourier Classic" description below.`}
+At the very least, my model required a dataset of around 10,000 entries just to show that it was learning and adapting properly.
+I spent about a month tweaking, configuring, and toiling away. After a few weeks of googling and Stackoverflow, I discovered 
+there was no way I was going to see results as long as my dataset was below 10,000 training samples.
+
+The particular data that Fourier required was "handcrafted" code examples with the target summaries that accompanied them.
+(I tried to implement the model with only 60 training samples, thinking that the problem could be scaled down that far to 
+still see results.)
+
+Don't get me wrong, the model worked. I know this because I exported and refactored it to run on different data, 
+plain human language translations, and it worked perfectly. It just wasn't showing any signs of learning with only 
+60 samples when run on programming languages.
+
+If you'd like to learn about how development for the original Fourier went, check out the "Fourier Classic" description below.`}
                   </ReactMarkdown>
                 </Accordion.Body>
               </Accordion.Item>
