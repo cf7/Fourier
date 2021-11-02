@@ -34,15 +34,6 @@ module.exports = {
             },
           },
           {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: true,
-              postcssOptions: {
-                plugins: [ 'postcss-preset-env', ],
-              }
-            }
-          },
-          {
             loader: "sass-loader",
             options: {
               sourceMap: true,
