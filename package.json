@@ -23,7 +23,7 @@
   "homepage": "https://github.com/cf7/Fourier#readme",
   "engines": {
     "node": "16.x",
-    "npm": "8.x",
+    "npm": "8.x"
   },
   "dependencies": {
     "axios": "^0.24.0",
