@@ -8,22 +8,28 @@ import ReactDOM from 'react-dom';
 import App from '../App.js';
 import { configure, mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import axios from 'axios';
+import jest from 'jest';
+
 
 configure({ adapter: new Adapter() });
 
-// smoke tests
+// mock('axios');
+
 
 describe("App", () => {
-  it("App renders without crashing", () => {
+  it("renders without crashing", () => {
     mount(<App />);
   });
 
-  it("App highlights Editor on link mouse over", () => {
-    const wrapper = mount(<App />);
-    // wrapper.find('button').simulate('hover');
-
-    wrapper.unmount();
-  });
+  // it("sends request on submit", () => {
+  //   axios.post.mockResolvedValue({
+  //     data: "c'est trop risqué eostok"
+  //   });
+  //   const wrapper = mount(<App />);
+  //   await wrapper.instance().handleSubmit();
+  //   wrapper.unmount();
+  // });
 });
 /*
 
@@ -42,4 +48,11 @@ describe("App", () => {
 
   Notes:
   - if tests are slow, because jest is searching entire directory, specify dir to speed up
+  -enzyme wrapper.simulate() is wrapper around ReactTestUtils.Simulate, uses React synthetic events
+
+  React wraps native browser events in its own SyntheticEvent to maintain consistency across browsers
+
+  Only enzyme wrappers are internally wrapped with act() calls, if calling same functions on returned
+  elements (i.e. let submitBtn = wrapper.find('#submit-btn'); submitBtn.simulate('click'); <-- ) then 
+  need to wrap in act()
 */
