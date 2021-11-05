@@ -3,8 +3,9 @@ orbs:
   node: circleci/node@4.7.0
 jobs:
   node:
-    macos:
-      xcode: "11.1.0"
+    docker:
+      # replace with your preferred image
+      - image: cimg/node:16.13.0
     steps:
       - node/install
 workflows:
