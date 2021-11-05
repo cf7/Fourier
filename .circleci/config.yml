@@ -1,16 +1,13 @@
-version: "2.1"
+version: 2.1
+orbs:
+  node: circleci/node@4.7.0
 jobs:
-  build:
+  node:
     macos:
       xcode: "11.1.0"
-  steps:
-    - checkout
-    -node/install:
-        node-version: "16.13.0"
-    -run: cd ~/Fourier/
-    -run:
-        name: Installing Dependencies
-        command: npm install
-    - run:
-        name: Running Tests
-        command: npm test
+    steps:
+      - node/install
+workflows:
+  install-node:
+    jobs:
+      - node
