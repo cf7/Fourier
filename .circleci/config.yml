@@ -1,0 +1,16 @@
+version: "2.1"
+jobs:
+  build:
+    macos:
+      xcode: "11.1.0"
+  steps:
+    - checkout
+    -node/install:
+        node-version: "16.13.0"
+    -run: cd ~/Fourier/
+    -run:
+        name: Installing Dependencies
+        command: npm install
+    - run:
+        name: Running Tests
+        command: npm test
