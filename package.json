@@ -9,7 +9,7 @@
     "nodemon": "nodemon server.js --delay 2",
     "build": "rm build/*; webpack",
     "dev-start": "webpack serve",
-    "test": "jest client/components/"
+    "test": "jest ./client/components/"
   },
   "repository": {
     "type": "git",

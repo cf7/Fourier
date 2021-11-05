@@ -1,15 +1,19 @@
 /**
  * @jest-environment jsdom
 */
-
 import React from 'react';
 // import renderer from 'react-test-renderer';
-import Editor from '../Editor.js';
 import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+import axios from 'axios';
+// import jest from 'jest';
+
 configure({ adapter: new Adapter() });
 
+
+
+import Editor from '../Editor.js';
 
 describe("Editor", () => {
   it("renders without crashing", () => {
@@ -27,6 +31,7 @@ describe("Editor", () => {
 
   describe("TextArea", () => {
     it("changes input when typed in", () => {
+      console.log(jest);
       const onChangeMock = jest.fn();
       const wrapper = mount(<Editor onChange={onChangeMock} />);
       wrapper.find('textarea').simulate('change');

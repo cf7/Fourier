@@ -1,20 +1,18 @@
 /**
  * @jest-environment jsdom
 */
-
 import React from 'react';
-import ReactDOM from 'react-dom';
 // import renderer from 'react-test-renderer';
-import App from '../App.js';
-import { configure, mount } from 'enzyme';
+import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import axios from 'axios';
-import jest from 'jest';
 
+import axios from 'axios';
+// import jest from 'jest';
 
 configure({ adapter: new Adapter() });
 
-// mock('axios');
+
+import App from '../App.js';
 
 
 describe("App", () => {
@@ -22,14 +20,24 @@ describe("App", () => {
     mount(<App />);
   });
 
-  // it("sends request on submit", () => {
-  //   axios.post.mockResolvedValue({
-  //     data: "c'est trop risqué eostok"
-  //   });
+  it("renders progress bar on submit", () => {
+    const wrapper = mount(<App />);
+    wrapper.find('input.submit-btn').simulate('click');
+    expect(wrapper.exists('div.show-progress')).toBe(true);
+    wrapper.unmount();
+  });
+
+  // it("renders display panel after receiving request data", async () => {
+  //   jest.mock('axios');
+  //   axios.post.mockImplementation(() => Promise.resolve({ data: "test data" }));
   //   const wrapper = mount(<App />);
-  //   await wrapper.instance().handleSubmit();
+  //   expect(wrapper.state('submitted')).toBe(false);
+  //   await wrapper.find('input.submit-btn').simulate('click');
+  //   expect(wrapper.state('submitted')).toBe(true);
+  //   expect(wrapper.exists('div.show-progress')).toBe(true);
   //   wrapper.unmount();
   // });
+
 });
 /*
 
