@@ -11,3 +11,6 @@ workflows:
   install-node:
     jobs:
       - node
+  test:
+    jobs:
+      - node/test
