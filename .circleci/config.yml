@@ -1,17 +1,8 @@
 version: 2.1
 orbs:
   node: circleci/node@4.7.0
-jobs:
-  node:
-    docker:
-      # replace with your preferred image
-      - image: cimg/node:16.13.0
-    steps:
-      - node/install
+
 workflows:
-  install-node:
-    jobs:
-      - node
   test:
     jobs:
       - node/test
