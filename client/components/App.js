@@ -94,6 +94,7 @@ export default class App extends React.Component {
       inputText: this.state.displayText,
       submitted: false,
       progressBar: 'show-progress',
+      showOutput: '',
     });
 
     let data = '';
@@ -125,6 +126,7 @@ export default class App extends React.Component {
           let translation = response.data.split('eostok')[0].trim();
           this.setState({
             output: translation,
+            showOutput: 'show-output',
             submitted: true,
             progressBar: '',
           });
@@ -132,6 +134,7 @@ export default class App extends React.Component {
         .catch((error) => {
           this.setState({ 
             output: "An error occurred.",
+            showOutput: 'show-output',
             submitted: true,
             progressBar: '',
           });

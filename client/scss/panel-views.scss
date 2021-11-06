@@ -136,18 +136,18 @@ $width: 510px;
       overflow: scroll;
       scroll-behavior: smooth;
       padding: 32px 32px 32px 32px;
-      &.show {
-        animation: show;
+      &.show-output {
+        animation: show-output;
         animation-duration: 3s;
         animation-fill-mode: both;
       }
-      p.show {
+      p.show-output {
         animation: show-text;
         animation-duration: 2.5s;
         animation-delay: 0.5s;
         animation-fill-mode: both;
       }
-      @keyframes show {
+      @keyframes show-output {
         from {
           height: $min-height;
         }

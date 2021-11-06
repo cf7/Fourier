@@ -7,7 +7,6 @@ import { configure, shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import axios from 'axios';
-// import jest from 'jest';
 
 configure({ adapter: new Adapter() });
 
@@ -31,7 +30,6 @@ describe("Editor", () => {
 
   describe("TextArea", () => {
     it("changes input when typed in", () => {
-      console.log(jest);
       const onChangeMock = jest.fn();
       const wrapper = mount(<Editor onChange={onChangeMock} />);
       wrapper.find('textarea').simulate('change');
@@ -44,7 +42,7 @@ describe("Editor", () => {
       const wrapper = mount(<Editor editorFontSize={17} />);
       editorFontSizes.forEach((fs) => {
         wrapper.setProps({ editorFontSize: fs });
-        expect(wrapper.prop("editorFontSize")).toBe(fs);
+        expect(wrapper.find('textarea.form-control').prop("style")).toHaveProperty("fontSize", String(fs) + "px");
       });
       wrapper.unmount();
     });

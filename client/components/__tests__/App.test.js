@@ -63,4 +63,7 @@ describe("App", () => {
   Only enzyme wrappers are internally wrapped with act() calls, if calling same functions on returned
   elements (i.e. let submitBtn = wrapper.find('#submit-btn'); submitBtn.simulate('click'); <-- ) then 
   need to wrap in act()
+
+  Jest automatically sets global utility vars and functions, including
+  a 'jest' reference to its own object
 */
