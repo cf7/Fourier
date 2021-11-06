@@ -3,6 +3,41 @@ $height: 250px;
 $min-width: 150px;
 $width: 510px;
 
+
+@media only screen and (min-width:700px) and (min-height:550px) {
+  .panel-views.row {
+    flex-wrap: wrap;
+  }
+  .column_2.col {
+    flex: 0 1 0;
+    // min-height: $min-height;
+    // height: $height;
+    margin: 45px 10px 45px 10px;
+    .row {
+      height: inherit;
+    }
+  }
+}
+
+@media only screen and (max-width:500px) and (max-height:700px) {
+  .panel-views.row {
+    flex-direction: column;
+  }
+  .column_2.col {
+    flex: 1;
+    // display: block;
+    // min-height: $min-height;
+    // height: $height;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 25px 0px 25px 0px;
+    // align-content: center;
+    .row {
+      margin: 0px;
+    }
+  }
+}
+
 .panel {
   border: 1px solid #000000;
   border-radius: 1em;
@@ -11,15 +46,11 @@ $width: 510px;
   padding-bottom: 2em;
 }
 
-.panel-views.row {
-  flex-wrap: wrap;
-}
-
 .column_1.col {
   flex: 1;
   padding-left: 0px;
   padding-right: 0px;
-  min-width: 150px;
+  min-width: $min-width;
   max-width: 510px;
   min-height: $min-height;
   height: fit-content;
@@ -71,16 +102,6 @@ $width: 510px;
         }
       }
     }
-  }
-}
-
-.column_2.col {
-  flex: 0 1 0;
-  min-height: $min-height;
-  height: $height;
-  margin: 45px 10px 45px 10px;
-  .row {
-    height: inherit;
   }
 }
 

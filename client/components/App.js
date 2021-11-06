@@ -218,6 +218,9 @@ export default class App extends React.Component {
                   <Col className="welcome">
                     <h4 className="welcome-header">Welcome to Fourier!</h4>
                     <p>
+                    This app is a basic interface for language translations.
+                    </p>
+                    <p>
                     To get started, type into the <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="editor">editor</a> to the left, 
                     or simply click <a onMouseOver={this.handleLinkMouseOver} onMouseLeave={this.handleLinkMouseLeave} name="translate">Translate</a> to translate the sample text.
                     </p>

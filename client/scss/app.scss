@@ -1,5 +1,5 @@
 @import '~bootstrap/scss/bootstrap.scss'; // sass/css filepaths must be relative to entry file, can't use 'url(..)'
-@import './panel-views.scss';
+@import './panel-views.scss'; // only screen and (min-width:700px) and (min-height:550px);
 @import './layout.scss';
 @import './button.scss';
 
@@ -26,3 +26,5 @@ h1 {
   margin-bottom: 1em;
   padding: 0px;
 }
+
+

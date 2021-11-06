@@ -58,7 +58,7 @@ module.exports = {
       inject: 'body',
       title: 'Fourier',
     }),
-    new MiniCSSExtractPlugin(),
+    // new MiniCSSExtractPlugin(),
   ],
   
   output: {
