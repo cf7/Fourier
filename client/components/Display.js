@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Panel from './Panel.js';
-import FourierButton from './Button.js';
+import FourierButton from './FourierButton.js';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';

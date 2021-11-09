@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import FourierButton from './Button.js';
+import FourierButton from './FourierButton.js';
 import Panel from './Panel.js';
 
 // import Form from 'react-bootstrap/Form';

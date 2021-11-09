@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from './Layout.js';
 import Panel from './Panel.js';
-import FourierButton from './Button.js';
+import FourierButton from './FourierButton.js';
 import Editor from './Editor.js';
 import Display from './Display.js';
 
