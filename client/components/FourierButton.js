@@ -8,14 +8,14 @@ export default class FourierButton extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: false,
-    };
+    // this.state = {
+    //   isLoading: false,
+    // };
   }
 
   handleClick = (event) => {
     if (this.props.submit) {
-      this.setState({ isLoading: true });
+      // this.setState({ isLoading: true });
       this.props.submit();
     }
   }
