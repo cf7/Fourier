@@ -18,13 +18,23 @@ export default class About extends React.Component {
     return (
       <Layout>
         <Container className="about-view">
+        <Row>
+        <Col className="about-col">
           <Row>
           <h1>
             About
           </h1>
+          <div className="about-line"></div>
           </Row>
+          <Row className="about-description">
+            <p>Fourier is a sandbox interface that will continually evolve with practice design features. 
+            It currently functions as language translator and uses a Sequence-to-Sequence neural network with LSTM layers to translate English to French.
+            To learn more about how it was developed, and what it started as, feel free to check out the tabs below.</p>
+          </Row>
+        </Col>
+        </Row>
           <Row>
-            <Accordion defaultActiveKey="0">
+            <Accordion>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Fourier App</Accordion.Header>
                 <Accordion.Body>
