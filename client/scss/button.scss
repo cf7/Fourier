@@ -100,3 +100,8 @@ div.dropdown-header {
   -o-user-select: none;
   text-transform: capitalize;
 }
+
+button.navbar-toggler.collapsed {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

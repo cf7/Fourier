@@ -28,6 +28,8 @@ export default class Layout extends React.Component {
   updateWindowDimensions = () => {
     if (this.state.width < 500) {
       this.setState({ hamburger: true });
+    } else {
+      this.setState({ hamburger: false });
     }
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
@@ -44,7 +46,7 @@ export default class Layout extends React.Component {
 
               ?
 
-              <Navbar bg="light" expand={false}>
+              <Navbar id="navbar" bg="light" expand={false}>
                 <Container fluid>
                   {/*<Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>*/}
                   <Navbar.Toggle aria-controls="offcanvasNavbar" />

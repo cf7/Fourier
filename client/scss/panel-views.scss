@@ -8,6 +8,12 @@ $width: 510px;
   .panel-views.row {
     flex-wrap: wrap;
   }
+  .column_1.col {
+    min-width: $min-width;
+    max-width: 510px;
+    min-height: $min-height;
+    height: fit-content;
+  }
   .column_2.col {
     flex: 0 1 0;
     // min-height: $min-height;
@@ -19,7 +25,28 @@ $width: 510px;
   }
 }
 
+// mobile: portrait
 @media only screen and (max-width:500px) and (max-height:700px) {
+  .panel-views.row {
+    flex-direction: column;
+  }
+  .column_2.col {
+    flex: 1;
+    // display: block;
+    // min-height: $min-height;
+    // height: $height;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 25px 0px 25px 0px;
+    // align-content: center;
+    .row {
+      margin: 0px;
+    }
+  }
+}
+
+// mobile: landscape
+@media only screen and (max-width: 800px) and (max-height: 500px) {
   .panel-views.row {
     flex-direction: column;
   }
@@ -50,10 +77,6 @@ $width: 510px;
   flex: 1;
   padding-left: 0px;
   padding-right: 0px;
-  min-width: $min-width;
-  max-width: 510px;
-  min-height: $min-height;
-  height: fit-content;
   margin-right: 0px;
   margin-left: 0px;
   div.controls.panel.container {
