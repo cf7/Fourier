@@ -28,7 +28,7 @@ export default class About extends React.Component {
           </Row>
           <Row className="about-description">
             <p>Fourier is a sandbox interface that will continually evolve with practice design features. 
-            It currently functions as language translator and uses a <a href="https://www.tensorflow.org/addons/tutorials/networks_seq2seq_nmt">Sequence-to-Sequence neural network</a> with LSTM layers to translate English to French.
+            It currently functions as a language translator and uses a <a href="https://www.tensorflow.org/addons/tutorials/networks_seq2seq_nmt">Sequence-to-Sequence neural network</a> with LSTM layers to translate English to French.
             To learn more about how it was developed, and what it started as, feel free to check out the tabs below.</p>
           </Row>
         </Col>
