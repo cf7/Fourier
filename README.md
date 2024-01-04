@@ -7,7 +7,6 @@ It was originally intended for a NLP source code summarizer project . . . until 
 (You can read about that [here](https://github.com/cf7/Fourier/blob/main/docs/original_README.md).)
 
 Check out the demo for the app through the link below:\
-(Almost mobile-friendly.)\
 [https://fourier-app.herokuapp.com/](https://fourier-app.herokuapp.com/)
 
 For translating written text, Fourier uses a Sequence-to-Sequence neural network with LSTM layers, the code for which is featured on my [Kaggle](https://www.kaggle.com/cf1111/fourier4).
