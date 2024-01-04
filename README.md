@@ -1,5 +1,5 @@
 # Fourier
-Fourier is a sandbox interface that I built specifically to demonstrate my web development proficiencies for potential employers.
+Fourier is a sandbox interface built for NLP projects.
 
 *Note: In the spirit of learning, I did not use `create-react-app` for this project. It is built from scratch.*
 
